@@ -11,6 +11,8 @@ An interactive React application designed to help you master Spanish verb conjug
 - **Progress Tracking**: Monitor your learning progress with detailed statistics
 - **Smart Shuffling**: Randomized card order to prevent memorization by position
 - **Advanced Filtering**: Filter verbs by type, conjugation, tense, and search by name
+- **Interactive Quiz Mode**: Test your knowledge with typing challenges
+- **Spanish Accent Keyboard**: Easy access to accented characters with number shortcuts
 - **Keyboard Shortcuts**: Quick navigation and actions for efficient learning
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
 - **Local Storage**: Your progress is automatically saved locally
@@ -77,6 +79,14 @@ The app includes conjugations for:
 5. **Shuffle**: Use the shuffle button to randomize card order
 6. **Change Verbs**: Use the "Change Verbs" button to modify your selection
 
+### Quiz Mode
+1. **Start Quiz**: Click the "Quiz" button or press 'Q' to enter quiz mode
+2. **Configure Quiz**: Choose number of questions (5-20) and question direction
+3. **Answer Questions**: Type the correct translation in the text field
+4. **Use Accent Keyboard**: Click accent buttons or use number keys 1-9 for Spanish characters
+5. **Review Results**: See your score and review any incorrect answers
+6. **Retry or Continue**: Choose to retry the quiz or return to practice mode
+
 ### Verb Selection Options
 
 #### Predefined Sets
@@ -102,12 +112,21 @@ The app includes conjugations for:
 - **S**: Shuffle remaining cards
 - **L**: Toggle language direction (Spanish/English first)
 - **H**: Show conjugation reference
+- **Q**: Start quiz mode
 - **?**: Show keyboard shortcuts help
 
 ### Getting Help
 - **Floating Help Button**: Click the subtle "?" button in the bottom-right corner
 - **Keyboard Shortcut**: Press `?` anytime to see all available shortcuts
 - **Help Modal**: Displays all shortcuts organized by category with pro tips
+
+### Spanish Accent Keyboard
+- **Available in Quiz Mode**: Automatically appears when typing Spanish answers
+- **Click to Insert**: Click any accent button to insert the character
+- **Number Shortcuts**: Use keys 1-9 for quick insertion:
+  - **1**: á, **2**: é, **3**: í, **4**: ó, **5**: ú
+  - **6**: ñ, **7**: ü, **8**: ¿, **9**: ¡
+- **Visual Feedback**: Buttons highlight when used via keyboard shortcuts
 
 ## 🛠️ Technology Stack
 
@@ -140,6 +159,7 @@ The app includes conjugations for:
 - Progress persistence across sessions
 - Encouraging feedback messages
 - Personalized learning paths
+- Quiz mode with customizable difficulty and question count
 
 ### User Experience
 - Beautiful gradient backgrounds
@@ -196,6 +216,9 @@ Contributions are welcome! Here's how you can help:
 - Implement custom verb set creation and sharing
 - Add progress analytics and learning insights
 - Include verb usage examples in context
+- Add more quiz question types (multiple choice, fill-in-the-blank)
+- Implement quiz result sharing and leaderboards
+- Add more accent keyboard layouts for different languages
 
 ## 📝 License
 

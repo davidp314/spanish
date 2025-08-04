@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Keyboard, MousePointer, ArrowRight, ArrowLeft, Star, RotateCcw, Shuffle, Languages, HelpCircle, BookOpen } from 'lucide-react';
+import { X, Keyboard, MousePointer, ArrowRight, ArrowLeft, Star, RotateCcw, Shuffle, Languages, HelpCircle, BookOpen, Edit3 } from 'lucide-react';
 
 interface KeyboardHelpProps {
   isOpen: boolean;
@@ -47,7 +47,8 @@ const KeyboardHelp: React.FC<KeyboardHelpProps> = ({ isOpen, onClose }) => {
         { key: 'S', description: 'Shuffle remaining cards' },
         { key: 'R', description: 'Reset all progress' },
         { key: 'L', description: 'Toggle language direction' },
-        { key: 'H', description: 'Show conjugation reference' }
+        { key: 'H', description: 'Show conjugation reference' },
+        { key: 'Q', description: 'Start quiz mode' }
       ]
     },
     {
@@ -56,6 +57,21 @@ const KeyboardHelp: React.FC<KeyboardHelpProps> = ({ isOpen, onClose }) => {
       shortcuts: [
         { key: '?', description: 'Show this help modal' },
         { key: 'Esc', description: 'Close any modal' }
+      ]
+    },
+    {
+      category: 'Spanish Accents',
+      icon: <Keyboard size={20} />,
+      shortcuts: [
+        { key: '1', description: 'Insert á (a with acute)' },
+        { key: '2', description: 'Insert é (e with acute)' },
+        { key: '3', description: 'Insert í (i with acute)' },
+        { key: '4', description: 'Insert ó (o with acute)' },
+        { key: '5', description: 'Insert ú (u with acute)' },
+        { key: '6', description: 'Insert ñ (n with tilde)' },
+        { key: '7', description: 'Insert ü (u with umlaut)' },
+        { key: '8', description: 'Insert ¿ (inverted question)' },
+        { key: '9', description: 'Insert ¡ (inverted exclamation)' }
       ]
     }
   ];
@@ -283,6 +299,8 @@ const KeyboardHelp: React.FC<KeyboardHelpProps> = ({ isOpen, onClose }) => {
                   <li style={styles.tipsItem}>• Use Spacebar to quickly flip cards without moving your mouse</li>
                   <li style={styles.tipsItem}>• Press M to mark cards as mastered for faster progress</li>
                   <li style={styles.tipsItem}>• Use arrow keys to navigate through your verb deck</li>
+                  <li style={styles.tipsItem}>• Press Q to start quiz mode and test your knowledge</li>
+                  <li style={styles.tipsItem}>• Use number keys 1-9 for Spanish accents in quiz mode</li>
                   <li style={styles.tipsItem}>• Press ? anytime to see this help modal</li>
                 </ul>
               </motion.div>

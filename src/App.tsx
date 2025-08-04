@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings, HelpCircle } from 'lucide-react';
+import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings, HelpCircle, AlertTriangle, Edit3 } from 'lucide-react';
 import VerbSelection from './components/VerbSelection';
 import ConjugationReference from './components/ConjugationReference';
 import KeyboardHelp from './components/KeyboardHelp';
+import Quiz from './components/Quiz';
 import { Conjugation, allConjugations } from './data/conjugationData';
 
 // Use Conjugation interface from conjugationData.ts
@@ -345,6 +346,10 @@ function App() {
   const [hasSelectedVerbs, setHasSelectedVerbs] = useState(initialState.selectedConjugations.length > 0);
   const [showReference, setShowReference] = useState(false);
   const [showKeyboardHelp, setShowKeyboardHelp] = useState(false);
+  const [showResetConfirmation, setShowResetConfirmation] = useState(false);
+  const [showClearConfirmation, setShowClearConfirmation] = useState(false);
+  const [pendingResetAction, setPendingResetAction] = useState<'reset' | 'clear' | null>(null);
+  const [showQuiz, setShowQuiz] = useState(false);
   
   // Debug state changes
   useEffect(() => {
@@ -449,6 +454,16 @@ function App() {
   };
 
   const handleReset = () => {
+    setPendingResetAction('reset');
+    setShowResetConfirmation(true);
+  };
+
+  const clearProgress = () => {
+    setPendingResetAction('clear');
+    setShowClearConfirmation(true);
+  };
+
+  const confirmReset = () => {
     setVerbs(selectedConjugations.map(verb => ({ ...verb, mastered: false })));
     setCurrentIndex(0);
     setTotalAttempts(0);
@@ -459,11 +474,19 @@ function App() {
     setShuffleTrigger((prev: number) => prev + 1); // Trigger shuffle on reset
     // Clear localStorage on reset
     localStorage.removeItem('spanishVerbsState');
+    setShowResetConfirmation(false);
+    setPendingResetAction(null);
   };
 
-  const clearProgress = () => {
+  const confirmClearProgress = () => {
     localStorage.removeItem('spanishVerbsState');
     window.location.reload(); // Reload to reset everything
+  };
+
+  const cancelReset = () => {
+    setShowResetConfirmation(false);
+    setShowClearConfirmation(false);
+    setPendingResetAction(null);
   };
 
   const handleToggleLanguage = () => {
@@ -483,6 +506,13 @@ function App() {
   useEffect(() => {
     console.log('Setting up keyboard event listener');
     const handleKeyPress = (event: KeyboardEvent) => {
+      // Don't handle keyboard shortcuts when quiz is open
+      if (showQuiz) {
+        return;
+      }
+      
+
+      
       console.log('Key pressed:', event.key);
       switch (event.key) {
         case ' ': // Spacebar - flip card
@@ -522,6 +552,10 @@ function App() {
           event.preventDefault();
           setShowKeyboardHelp(true);
           break;
+        case 'q': // 'q' key - open quiz
+          event.preventDefault();
+          setShowQuiz(true);
+          break;
         case 'ArrowLeft': // Left arrow - previous card (if not first)
           event.preventDefault();
           if (currentIndex > 0) {
@@ -529,12 +563,18 @@ function App() {
             setIsFlipped(false);
           }
           break;
+        case 'Escape': // Escape key - cancel confirmation dialogs
+          event.preventDefault();
+          if (showResetConfirmation || showClearConfirmation) {
+            cancelReset();
+          }
+          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isFlipped, isLastCard, currentIndex, currentConjugation]);
+  }, [isFlipped, isLastCard, currentIndex, currentConjugation, showResetConfirmation, showClearConfirmation, showQuiz]);
 
   if (!hasSelectedVerbs || showVerbSelection) {
     console.log('Showing verb selection screen - no help button here');
@@ -551,24 +591,6 @@ function App() {
 
   return (
     <>
-      {/* Test box to confirm rendering */}
-      <div style={{
-        position: 'fixed',
-        top: '10px',
-        left: '10px',
-        width: '60px',
-        height: '40px',
-        backgroundColor: 'red',
-        color: 'white',
-        fontWeight: 'bold',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 99999
-      }}>
-        TEST
-      </div>
-      {/* Main app UI restored below */}
       <div style={styles.container}>
         {/* Header */}
         <header style={styles.header}>
@@ -626,6 +648,16 @@ function App() {
               >
                 <HelpCircle size={20} />
                 Reference
+              </button>
+              <button 
+                onClick={() => setShowQuiz(true)}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
+                }}
+              >
+                <Edit3 size={20} />
+                Quiz
               </button>
             </div>
           </div>
@@ -877,6 +909,190 @@ function App() {
           isOpen={showKeyboardHelp}
           onClose={() => setShowKeyboardHelp(false)}
         />
+
+        {/* Quiz Modal */}
+        <Quiz 
+          isOpen={showQuiz}
+          onClose={() => setShowQuiz(false)}
+          conjugations={selectedConjugations}
+          onMastered={handleMastered}
+        />
+
+        {/* Reset Confirmation Modal */}
+        {showResetConfirmation && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10000
+          }}>
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: '16px',
+              padding: '2rem',
+              maxWidth: '400px',
+              width: '90%',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem'
+              }}>
+                <AlertTriangle size={48} color="#f59e0b" />
+              </div>
+              <h3 style={{
+                fontSize: '1.25rem',
+                fontWeight: 'bold',
+                color: '#1f2937',
+                marginBottom: '0.5rem'
+              }}>
+                Reset Progress?
+              </h3>
+              <p style={{
+                color: '#6b7280',
+                marginBottom: '1.5rem',
+                lineHeight: '1.5'
+              }}>
+                This will reset all your progress and mastered verbs. This action cannot be undone.
+              </p>
+              <div style={{
+                display: 'flex',
+                gap: '0.75rem',
+                justifyContent: 'center'
+              }}>
+                <button
+                  onClick={cancelReset}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#6b7280',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmReset}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#ef4444',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  Reset Progress
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Clear Progress Confirmation Modal */}
+        {showClearConfirmation && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 10000
+          }}>
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: '16px',
+              padding: '2rem',
+              maxWidth: '400px',
+              width: '90%',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              textAlign: 'center'
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '1rem'
+              }}>
+                <AlertTriangle size={48} color="#dc2626" />
+              </div>
+              <h3 style={{
+                fontSize: '1.25rem',
+                fontWeight: 'bold',
+                color: '#1f2937',
+                marginBottom: '0.5rem'
+              }}>
+                Clear All Progress?
+              </h3>
+              <p style={{
+                color: '#6b7280',
+                marginBottom: '1.5rem',
+                lineHeight: '1.5'
+              }}>
+                This will completely clear all your progress and reload the page. This action cannot be undone.
+              </p>
+              <div style={{
+                display: 'flex',
+                gap: '0.75rem',
+                justifyContent: 'center'
+              }}>
+                <button
+                  onClick={cancelReset}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#6b7280',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmClearProgress}
+                  style={{
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#dc2626',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  Clear All Progress
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       
       {/* Floating Help Button */}
