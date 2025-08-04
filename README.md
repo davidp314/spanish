@@ -1,46 +1,173 @@
-# Getting Started with Create React App
+# Spanish Verb Master 🎓
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An interactive React application designed to help you master Spanish verb conjugations through flashcards and spaced repetition learning.
 
-## Available Scripts
+## 🌟 Features
 
-In the project directory, you can run:
+- **Interactive Flashcards**: Learn Spanish verb conjugations with flip cards
+- **Comprehensive Verb Database**: Includes regular and irregular verbs in present and preterite tenses
+- **Progress Tracking**: Monitor your learning progress with detailed statistics
+- **Smart Shuffling**: Randomized card order to prevent memorization by position
+- **Keyboard Shortcuts**: Quick navigation and actions for efficient learning
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Local Storage**: Your progress is automatically saved locally
 
-### `npm start`
+## 🎯 Learning Content
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The app includes conjugations for:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Regular Verbs (-ar, -er, -ir)
+- **Present Tense**: hablar, caminar, comer, beber, vivir, escribir
+- **Preterite Tense**: All regular verb conjugations
 
-### `npm test`
+### Irregular Verbs
+- **Present Tense**: tener, mentir, leer, poner, dejar, decir, estar, poder, ir
+- **Preterite Tense**: All irregular verb conjugations
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Conjugation Categories
+- **Persons**: yo, tú, él/ella/usted, nosotros, ellos/ellas/ustedes
+- **Tenses**: Present, Preterite
+- **Verb Types**: Regular (-ar, -er, -ir), Irregular
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/spanish-verb-master.git
+   cd spanish-verb-master
+   ```
 
-### `npm run eject`
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Open your browser**
+   Navigate to `http://localhost:3000` to start learning!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## ⌨️ Keyboard Shortcuts
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **Spacebar**: Flip the current card
+- **Right Arrow / N**: Move to next card
+- **Left Arrow**: Move to previous card
+- **M**: Mark current card as mastered
+- **R**: Reset all progress
+- **S**: Shuffle remaining cards
+- **L**: Toggle language direction (Spanish/English first)
 
-## Learn More
+## 🎮 How to Use
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. **Start Learning**: Cards will show English prompts by default
+2. **Flip Cards**: Click on a card or press spacebar to see the Spanish conjugation
+3. **Mark Progress**: 
+   - Click "Mastered" if you know the conjugation well
+   - Click "Next" if you need more practice
+4. **Track Progress**: Monitor your statistics at the bottom of the screen
+5. **Shuffle**: Use the shuffle button to randomize card order
+6. **Reset**: Use the reset button to start over when needed
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠️ Technology Stack
+
+- **Frontend**: React 19 with TypeScript
+- **Styling**: Tailwind CSS with custom gradients
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Create React App
+- **Package Manager**: npm
+
+## 📊 Features in Detail
+
+### Progress Tracking
+- Mastery percentage calculation
+- Accuracy tracking
+- Cards remaining counter
+- Current card position
+
+### Smart Learning
+- Cards are automatically shuffled
+- Only unmastered cards are shown
+- Progress persistence across sessions
+- Encouraging feedback messages
+
+### User Experience
+- Beautiful gradient backgrounds
+- Smooth animations and transitions
+- Responsive design for all screen sizes
+- Intuitive navigation
+
+## 🚀 Deployment
+
+### Build for Production
+```bash
+npm run build
+```
+
+### Deploy to GitHub Pages
+1. Add to `package.json`:
+   ```json
+   "homepage": "https://yourusername.github.io/spanish-verb-master",
+   "scripts": {
+     "predeploy": "npm run build",
+     "deploy": "gh-pages -d build"
+   }
+   ```
+
+2. Install gh-pages:
+   ```bash
+   npm install --save-dev gh-pages
+   ```
+
+3. Deploy:
+   ```bash
+   npm run deploy
+   ```
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Commit your changes**: `git commit -m 'Add amazing feature'`
+4. **Push to the branch**: `git push origin feature/amazing-feature`
+5. **Open a Pull Request**
+
+### Ideas for Contributions
+- Add more verb tenses (imperfect, future, etc.)
+- Include more irregular verbs
+- Add audio pronunciation
+- Implement spaced repetition algorithm
+- Add multiplayer/competitive features
+- Create different difficulty levels
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Spanish language learning community
+- React and TypeScript communities
+- Open source contributors
+
+## 📞 Support
+
+If you have any questions or suggestions, please:
+- Open an issue on GitHub
+- Contact the maintainers
+- Check the documentation
+
+---
+
+**Happy Learning! ¡Feliz aprendizaje! 🎉**
