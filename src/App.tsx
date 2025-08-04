@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings } from 'lucide-react';
+import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings, HelpCircle } from 'lucide-react';
 import VerbSelection from './components/VerbSelection';
+import ConjugationReference from './components/ConjugationReference';
 import { Conjugation, allConjugations } from './data/conjugationData';
 
 // Use Conjugation interface from conjugationData.ts
@@ -341,6 +342,7 @@ function App() {
   const [showVerbSelection, setShowVerbSelection] = useState(false);
   const [selectedConjugations, setSelectedConjugations] = useState<Conjugation[]>(initialState.selectedConjugations);
   const [hasSelectedVerbs, setHasSelectedVerbs] = useState(initialState.selectedConjugations.length > 0);
+  const [showReference, setShowReference] = useState(false);
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -502,6 +504,10 @@ function App() {
           event.preventDefault();
           handleToggleLanguage();
           break;
+        case 'h': // 'h' key - toggle reference
+          event.preventDefault();
+          setShowReference(!showReference);
+          break;
         case 'ArrowLeft': // Left arrow - previous card (if not first)
           event.preventDefault();
           if (currentIndex > 0) {
@@ -524,6 +530,327 @@ function App() {
       />
     );
   }
+
+  return (
+    <>
+      <div style={styles.container}>
+        {/* Header */}
+        <header style={styles.header}>
+          <div style={styles.headerContent}>
+            <div style={styles.headerLeft}>
+              <BookOpen size={32} color="#3b82f6" />
+              <div>
+                <h1 style={styles.title}>Spanish Verb Master</h1>
+                <p style={styles.subtitle}>Master the art of Spanish verbs</p>
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button onClick={handleReset} style={styles.resetButton}>
+                <RotateCcw size={20} />
+                Reset All
+              </button>
+              <button 
+                onClick={clearProgress}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)'
+                }}
+              >
+                <Trash2 size={20} />
+                Clear Progress
+              </button>
+              <button 
+                onClick={handleToggleLanguage}
+                style={{
+                  ...styles.resetButton,
+                  background: spanishFirst 
+                    ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                    : 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
+                }}
+              >
+                <Languages size={20} />
+                {spanishFirst ? 'Spanish First' : 'English First'}
+              </button>
+              <button 
+                onClick={handleBackToSelection}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
+                }}
+              >
+                <Settings size={20} />
+                Change Verbs
+              </button>
+              <button 
+                onClick={() => setShowReference(true)}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)'
+                }}
+              >
+                <HelpCircle size={20} />
+                Reference
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {/* Progress Bar */}
+        <div style={styles.progressBar}>
+          <div style={styles.progressContent}>
+            <div style={styles.progressText}>
+              <Target size={20} color="#3b82f6" />
+              <span>Progress: {masteredVerbs.length}/{verbs.length} mastered</span>
+            </div>
+            <div style={styles.progressBarBg}>
+              <div 
+                style={{
+                  ...styles.progressBarFill,
+                  width: `${masteryPercentage}%`
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content - Flashcard */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '2rem 1rem',
+          gap: '1.5rem',
+          minHeight: '60vh'
+        }}>
+          {currentConjugation && (
+            <>
+              {/* Flashcard */}
+              <div 
+                style={{
+                  width: '100%',
+                  maxWidth: '350px',
+                  height: '120px',
+                  backgroundColor: 'white',
+                  borderRadius: '16px',
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                  border: '1px solid #f3f4f6',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '1rem',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setIsFlipped(!isFlipped)}
+              >
+                <div style={{
+                  fontSize: '0.875rem',
+                  color: '#6b7280',
+                  marginBottom: '0.5rem'
+                }}>
+                  {!isFlipped 
+                    ? (spanishFirst ? 'Spanish' : 'English')
+                    : (spanishFirst ? 'English' : 'Spanish')
+                  }
+                </div>
+                <h2 style={{
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: '#1f2937',
+                  margin: '0 0 0.5rem 0',
+                  textAlign: 'center'
+                }}>
+                  {!isFlipped 
+                    ? (spanishFirst ? currentConjugation.spanish : currentConjugation.english)
+                    : (spanishFirst ? currentConjugation.english : currentConjugation.spanish)
+                  }
+                </h2>
+                <div style={{
+                  fontSize: '0.875rem',
+                  color: '#6b7280',
+                  textAlign: 'center'
+                }}>
+                  {!isFlipped 
+                    ? (spanishFirst ? 'Click to see English' : 'Click to see Spanish')
+                    : 'Click to flip back'
+                  }
+                </div>
+              </div>
+
+              {/* Action buttons */}
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                justifyContent: 'center',
+                width: '100%',
+                maxWidth: '350px',
+                flexWrap: 'wrap'
+              }}>
+                <button
+                  onClick={() => handleMastered(currentConjugation.id)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#fbbf24',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  <Star size={20} />
+                  Mastered
+                </button>
+                
+                {!isLastCard && (
+                  <button
+                    onClick={handleNext}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.75rem 1.5rem',
+                      backgroundColor: '#10b981',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s'
+                    }}
+                  >
+                    <Check size={20} />
+                    Next
+                  </button>
+                )}
+
+                <button
+                  onClick={handleShuffle}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#8b5cf6',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  <Shuffle size={20} />
+                  Shuffle
+                </button>
+              </div>
+
+              {/* Verb type indicator */}
+              <div style={{
+                textAlign: 'center',
+                display: 'flex',
+                gap: '0.5rem',
+                justifyContent: 'center',
+                flexWrap: 'wrap'
+              }}>
+                <span style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  ...(currentConjugation.type === 'irregular' 
+                    ? { backgroundColor: '#fef3c7', color: '#92400e' }
+                    : { backgroundColor: '#dbeafe', color: '#1e40af' }
+                  )
+                }}>
+                  {currentConjugation.type === 'irregular' ? 'Irregular' : `Regular -${currentConjugation.conjugation}`}
+                </span>
+                <span style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  backgroundColor: currentConjugation.tense === 'present' ? '#dcfce7' : '#fef3c7',
+                  color: currentConjugation.tense === 'present' ? '#166534' : '#92400e'
+                }}>
+                  {currentConjugation.tense === 'present' ? 'Present' : 'Preterite'}
+                </span>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Statistics */}
+        <div style={styles.statistics}>
+          <div style={styles.statsContent}>
+            {/* Progress Message */}
+            {showMessage && (
+              <div style={styles.message}>
+                {lastMessage}
+              </div>
+            )}
+
+            {/* Statistics Grid */}
+            <div style={styles.statsGrid}>
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#eff6ff',
+                borderColor: '#bfdbfe',
+                color: '#1e40af'
+              }}>
+                <div style={styles.statNumber}>{masteredVerbs.length}/{verbs.length}</div>
+                <div style={styles.statLabel}>Mastery Progress</div>
+              </div>
+              
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#ecfdf5',
+                borderColor: '#a7f3d0',
+                color: '#065f46'
+              }}>
+                <div style={styles.statNumber}>{accuracyPercentage}%</div>
+                <div style={styles.statLabel}>Accuracy</div>
+              </div>
+              
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#faf5ff',
+                borderColor: '#c4b5fd',
+                color: '#5b21b6'
+              }}>
+                <div style={styles.statNumber}>{verbs.length - masteredVerbs.length}</div>
+                <div style={styles.statLabel}>Remaining</div>
+              </div>
+              
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#fffbeb',
+                borderColor: '#fcd34d',
+                color: '#92400e'
+              }}>
+                <div style={styles.statNumber}>{currentIndex + 1}</div>
+                <div style={styles.statLabel}>Current Card</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Conjugation Reference Modal */}
+      <ConjugationReference 
+        isOpen={showReference}
+        onClose={() => setShowReference(false)}
+      />
+    </>
+  );
 
   if (isCompleted) {
     return (
@@ -556,180 +883,169 @@ function App() {
   }
 
   return (
-    <div style={styles.container}>
-      {/* Header */}
-      <header style={styles.header}>
-        <div style={styles.headerContent}>
-          <div style={styles.headerLeft}>
-            <BookOpen size={32} color="#3b82f6" />
-            <div>
-              <h1 style={styles.title}>Spanish Verb Master</h1>
-              <p style={styles.subtitle}>Master the art of Spanish verbs</p>
-            </div>
-          </div>
-          
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <button onClick={handleReset} style={styles.resetButton}>
-              <RotateCcw size={20} />
-              Reset All
-            </button>
-            <button 
-              onClick={clearProgress}
-              style={{
-                ...styles.resetButton,
-                background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)'
-              }}
-            >
-              <Trash2 size={20} />
-              Clear Progress
-            </button>
-            <button 
-              onClick={handleToggleLanguage}
-              style={{
-                ...styles.resetButton,
-                background: spanishFirst 
-                  ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
-                  : 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
-              }}
-            >
-              <Languages size={20} />
-              {spanishFirst ? 'Spanish First' : 'English First'}
-            </button>
-            <button 
-              onClick={handleBackToSelection}
-              style={{
-                ...styles.resetButton,
-                background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
-              }}
-            >
-              <Settings size={20} />
-              Change Verbs
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Progress Bar */}
-      <div style={styles.progressBar}>
-        <div style={styles.progressContent}>
-          <div style={styles.progressText}>
-            <Target size={20} color="#3b82f6" />
-            <span>Progress: {masteredVerbs.length}/{verbs.length} mastered</span>
-          </div>
-          <div style={styles.progressBarBg}>
-            <div 
-              style={{
-                ...styles.progressBarFill,
-                width: `${masteryPercentage}%`
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content - Flashcard */}
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '2rem 1rem',
-        gap: '1.5rem',
-        minHeight: '60vh'
-      }}>
-        {currentConjugation && (
-          <>
-            {/* Flashcard */}
-            <div 
-              style={{
-                width: '100%',
-                maxWidth: '350px',
-                height: '120px',
-                backgroundColor: 'white',
-                borderRadius: '16px',
-                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                border: '1px solid #f3f4f6',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '1rem',
-                cursor: 'pointer'
-              }}
-              onClick={() => setIsFlipped(!isFlipped)}
-            >
-              <div style={{
-                fontSize: '0.875rem',
-                color: '#6b7280',
-                marginBottom: '0.5rem'
-              }}>
-                {!isFlipped 
-                  ? (spanishFirst ? 'Spanish' : 'English')
-                  : (spanishFirst ? 'English' : 'Spanish')
-                }
-              </div>
-              <h2 style={{
-                fontSize: '1.5rem',
-                fontWeight: 'bold',
-                color: '#1f2937',
-                margin: '0 0 0.5rem 0',
-                textAlign: 'center'
-              }}>
-                {!isFlipped 
-                  ? (spanishFirst ? currentConjugation.spanish : currentConjugation.english)
-                  : (spanishFirst ? currentConjugation.english : currentConjugation.spanish)
-                }
-              </h2>
-              <div style={{
-                fontSize: '0.875rem',
-                color: '#6b7280',
-                textAlign: 'center'
-              }}>
-                {!isFlipped 
-                  ? (spanishFirst ? 'Click to see English' : 'Click to see Spanish')
-                  : 'Click to flip back'
-                }
+    <>
+      <div style={styles.container}>
+        {/* Header */}
+        <header style={styles.header}>
+          <div style={styles.headerContent}>
+            <div style={styles.headerLeft}>
+              <BookOpen size={32} color="#3b82f6" />
+              <div>
+                <h1 style={styles.title}>Spanish Verb Master</h1>
+                <p style={styles.subtitle}>Master the art of Spanish verbs</p>
               </div>
             </div>
-
-            {/* Action buttons */}
-            <div style={{
-              display: 'flex',
-              gap: '1rem',
-              justifyContent: 'center',
-              width: '100%',
-              maxWidth: '350px',
-              flexWrap: 'wrap'
-            }}>
-              <button
-                onClick={() => handleMastered(currentConjugation.id)}
+            
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button onClick={handleReset} style={styles.resetButton}>
+                <RotateCcw size={20} />
+                Reset All
+              </button>
+              <button 
+                onClick={clearProgress}
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#fbbf24',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'background-color 0.2s'
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)'
                 }}
               >
-                <Star size={20} />
-                Mastered
+                <Trash2 size={20} />
+                Clear Progress
               </button>
-              
-              {!isLastCard && (
+              <button 
+                onClick={handleToggleLanguage}
+                style={{
+                  ...styles.resetButton,
+                  background: spanishFirst 
+                    ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                    : 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
+                }}
+              >
+                <Languages size={20} />
+                {spanishFirst ? 'Spanish First' : 'English First'}
+              </button>
+              <button 
+                onClick={handleBackToSelection}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
+                }}
+              >
+                <Settings size={20} />
+                Change Verbs
+              </button>
+              <button 
+                onClick={() => setShowReference(true)}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)'
+                }}
+              >
+                <HelpCircle size={20} />
+                Reference
+              </button>
+            </div>
+          </div>
+        </header>
+
+        {/* Progress Bar */}
+        <div style={styles.progressBar}>
+          <div style={styles.progressContent}>
+            <div style={styles.progressText}>
+              <Target size={20} color="#3b82f6" />
+              <span>Progress: {masteredVerbs.length}/{verbs.length} mastered</span>
+            </div>
+            <div style={styles.progressBarBg}>
+              <div 
+                style={{
+                  ...styles.progressBarFill,
+                  width: `${masteryPercentage}%`
+                }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content - Flashcard */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          padding: '2rem 1rem',
+          gap: '1.5rem',
+          minHeight: '60vh'
+        }}>
+          {currentConjugation && (
+            <>
+              {/* Flashcard */}
+              <div 
+                style={{
+                  width: '100%',
+                  maxWidth: '350px',
+                  height: '120px',
+                  backgroundColor: 'white',
+                  borderRadius: '16px',
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                  border: '1px solid #f3f4f6',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '1rem',
+                  cursor: 'pointer'
+                }}
+                onClick={() => setIsFlipped(!isFlipped)}
+              >
+                <div style={{
+                  fontSize: '0.875rem',
+                  color: '#6b7280',
+                  marginBottom: '0.5rem'
+                }}>
+                  {!isFlipped 
+                    ? (spanishFirst ? 'Spanish' : 'English')
+                    : (spanishFirst ? 'English' : 'Spanish')
+                  }
+                </div>
+                <h2 style={{
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  color: '#1f2937',
+                  margin: '0 0 0.5rem 0',
+                  textAlign: 'center'
+                }}>
+                  {!isFlipped 
+                    ? (spanishFirst ? currentConjugation.spanish : currentConjugation.english)
+                    : (spanishFirst ? currentConjugation.english : currentConjugation.spanish)
+                  }
+                </h2>
+                <div style={{
+                  fontSize: '0.875rem',
+                  color: '#6b7280',
+                  textAlign: 'center'
+                }}>
+                  {!isFlipped 
+                    ? (spanishFirst ? 'Click to see English' : 'Click to see Spanish')
+                    : 'Click to flip back'
+                  }
+                </div>
+              </div>
+
+              {/* Action buttons */}
+              <div style={{
+                display: 'flex',
+                gap: '1rem',
+                justifyContent: 'center',
+                width: '100%',
+                maxWidth: '350px',
+                flexWrap: 'wrap'
+              }}>
                 <button
-                  onClick={handleNext}
+                  onClick={() => handleMastered(currentConjugation.id)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem',
                     padding: '0.75rem 1.5rem',
-                    backgroundColor: '#10b981',
+                    backgroundColor: '#fbbf24',
                     color: 'white',
                     border: 'none',
                     borderRadius: '8px',
@@ -739,123 +1055,152 @@ function App() {
                     transition: 'background-color 0.2s'
                   }}
                 >
-                  <Check size={20} />
-                  Next
+                  <Star size={20} />
+                  Mastered
                 </button>
-              )}
+                
+                {!isLastCard && (
+                  <button
+                    onClick={handleNext}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      padding: '0.75rem 1.5rem',
+                      backgroundColor: '#10b981',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: '8px',
+                      fontSize: '1rem',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s'
+                    }}
+                  >
+                    <Check size={20} />
+                    Next
+                  </button>
+                )}
 
-              <button
-                onClick={handleShuffle}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  padding: '0.75rem 1.5rem',
-                  backgroundColor: '#8b5cf6',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '8px',
-                  fontSize: '1rem',
+                <button
+                  onClick={handleShuffle}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#8b5cf6',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '8px',
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  <Shuffle size={20} />
+                  Shuffle
+                </button>
+              </div>
+
+              {/* Verb type indicator */}
+              <div style={{
+                textAlign: 'center',
+                display: 'flex',
+                gap: '0.5rem',
+                justifyContent: 'center',
+                flexWrap: 'wrap'
+              }}>
+                <span style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
                   fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'background-color 0.2s'
-                }}
-              >
-                <Shuffle size={20} />
-                Shuffle
-              </button>
-            </div>
-
-            {/* Verb type indicator */}
-            <div style={{
-              textAlign: 'center',
-              display: 'flex',
-              gap: '0.5rem',
-              justifyContent: 'center',
-              flexWrap: 'wrap'
-            }}>
-              <span style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '20px',
-                fontSize: '0.875rem',
-                fontWeight: '600',
-                ...(currentConjugation.type === 'irregular' 
-                  ? { backgroundColor: '#fef3c7', color: '#92400e' }
-                  : { backgroundColor: '#dbeafe', color: '#1e40af' }
-                )
-              }}>
-                {currentConjugation.type === 'irregular' ? 'Irregular' : `Regular -${currentConjugation.conjugation}`}
-              </span>
-              <span style={{
-                padding: '0.5rem 1rem',
-                borderRadius: '20px',
-                fontSize: '0.875rem',
-                fontWeight: '600',
-                backgroundColor: currentConjugation.tense === 'present' ? '#dcfce7' : '#fef3c7',
-                color: currentConjugation.tense === 'present' ? '#166534' : '#92400e'
-              }}>
-                {currentConjugation.tense === 'present' ? 'Present' : 'Preterite'}
-              </span>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Statistics */}
-      <div style={styles.statistics}>
-        <div style={styles.statsContent}>
-          {/* Progress Message */}
-          {showMessage && (
-            <div style={styles.message}>
-              {lastMessage}
-            </div>
+                  ...(currentConjugation.type === 'irregular' 
+                    ? { backgroundColor: '#fef3c7', color: '#92400e' }
+                    : { backgroundColor: '#dbeafe', color: '#1e40af' }
+                  )
+                }}>
+                  {currentConjugation.type === 'irregular' ? 'Irregular' : `Regular -${currentConjugation.conjugation}`}
+                </span>
+                <span style={{
+                  padding: '0.5rem 1rem',
+                  borderRadius: '20px',
+                  fontSize: '0.875rem',
+                  fontWeight: '600',
+                  backgroundColor: currentConjugation.tense === 'present' ? '#dcfce7' : '#fef3c7',
+                  color: currentConjugation.tense === 'present' ? '#166534' : '#92400e'
+                }}>
+                  {currentConjugation.tense === 'present' ? 'Present' : 'Preterite'}
+                </span>
+              </div>
+            </>
           )}
+        </div>
 
-          {/* Statistics Grid */}
-          <div style={styles.statsGrid}>
-            <div style={{
-              ...styles.statBox,
-              backgroundColor: '#eff6ff',
-              borderColor: '#bfdbfe',
-              color: '#1e40af'
-            }}>
-              <div style={styles.statNumber}>{masteredVerbs.length}/{verbs.length}</div>
-              <div style={styles.statLabel}>Mastery Progress</div>
-            </div>
-            
-            <div style={{
-              ...styles.statBox,
-              backgroundColor: '#ecfdf5',
-              borderColor: '#a7f3d0',
-              color: '#065f46'
-            }}>
-              <div style={styles.statNumber}>{accuracyPercentage}%</div>
-              <div style={styles.statLabel}>Accuracy</div>
-            </div>
-            
-            <div style={{
-              ...styles.statBox,
-              backgroundColor: '#faf5ff',
-              borderColor: '#c4b5fd',
-              color: '#5b21b6'
-            }}>
-              <div style={styles.statNumber}>{verbs.length - masteredVerbs.length}</div>
-              <div style={styles.statLabel}>Remaining</div>
-            </div>
-            
-            <div style={{
-              ...styles.statBox,
-              backgroundColor: '#fffbeb',
-              borderColor: '#fcd34d',
-              color: '#92400e'
-            }}>
-              <div style={styles.statNumber}>{currentIndex + 1}</div>
-              <div style={styles.statLabel}>Current Card</div>
+        {/* Statistics */}
+        <div style={styles.statistics}>
+          <div style={styles.statsContent}>
+            {/* Progress Message */}
+            {showMessage && (
+              <div style={styles.message}>
+                {lastMessage}
+              </div>
+            )}
+
+            {/* Statistics Grid */}
+            <div style={styles.statsGrid}>
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#eff6ff',
+                borderColor: '#bfdbfe',
+                color: '#1e40af'
+              }}>
+                <div style={styles.statNumber}>{masteredVerbs.length}/{verbs.length}</div>
+                <div style={styles.statLabel}>Mastery Progress</div>
+              </div>
+              
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#ecfdf5',
+                borderColor: '#a7f3d0',
+                color: '#065f46'
+              }}>
+                <div style={styles.statNumber}>{accuracyPercentage}%</div>
+                <div style={styles.statLabel}>Accuracy</div>
+              </div>
+              
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#faf5ff',
+                borderColor: '#c4b5fd',
+                color: '#5b21b6'
+              }}>
+                <div style={styles.statNumber}>{verbs.length - masteredVerbs.length}</div>
+                <div style={styles.statLabel}>Remaining</div>
+              </div>
+              
+              <div style={{
+                ...styles.statBox,
+                backgroundColor: '#fffbeb',
+                borderColor: '#fcd34d',
+                color: '#92400e'
+              }}>
+                <div style={styles.statNumber}>{currentIndex + 1}</div>
+                <div style={styles.statLabel}>Current Card</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Conjugation Reference Modal */}
+      <ConjugationReference 
+        isOpen={showReference}
+        onClose={() => setShowReference(false)}
+      />
+    </>
   );
 }
 
