@@ -101,6 +101,13 @@ The app includes conjugations for:
 - **R**: Reset all progress
 - **S**: Shuffle remaining cards
 - **L**: Toggle language direction (Spanish/English first)
+- **H**: Show conjugation reference
+- **?**: Show keyboard shortcuts help
+
+### Getting Help
+- **Floating Help Button**: Click the subtle "?" button in the bottom-right corner
+- **Keyboard Shortcut**: Press `?` anytime to see all available shortcuts
+- **Help Modal**: Displays all shortcuts organized by category with pro tips
 
 ## 🛠️ Technology Stack
 

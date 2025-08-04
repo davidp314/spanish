@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings, HelpCircle } from 'lucide-react';
 import VerbSelection from './components/VerbSelection';
 import ConjugationReference from './components/ConjugationReference';
+import KeyboardHelp from './components/KeyboardHelp';
 import { Conjugation, allConjugations } from './data/conjugationData';
 
 // Use Conjugation interface from conjugationData.ts
@@ -343,6 +344,12 @@ function App() {
   const [selectedConjugations, setSelectedConjugations] = useState<Conjugation[]>(initialState.selectedConjugations);
   const [hasSelectedVerbs, setHasSelectedVerbs] = useState(initialState.selectedConjugations.length > 0);
   const [showReference, setShowReference] = useState(false);
+  const [showKeyboardHelp, setShowKeyboardHelp] = useState(false);
+  
+  // Debug state changes
+  useEffect(() => {
+    console.log('showKeyboardHelp changed to:', showKeyboardHelp);
+  }, [showKeyboardHelp]);
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -466,6 +473,7 @@ function App() {
 
   const masteredVerbs = verbs.filter(verb => verb.mastered);
   const isCompleted = masteredVerbs.length === verbs.length;
+  console.log('Completion status:', { isCompleted, masteredVerbs: masteredVerbs.length, totalVerbs: verbs.length });
   const currentConjugation = shuffledVerbs[currentIndex];
   const isLastCard = currentIndex === shuffledVerbs.length - 1;
   const masteryPercentage = Math.round((masteredVerbs.length / verbs.length) * 100);
@@ -473,7 +481,9 @@ function App() {
 
   // Keyboard shortcuts
   useEffect(() => {
+    console.log('Setting up keyboard event listener');
     const handleKeyPress = (event: KeyboardEvent) => {
+      console.log('Key pressed:', event.key);
       switch (event.key) {
         case ' ': // Spacebar - flip card
           event.preventDefault();
@@ -508,6 +518,10 @@ function App() {
           event.preventDefault();
           setShowReference(!showReference);
           break;
+        case '?': // '?' key - toggle keyboard help
+          event.preventDefault();
+          setShowKeyboardHelp(true);
+          break;
         case 'ArrowLeft': // Left arrow - previous card (if not first)
           event.preventDefault();
           if (currentIndex > 0) {
@@ -523,6 +537,7 @@ function App() {
   }, [isFlipped, isLastCard, currentIndex, currentConjugation]);
 
   if (!hasSelectedVerbs || showVerbSelection) {
+    console.log('Showing verb selection screen - no help button here');
     return (
       <VerbSelection 
         onStartPractice={handleStartPractice}
@@ -530,9 +545,30 @@ function App() {
       />
     );
   }
+  
+  console.log('Showing main app - help button should be visible');
+  console.log('About to return JSX for main app');
 
   return (
     <>
+      {/* Test box to confirm rendering */}
+      <div style={{
+        position: 'fixed',
+        top: '10px',
+        left: '10px',
+        width: '60px',
+        height: '40px',
+        backgroundColor: 'red',
+        color: 'white',
+        fontWeight: 'bold',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 99999
+      }}>
+        TEST
+      </div>
+      {/* Main app UI restored below */}
       <div style={styles.container}>
         {/* Header */}
         <header style={styles.header}>
@@ -544,7 +580,6 @@ function App() {
                 <p style={styles.subtitle}>Master the art of Spanish verbs</p>
               </div>
             </div>
-            
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button onClick={handleReset} style={styles.resetButton}>
                 <RotateCcw size={20} />
@@ -595,7 +630,6 @@ function App() {
             </div>
           </div>
         </header>
-
         {/* Progress Bar */}
         <div style={styles.progressBar}>
           <div style={styles.progressContent}>
@@ -613,7 +647,6 @@ function App() {
             </div>
           </div>
         </div>
-
         {/* Main Content - Flashcard */}
         <div style={{
           display: 'flex',
@@ -677,7 +710,6 @@ function App() {
                   }
                 </div>
               </div>
-
               {/* Action buttons */}
               <div style={{
                 display: 'flex',
@@ -707,7 +739,6 @@ function App() {
                   <Star size={20} />
                   Mastered
                 </button>
-                
                 {!isLastCard && (
                   <button
                     onClick={handleNext}
@@ -730,7 +761,6 @@ function App() {
                     Next
                   </button>
                 )}
-
                 <button
                   onClick={handleShuffle}
                   style={{
@@ -752,7 +782,6 @@ function App() {
                   Shuffle
                 </button>
               </div>
-
               {/* Verb type indicator */}
               <div style={{
                 textAlign: 'center',
@@ -787,7 +816,6 @@ function App() {
             </>
           )}
         </div>
-
         {/* Statistics */}
         <div style={styles.statistics}>
           <div style={styles.statsContent}>
@@ -797,7 +825,6 @@ function App() {
                 {lastMessage}
               </div>
             )}
-
             {/* Statistics Grid */}
             <div style={styles.statsGrid}>
               <div style={{
@@ -809,7 +836,6 @@ function App() {
                 <div style={styles.statNumber}>{masteredVerbs.length}/{verbs.length}</div>
                 <div style={styles.statLabel}>Mastery Progress</div>
               </div>
-              
               <div style={{
                 ...styles.statBox,
                 backgroundColor: '#ecfdf5',
@@ -819,7 +845,6 @@ function App() {
                 <div style={styles.statNumber}>{accuracyPercentage}%</div>
                 <div style={styles.statLabel}>Accuracy</div>
               </div>
-              
               <div style={{
                 ...styles.statBox,
                 backgroundColor: '#faf5ff',
@@ -829,7 +854,6 @@ function App() {
                 <div style={styles.statNumber}>{verbs.length - masteredVerbs.length}</div>
                 <div style={styles.statLabel}>Remaining</div>
               </div>
-              
               <div style={{
                 ...styles.statBox,
                 backgroundColor: '#fffbeb',
@@ -842,364 +866,57 @@ function App() {
             </div>
           </div>
         </div>
+        {/* Conjugation Reference Modal */}
+        <ConjugationReference 
+          isOpen={showReference}
+          onClose={() => setShowReference(false)}
+        />
+        
+        {/* Keyboard Help Modal */}
+        <KeyboardHelp 
+          isOpen={showKeyboardHelp}
+          onClose={() => setShowKeyboardHelp(false)}
+        />
       </div>
-
-      {/* Conjugation Reference Modal */}
-      <ConjugationReference 
-        isOpen={showReference}
-        onClose={() => setShowReference(false)}
-      />
-    </>
-  );
-
-  if (isCompleted) {
-    return (
-      <div style={styles.completionScreen}>
-        <div style={styles.completionCard}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: '#1f2937', marginBottom: '1rem' }}>
-            ¡Felicidades! 🎉
-          </h1>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: '600', color: '#6b7280', marginBottom: '1.5rem' }}>
-            You've Mastered All Spanish Verbs!
-          </h2>
-          <p style={{ fontSize: '1.125rem', color: '#374151', marginBottom: '2rem' }}>
-            You've conquered all {verbs.length} conjugations with {accuracyPercentage}% accuracy!
-          </p>
-          <button
-            onClick={handleReset}
-            style={{
-              ...styles.button,
-              ...styles.nextButton,
-              margin: '0 auto',
-              display: 'flex'
-            }}
-          >
-            <RotateCcw size={24} />
-            Start Over
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <div style={styles.container}>
-        {/* Header */}
-        <header style={styles.header}>
-          <div style={styles.headerContent}>
-            <div style={styles.headerLeft}>
-              <BookOpen size={32} color="#3b82f6" />
-              <div>
-                <h1 style={styles.title}>Spanish Verb Master</h1>
-                <p style={styles.subtitle}>Master the art of Spanish verbs</p>
-              </div>
-            </div>
-            
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button onClick={handleReset} style={styles.resetButton}>
-                <RotateCcw size={20} />
-                Reset All
-              </button>
-              <button 
-                onClick={clearProgress}
-                style={{
-                  ...styles.resetButton,
-                  background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)'
-                }}
-              >
-                <Trash2 size={20} />
-                Clear Progress
-              </button>
-              <button 
-                onClick={handleToggleLanguage}
-                style={{
-                  ...styles.resetButton,
-                  background: spanishFirst 
-                    ? 'linear-gradient(135deg, #059669 0%, #047857 100%)'
-                    : 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)'
-                }}
-              >
-                <Languages size={20} />
-                {spanishFirst ? 'Spanish First' : 'English First'}
-              </button>
-              <button 
-                onClick={handleBackToSelection}
-                style={{
-                  ...styles.resetButton,
-                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
-                }}
-              >
-                <Settings size={20} />
-                Change Verbs
-              </button>
-              <button 
-                onClick={() => setShowReference(true)}
-                style={{
-                  ...styles.resetButton,
-                  background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)'
-                }}
-              >
-                <HelpCircle size={20} />
-                Reference
-              </button>
-            </div>
-          </div>
-        </header>
-
-        {/* Progress Bar */}
-        <div style={styles.progressBar}>
-          <div style={styles.progressContent}>
-            <div style={styles.progressText}>
-              <Target size={20} color="#3b82f6" />
-              <span>Progress: {masteredVerbs.length}/{verbs.length} mastered</span>
-            </div>
-            <div style={styles.progressBarBg}>
-              <div 
-                style={{
-                  ...styles.progressBarFill,
-                  width: `${masteryPercentage}%`
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content - Flashcard */}
-        <div style={{
+      
+      {/* Floating Help Button */}
+      <button
+        onClick={() => setShowKeyboardHelp(true)}
+        style={{
+          position: 'fixed',
+          bottom: '15px',
+          right: '15px',
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          background: 'rgba(0, 0, 0, 0.6)',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          color: 'rgba(255, 255, 255, 0.8)',
+          fontSize: '16px',
+          fontWeight: 'normal',
+          cursor: 'pointer',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+          zIndex: 1000,
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          padding: '2rem 1rem',
-          gap: '1.5rem',
-          minHeight: '60vh'
-        }}>
-          {currentConjugation && (
-            <>
-              {/* Flashcard */}
-              <div 
-                style={{
-                  width: '100%',
-                  maxWidth: '350px',
-                  height: '120px',
-                  backgroundColor: 'white',
-                  borderRadius: '16px',
-                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                  border: '1px solid #f3f4f6',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: '1rem',
-                  cursor: 'pointer'
-                }}
-                onClick={() => setIsFlipped(!isFlipped)}
-              >
-                <div style={{
-                  fontSize: '0.875rem',
-                  color: '#6b7280',
-                  marginBottom: '0.5rem'
-                }}>
-                  {!isFlipped 
-                    ? (spanishFirst ? 'Spanish' : 'English')
-                    : (spanishFirst ? 'English' : 'Spanish')
-                  }
-                </div>
-                <h2 style={{
-                  fontSize: '1.5rem',
-                  fontWeight: 'bold',
-                  color: '#1f2937',
-                  margin: '0 0 0.5rem 0',
-                  textAlign: 'center'
-                }}>
-                  {!isFlipped 
-                    ? (spanishFirst ? currentConjugation.spanish : currentConjugation.english)
-                    : (spanishFirst ? currentConjugation.english : currentConjugation.spanish)
-                  }
-                </h2>
-                <div style={{
-                  fontSize: '0.875rem',
-                  color: '#6b7280',
-                  textAlign: 'center'
-                }}>
-                  {!isFlipped 
-                    ? (spanishFirst ? 'Click to see English' : 'Click to see Spanish')
-                    : 'Click to flip back'
-                  }
-                </div>
-              </div>
-
-              {/* Action buttons */}
-              <div style={{
-                display: 'flex',
-                gap: '1rem',
-                justifyContent: 'center',
-                width: '100%',
-                maxWidth: '350px',
-                flexWrap: 'wrap'
-              }}>
-                <button
-                  onClick={() => handleMastered(currentConjugation.id)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#fbbf24',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s'
-                  }}
-                >
-                  <Star size={20} />
-                  Mastered
-                </button>
-                
-                {!isLastCard && (
-                  <button
-                    onClick={handleNext}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      padding: '0.75rem 1.5rem',
-                      backgroundColor: '#10b981',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: '8px',
-                      fontSize: '1rem',
-                      fontWeight: '600',
-                      cursor: 'pointer',
-                      transition: 'background-color 0.2s'
-                    }}
-                  >
-                    <Check size={20} />
-                    Next
-                  </button>
-                )}
-
-                <button
-                  onClick={handleShuffle}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: '#8b5cf6',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '8px',
-                    fontSize: '1rem',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s'
-                  }}
-                >
-                  <Shuffle size={20} />
-                  Shuffle
-                </button>
-              </div>
-
-              {/* Verb type indicator */}
-              <div style={{
-                textAlign: 'center',
-                display: 'flex',
-                gap: '0.5rem',
-                justifyContent: 'center',
-                flexWrap: 'wrap'
-              }}>
-                <span style={{
-                  padding: '0.5rem 1rem',
-                  borderRadius: '20px',
-                  fontSize: '0.875rem',
-                  fontWeight: '600',
-                  ...(currentConjugation.type === 'irregular' 
-                    ? { backgroundColor: '#fef3c7', color: '#92400e' }
-                    : { backgroundColor: '#dbeafe', color: '#1e40af' }
-                  )
-                }}>
-                  {currentConjugation.type === 'irregular' ? 'Irregular' : `Regular -${currentConjugation.conjugation}`}
-                </span>
-                <span style={{
-                  padding: '0.5rem 1rem',
-                  borderRadius: '20px',
-                  fontSize: '0.875rem',
-                  fontWeight: '600',
-                  backgroundColor: currentConjugation.tense === 'present' ? '#dcfce7' : '#fef3c7',
-                  color: currentConjugation.tense === 'present' ? '#166534' : '#92400e'
-                }}>
-                  {currentConjugation.tense === 'present' ? 'Present' : 'Preterite'}
-                </span>
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* Statistics */}
-        <div style={styles.statistics}>
-          <div style={styles.statsContent}>
-            {/* Progress Message */}
-            {showMessage && (
-              <div style={styles.message}>
-                {lastMessage}
-              </div>
-            )}
-
-            {/* Statistics Grid */}
-            <div style={styles.statsGrid}>
-              <div style={{
-                ...styles.statBox,
-                backgroundColor: '#eff6ff',
-                borderColor: '#bfdbfe',
-                color: '#1e40af'
-              }}>
-                <div style={styles.statNumber}>{masteredVerbs.length}/{verbs.length}</div>
-                <div style={styles.statLabel}>Mastery Progress</div>
-              </div>
-              
-              <div style={{
-                ...styles.statBox,
-                backgroundColor: '#ecfdf5',
-                borderColor: '#a7f3d0',
-                color: '#065f46'
-              }}>
-                <div style={styles.statNumber}>{accuracyPercentage}%</div>
-                <div style={styles.statLabel}>Accuracy</div>
-              </div>
-              
-              <div style={{
-                ...styles.statBox,
-                backgroundColor: '#faf5ff',
-                borderColor: '#c4b5fd',
-                color: '#5b21b6'
-              }}>
-                <div style={styles.statNumber}>{verbs.length - masteredVerbs.length}</div>
-                <div style={styles.statLabel}>Remaining</div>
-              </div>
-              
-              <div style={{
-                ...styles.statBox,
-                backgroundColor: '#fffbeb',
-                borderColor: '#fcd34d',
-                color: '#92400e'
-              }}>
-                <div style={styles.statNumber}>{currentIndex + 1}</div>
-                <div style={styles.statLabel}>Current Card</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Conjugation Reference Modal */}
-      <ConjugationReference 
-        isOpen={showReference}
-        onClose={() => setShowReference(false)}
-      />
+          justifyContent: 'center',
+          transition: 'all 0.2s ease',
+          opacity: 0.7
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.opacity = '1';
+          e.currentTarget.style.transform = 'scale(1.05)';
+          e.currentTarget.style.background = 'rgba(0, 0, 0, 0.8)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.opacity = '0.7';
+          e.currentTarget.style.transform = 'scale(1)';
+          e.currentTarget.style.background = 'rgba(0, 0, 0, 0.6)';
+        }}
+        title="Keyboard Shortcuts (Press ?)"
+      >
+        ?
+      </button>
     </>
   );
 }
