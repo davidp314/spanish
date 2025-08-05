@@ -187,9 +187,34 @@ const Quiz: React.FC<QuizProps> = ({ isOpen, onClose, conjugations, onMastered }
           width: '100%',
           maxHeight: '90vh',
           overflow: 'auto',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          position: 'relative'
         }}
       >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          style={{
+            position: 'absolute',
+            top: '1rem',
+            right: '1rem',
+            background: 'rgba(0, 0, 0, 0.1)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '40px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            transition: 'background-color 0.2s',
+            zIndex: 1
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.2)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
+        >
+          <X size={20} color="#374151" />
+        </button>
         {/* Quiz Setup Screen */}
         {!quizStarted && !quizCompleted && (
           <div style={{ textAlign: 'center' }}>

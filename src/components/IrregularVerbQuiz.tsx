@@ -24,14 +24,36 @@ interface IrregularVerb {
 // All irregular verb data
 const irregularVerbsData: IrregularVerb[] = [
   {
-    name: 'tener',
-    english: 'to have',
+    name: 'caer',
+    english: 'to fall',
     conjugations: [
-      { person: 'yo', present: 'tengo', preterite: 'tuve' },
-      { person: 'tú', present: 'tienes', preterite: 'tuviste' },
-      { person: 'él/ella/usted', present: 'tiene', preterite: 'tuvo' },
-      { person: 'nosotros', present: 'tenemos', preterite: 'tuvimos' },
-      { person: 'ellos/ellas/ustedes', present: 'tienen', preterite: 'tuvieron' }
+      { person: 'yo', present: 'caigo', preterite: 'caí' },
+      { person: 'tú', present: 'caes', preterite: 'caíste' },
+      { person: 'él/ella/usted', present: 'cae', preterite: 'cayó' },
+      { person: 'nosotros', present: 'caemos', preterite: 'caímos' },
+      { person: 'ellos/ellas/ustedes', present: 'caen', preterite: 'cayeron' }
+    ]
+  },
+  {
+    name: 'dar',
+    english: 'to give',
+    conjugations: [
+      { person: 'yo', present: 'doy', preterite: 'di' },
+      { person: 'tú', present: 'das', preterite: 'diste' },
+      { person: 'él/ella/usted', present: 'da', preterite: 'dio' },
+      { person: 'nosotros', present: 'damos', preterite: 'dimos' },
+      { person: 'ellos/ellas/ustedes', present: 'dan', preterite: 'dieron' }
+    ]
+  },
+  {
+    name: 'decir',
+    english: 'to say/tell',
+    conjugations: [
+      { person: 'yo', present: 'digo', preterite: 'dije' },
+      { person: 'tú', present: 'dices', preterite: 'dijiste' },
+      { person: 'él/ella/usted', present: 'dice', preterite: 'dijo' },
+      { person: 'nosotros', present: 'decimos', preterite: 'dijimos' },
+      { person: 'ellos/ellas/ustedes', present: 'dicen', preterite: 'dijeron' }
     ]
   },
   {
@@ -46,6 +68,17 @@ const irregularVerbsData: IrregularVerb[] = [
     ]
   },
   {
+    name: 'hacer',
+    english: 'to do/make',
+    conjugations: [
+      { person: 'yo', present: 'hago', preterite: 'hice' },
+      { person: 'tú', present: 'haces', preterite: 'hiciste' },
+      { person: 'él/ella/usted', present: 'hace', preterite: 'hizo' },
+      { person: 'nosotros', present: 'hacemos', preterite: 'hicimos' },
+      { person: 'ellos/ellas/ustedes', present: 'hacen', preterite: 'hicieron' }
+    ]
+  },
+  {
     name: 'ir',
     english: 'to go',
     conjugations: [
@@ -54,6 +87,83 @@ const irregularVerbsData: IrregularVerb[] = [
       { person: 'él/ella/usted', present: 'va', preterite: 'fue' },
       { person: 'nosotros', present: 'vamos', preterite: 'fuimos' },
       { person: 'ellos/ellas/ustedes', present: 'van', preterite: 'fueron' }
+    ]
+  },
+  {
+    name: 'leer',
+    english: 'to read',
+    conjugations: [
+      { person: 'yo', present: 'leo', preterite: 'leí' },
+      { person: 'tú', present: 'lees', preterite: 'leíste' },
+      { person: 'él/ella/usted', present: 'lee', preterite: 'leyó' },
+      { person: 'nosotros', present: 'leemos', preterite: 'leímos' },
+      { person: 'ellos/ellas/ustedes', present: 'leen', preterite: 'leyeron' }
+    ]
+  },
+  {
+    name: 'mentir',
+    english: 'to lie',
+    conjugations: [
+      { person: 'yo', present: 'miento', preterite: 'mentí' },
+      { person: 'tú', present: 'mientes', preterite: 'mentiste' },
+      { person: 'él/ella/usted', present: 'miente', preterite: 'mintió' },
+      { person: 'nosotros', present: 'mentimos', preterite: 'mentimos' },
+      { person: 'ellos/ellas/ustedes', present: 'mienten', preterite: 'mintieron' }
+    ]
+  },
+  {
+    name: 'poner',
+    english: 'to put',
+    conjugations: [
+      { person: 'yo', present: 'pongo', preterite: 'puse' },
+      { person: 'tú', present: 'pones', preterite: 'pusiste' },
+      { person: 'él/ella/usted', present: 'pone', preterite: 'puso' },
+      { person: 'nosotros', present: 'ponemos', preterite: 'pusimos' },
+      { person: 'ellos/ellas/ustedes', present: 'ponen', preterite: 'pusieron' }
+    ]
+  },
+  {
+    name: 'ser',
+    english: 'to be',
+    conjugations: [
+      { person: 'yo', present: 'soy', preterite: 'fui' },
+      { person: 'tú', present: 'eres', preterite: 'fuiste' },
+      { person: 'él/ella/usted', present: 'es', preterite: 'fue' },
+      { person: 'nosotros', present: 'somos', preterite: 'fuimos' },
+      { person: 'ellos/ellas/ustedes', present: 'son', preterite: 'fueron' }
+    ]
+  },
+  {
+    name: 'tener',
+    english: 'to have',
+    conjugations: [
+      { person: 'yo', present: 'tengo', preterite: 'tuve' },
+      { person: 'tú', present: 'tienes', preterite: 'tuviste' },
+      { person: 'él/ella/usted', present: 'tiene', preterite: 'tuvo' },
+      { person: 'nosotros', present: 'tenemos', preterite: 'tuvimos' },
+      { person: 'ellos/ellas/ustedes', present: 'tienen', preterite: 'tuvieron' }
+    ]
+  },
+  {
+    name: 'traer',
+    english: 'to bring',
+    conjugations: [
+      { person: 'yo', present: 'traigo', preterite: 'traje' },
+      { person: 'tú', present: 'traes', preterite: 'trajiste' },
+      { person: 'él/ella/usted', present: 'trae', preterite: 'trajo' },
+      { person: 'nosotros', present: 'traemos', preterite: 'trajimos' },
+      { person: 'ellos/ellas/ustedes', present: 'traen', preterite: 'trajeron' }
+    ]
+  },
+  {
+    name: 'ver',
+    english: 'to see',
+    conjugations: [
+      { person: 'yo', present: 'veo', preterite: 'vi' },
+      { person: 'tú', present: 'ves', preterite: 'viste' },
+      { person: 'él/ella/usted', present: 've', preterite: 'vio' },
+      { person: 'nosotros', present: 'vemos', preterite: 'vimos' },
+      { person: 'ellos/ellas/ustedes', present: 'ven', preterite: 'vieron' }
     ]
   }
 ];
