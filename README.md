@@ -1,6 +1,6 @@
 # Spanish Verb Master 🎓
 
-An interactive React application designed to help you master Spanish verb conjugations through flashcards and spaced repetition learning. Now with customizable vocabulary sets and personalized learning paths!
+An interactive React application designed to help you master Spanish verb conjugations through flashcards and spaced repetition learning. Now with customizable vocabulary sets, personalized learning paths, and comprehensive pattern practice!
 
 ## 🌟 Features
 
@@ -12,6 +12,7 @@ An interactive React application designed to help you master Spanish verb conjug
 - **Smart Shuffling**: Randomized card order to prevent memorization by position
 - **Advanced Filtering**: Filter verbs by type, conjugation, tense, and search by name
 - **Interactive Quiz Mode**: Test your knowledge with typing challenges
+- **Conjugation Pattern Quiz**: Practice verb conjugation patterns with fill-in-the-blank exercises
 - **Spanish Accent Keyboard**: Easy access to accented characters with number shortcuts
 - **Keyboard Shortcuts**: Quick navigation and actions for efficient learning
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
@@ -33,6 +34,11 @@ The app includes conjugations for:
 - **Persons**: yo, tú, él/ella/usted, nosotros, ellos/ellas/ustedes
 - **Tenses**: Present, Preterite
 - **Verb Types**: Regular (-ar, -er, -ir), Irregular
+
+### Pattern Practice
+- **Present Tense Patterns**: -AR, -ER, -IR verb endings and examples
+- **Preterite Tense Patterns**: -AR and -ER/-IR verb endings and examples
+- **Comprehensive Coverage**: All regular verb conjugation patterns
 
 ## 🚀 Getting Started
 
@@ -87,6 +93,14 @@ The app includes conjugations for:
 5. **Review Results**: See your score and review any incorrect answers
 6. **Retry or Continue**: Choose to retry the quiz or return to practice mode
 
+### Conjugation Pattern Quiz
+1. **Start Pattern Quiz**: Click the "Pattern Quiz" button to practice conjugation patterns
+2. **Fill in the Blanks**: Complete both endings and examples for each verb type and person
+3. **Use Accent Keyboard**: Access Spanish characters easily with the integrated keyboard
+4. **Check Answers**: Review your performance with detailed scoring and feedback
+5. **Practice All Patterns**: Cover all regular verb patterns in Present and Preterite tenses
+6. **Reset and Retry**: Practice as many times as needed to master the patterns
+
 ### Verb Selection Options
 
 #### Predefined Sets
@@ -121,7 +135,7 @@ The app includes conjugations for:
 - **Help Modal**: Displays all shortcuts organized by category with pro tips
 
 ### Spanish Accent Keyboard
-- **Available in Quiz Mode**: Automatically appears when typing Spanish answers
+- **Available in Quiz Modes**: Automatically appears when typing Spanish answers
 - **Click to Insert**: Click any accent button to insert the character
 - **Number Shortcuts**: Use keys 1-9 for quick insertion:
   - **1**: á, **2**: é, **3**: í, **4**: ó, **5**: ú
@@ -160,6 +174,14 @@ The app includes conjugations for:
 - Encouraging feedback messages
 - Personalized learning paths
 - Quiz mode with customizable difficulty and question count
+
+### Pattern Practice
+- **Comprehensive Coverage**: All regular verb patterns in Present and Preterite tenses
+- **Interactive Input**: Fill-in-the-blank exercises for endings and examples
+- **Real-time Validation**: Immediate feedback on correct and incorrect answers
+- **Scoring System**: Detailed performance tracking with motivational messages
+- **Visual Feedback**: Color-coded sections and animated checkmarks
+- **Spanish Accent Support**: Integrated keyboard for easy character input
 
 ### User Experience
 - Beautiful gradient backgrounds
@@ -219,6 +241,8 @@ Contributions are welcome! Here's how you can help:
 - Add more quiz question types (multiple choice, fill-in-the-blank)
 - Implement quiz result sharing and leaderboards
 - Add more accent keyboard layouts for different languages
+- Expand pattern quiz to include irregular verb patterns
+- Add pattern quiz difficulty levels and progressive learning
 
 ## 📝 License
 

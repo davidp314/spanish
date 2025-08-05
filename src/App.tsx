@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings, HelpCircle, AlertTriangle, Edit3 } from 'lucide-react';
+import { RotateCcw, BookOpen, Target, Star, Check, Shuffle, Trash2, Languages, Settings, HelpCircle, AlertTriangle, Edit3, Grid3X3 } from 'lucide-react';
 import VerbSelection from './components/VerbSelection';
 import ConjugationReference from './components/ConjugationReference';
 import KeyboardHelp from './components/KeyboardHelp';
 import Quiz from './components/Quiz';
+import ConjugationPatternQuiz from './components/ConjugationPatternQuiz';
 import { Conjugation, allConjugations } from './data/conjugationData';
 
 // Use Conjugation interface from conjugationData.ts
@@ -350,6 +351,7 @@ function App() {
   const [showClearConfirmation, setShowClearConfirmation] = useState(false);
   const [pendingResetAction, setPendingResetAction] = useState<'reset' | 'clear' | null>(null);
   const [showQuiz, setShowQuiz] = useState(false);
+  const [showPatternQuiz, setShowPatternQuiz] = useState(false);
   
   // Debug state changes
   useEffect(() => {
@@ -506,8 +508,8 @@ function App() {
   useEffect(() => {
     console.log('Setting up keyboard event listener');
     const handleKeyPress = (event: KeyboardEvent) => {
-      // Don't handle keyboard shortcuts when quiz is open
-      if (showQuiz) {
+      // Don't handle keyboard shortcuts when quiz or pattern quiz is open
+      if (showQuiz || showPatternQuiz) {
         return;
       }
       
@@ -574,7 +576,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isFlipped, isLastCard, currentIndex, currentConjugation, showResetConfirmation, showClearConfirmation, showQuiz]);
+  }, [isFlipped, isLastCard, currentIndex, currentConjugation, showResetConfirmation, showClearConfirmation, showQuiz, showPatternQuiz]);
 
   if (!hasSelectedVerbs || showVerbSelection) {
     console.log('Showing verb selection screen - no help button here');
@@ -658,6 +660,16 @@ function App() {
               >
                 <Edit3 size={20} />
                 Quiz
+              </button>
+              <button 
+                onClick={() => setShowPatternQuiz(true)}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'
+                }}
+              >
+                <Grid3X3 size={20} />
+                Pattern Quiz
               </button>
             </div>
           </div>
@@ -916,6 +928,12 @@ function App() {
           onClose={() => setShowQuiz(false)}
           conjugations={selectedConjugations}
           onMastered={handleMastered}
+        />
+
+        {/* Conjugation Pattern Quiz Modal */}
+        <ConjugationPatternQuiz 
+          isOpen={showPatternQuiz}
+          onClose={() => setShowPatternQuiz(false)}
         />
 
         {/* Reset Confirmation Modal */}
