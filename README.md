@@ -13,6 +13,7 @@ An interactive React application designed to help you master Spanish verb conjug
 - **Advanced Filtering**: Filter verbs by type, conjugation, tense, and search by name
 - **Interactive Quiz Mode**: Test your knowledge with typing challenges
 - **Conjugation Pattern Quiz**: Practice verb conjugation patterns with fill-in-the-blank exercises
+- **Irregular Verb Quiz**: Customizable quiz for irregular verb conjugations with verb and tense selection
 - **Spanish Accent Keyboard**: Easy access to accented characters with number shortcuts
 - **Keyboard Shortcuts**: Quick navigation and actions for efficient learning
 - **Responsive Design**: Works seamlessly on desktop and mobile devices
@@ -102,6 +103,16 @@ The app includes conjugations for:
 6. **Flexible Learning**: Toggle validation on/off to practice with or without hints
 7. **Reset and Retry**: Practice as many times as needed to master the patterns
 
+### Irregular Verb Quiz
+1. **Start Irregular Quiz**: Click the "Irregular Quiz" button to practice irregular verb conjugations
+2. **Select Verbs**: Choose which irregular verbs to practice (tener, estar, ir)
+3. **Choose Tenses**: Select present, preterite, or both tenses
+4. **Fill in Conjugations**: Complete the table with the correct conjugated forms
+5. **Use Accent Keyboard**: Access Spanish characters easily with the integrated keyboard
+6. **Toggle Validation**: Use "Show Validation" to see real-time feedback and scoring
+7. **Change Selections**: Use "Change Selection" to modify your verb and tense choices
+8. **Practice Flexibly**: Focus on specific verbs or tenses that need more practice
+
 ### Verb Selection Options
 
 #### Predefined Sets
@@ -184,6 +195,15 @@ The app includes conjugations for:
 - **Scoring System**: Detailed performance tracking with motivational messages
 - **Visual Feedback**: Color-coded sections and animated checkmarks
 - **Spanish Accent Support**: Integrated keyboard for easy character input
+
+### Irregular Verb Practice
+- **Customizable Selection**: Choose which irregular verbs to practice (tener, estar, ir)
+- **Tense Flexibility**: Select present, preterite, or both tenses
+- **Table Format**: Clean "Person | Present | Preterite" layout for easy practice
+- **Dynamic Tables**: Only shows selected verbs and tenses
+- **Real-time Validation**: Immediate feedback with green checkmarks for correct answers
+- **Comprehensive Scoring**: Performance tracking with encouraging messages
+- **Flexible Practice**: Change selections anytime to focus on specific verbs or tenses
 
 ### User Experience
 - Beautiful gradient backgrounds

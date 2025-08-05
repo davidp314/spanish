@@ -6,6 +6,7 @@ import ConjugationReference from './components/ConjugationReference';
 import KeyboardHelp from './components/KeyboardHelp';
 import Quiz from './components/Quiz';
 import ConjugationPatternQuiz from './components/ConjugationPatternQuiz';
+import IrregularVerbQuiz from './components/IrregularVerbQuiz';
 import { Conjugation, allConjugations } from './data/conjugationData';
 
 // Use Conjugation interface from conjugationData.ts
@@ -352,6 +353,7 @@ function App() {
   const [pendingResetAction, setPendingResetAction] = useState<'reset' | 'clear' | null>(null);
   const [showQuiz, setShowQuiz] = useState(false);
   const [showPatternQuiz, setShowPatternQuiz] = useState(false);
+  const [showIrregularVerbQuiz, setShowIrregularVerbQuiz] = useState(false);
   
   // Debug state changes
   useEffect(() => {
@@ -508,8 +510,8 @@ function App() {
   useEffect(() => {
     console.log('Setting up keyboard event listener');
     const handleKeyPress = (event: KeyboardEvent) => {
-      // Don't handle keyboard shortcuts when quiz or pattern quiz is open
-      if (showQuiz || showPatternQuiz) {
+      // Don't handle keyboard shortcuts when any quiz is open
+      if (showQuiz || showPatternQuiz || showIrregularVerbQuiz) {
         return;
       }
       
@@ -576,7 +578,7 @@ function App() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [isFlipped, isLastCard, currentIndex, currentConjugation, showResetConfirmation, showClearConfirmation, showQuiz, showPatternQuiz]);
+  }, [isFlipped, isLastCard, currentIndex, currentConjugation, showResetConfirmation, showClearConfirmation, showQuiz, showPatternQuiz, showIrregularVerbQuiz]);
 
   if (!hasSelectedVerbs || showVerbSelection) {
     console.log('Showing verb selection screen - no help button here');
@@ -670,6 +672,16 @@ function App() {
               >
                 <Grid3X3 size={20} />
                 Pattern Quiz
+              </button>
+              <button 
+                onClick={() => setShowIrregularVerbQuiz(true)}
+                style={{
+                  ...styles.resetButton,
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'
+                }}
+              >
+                <BookOpen size={20} />
+                Irregular Quiz
               </button>
             </div>
           </div>
@@ -934,6 +946,12 @@ function App() {
         <ConjugationPatternQuiz 
           isOpen={showPatternQuiz}
           onClose={() => setShowPatternQuiz(false)}
+        />
+
+        {/* Irregular Verb Quiz Modal */}
+        <IrregularVerbQuiz 
+          isOpen={showIrregularVerbQuiz}
+          onClose={() => setShowIrregularVerbQuiz(false)}
         />
 
         {/* Reset Confirmation Modal */}
