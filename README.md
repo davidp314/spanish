@@ -97,9 +97,10 @@ The app includes conjugations for:
 1. **Start Pattern Quiz**: Click the "Pattern Quiz" button to practice conjugation patterns
 2. **Fill in the Blanks**: Complete both endings and examples for each verb type and person
 3. **Use Accent Keyboard**: Access Spanish characters easily with the integrated keyboard
-4. **Check Answers**: Review your performance with detailed scoring and feedback
+4. **Toggle Validation**: Use the "Show Validation" toggle to see real-time feedback
 5. **Practice All Patterns**: Cover all regular verb patterns in Present and Preterite tenses
-6. **Reset and Retry**: Practice as many times as needed to master the patterns
+6. **Flexible Learning**: Toggle validation on/off to practice with or without hints
+7. **Reset and Retry**: Practice as many times as needed to master the patterns
 
 ### Verb Selection Options
 
@@ -178,7 +179,8 @@ The app includes conjugations for:
 ### Pattern Practice
 - **Comprehensive Coverage**: All regular verb patterns in Present and Preterite tenses
 - **Interactive Input**: Fill-in-the-blank exercises for endings and examples
-- **Real-time Validation**: Immediate feedback on correct and incorrect answers
+- **Toggle Validation**: On/off switch for real-time feedback and scoring
+- **Flexible Learning**: Practice with or without validation hints
 - **Scoring System**: Detailed performance tracking with motivational messages
 - **Visual Feedback**: Color-coded sections and animated checkmarks
 - **Spanish Accent Support**: Integrated keyboard for easy character input

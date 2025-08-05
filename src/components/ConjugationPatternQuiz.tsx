@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, BookOpen, Check, RotateCcw, Target, Star, AlertCircle } from 'lucide-react';
+import { X, BookOpen, Check, RotateCcw, Target, Star, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import SpanishAccentKeyboard from './SpanishAccentKeyboard';
 
 interface ConjugationPatternQuizProps {
@@ -66,7 +66,7 @@ const erIrPreteritePatterns: ConjugationPattern[] = [
 
 const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen, onClose }) => {
   const [userAnswers, setUserAnswers] = useState<{ [key: string]: string }>({});
-  const [showResults, setShowResults] = useState(false);
+  const [showValidation, setShowValidation] = useState(false);
   const [score, setScore] = useState({ correct: 0, total: 0, percentage: 0 });
   const [showScore, setShowScore] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
@@ -138,16 +138,22 @@ const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen,
     return { correct, total, percentage };
   };
 
-  const checkAnswers = () => {
-    const newScore = calculateScore();
-    setScore(newScore);
-    setShowResults(true);
-    setShowScore(true);
+  const toggleValidation = () => {
+    const newShowValidation = !showValidation;
+    setShowValidation(newShowValidation);
+    
+    if (newShowValidation) {
+      const newScore = calculateScore();
+      setScore(newScore);
+      setShowScore(true);
+    } else {
+      setShowScore(false);
+    }
   };
 
   const resetQuiz = () => {
     setUserAnswers({});
-    setShowResults(false);
+    setShowValidation(false);
     setShowScore(false);
     setScore({ correct: 0, total: 0, percentage: 0 });
   };
@@ -173,7 +179,7 @@ const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen,
   };
 
   const getFieldStatus = (field: string): 'correct' | 'incorrect' | 'empty' | null => {
-    if (!showResults) return null;
+    if (!showValidation) return null;
     const userAnswer = userAnswers[field] || '';
     if (!userAnswer.trim()) return 'empty';
     return isCorrect(field, userAnswer) ? 'correct' : 'incorrect';
@@ -277,7 +283,7 @@ const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen,
                   }}
                   placeholder="Enter ending"
                 />
-                {showResults && getFieldStatus(`${tense}-${type}-${pattern.person}-ending`) === 'correct' && (
+                {showValidation && getFieldStatus(`${tense}-${type}-${pattern.person}-ending`) === 'correct' && (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -319,7 +325,7 @@ const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen,
                   }}
                   placeholder="Enter example"
                 />
-                {showResults && getFieldStatus(`${tense}-${type}-${pattern.person}-example`) === 'correct' && (
+                {showValidation && getFieldStatus(`${tense}-${type}-${pattern.person}-example`) === 'correct' && (
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
@@ -476,28 +482,24 @@ const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen,
               )}
 
               {/* Spanish Accent Keyboard Tip */}
-              {!showResults && (
-                <div style={{
-                  backgroundColor: '#fef3c7',
-                  border: '1px solid #fbbf24',
-                  borderRadius: '8px',
-                  fontSize: '0.75rem',
-                  color: '#92400e',
-                  textAlign: 'center',
-                  padding: '0.75rem',
-                  marginBottom: '1.5rem'
-                }}>
-                  💡 <strong>Tip:</strong> You'll need Spanish accents for your answers - use the keyboard below or number keys 1-9 shortcuts
-                </div>
-              )}
+              <div style={{
+                backgroundColor: '#fef3c7',
+                border: '1px solid #fbbf24',
+                borderRadius: '8px',
+                fontSize: '0.75rem',
+                color: '#92400e',
+                textAlign: 'center',
+                padding: '0.75rem',
+                marginBottom: '1.5rem'
+              }}>
+                💡 <strong>Tip:</strong> You'll need Spanish accents for your answers - use the keyboard below or number keys 1-9 shortcuts
+              </div>
 
               {/* Spanish Accent Keyboard */}
-              {!showResults && (
-                <SpanishAccentKeyboard
-                  onCharacterInsert={handleCharacterInsert}
-                  isVisible={true}
-                />
-              )}
+              <SpanishAccentKeyboard
+                onCharacterInsert={handleCharacterInsert}
+                isVisible={true}
+              />
 
               {/* Present Tense Section */}
               <h2 style={{
@@ -564,24 +566,26 @@ const ConjugationPatternQuiz: React.FC<ConjugationPatternQuizProps> = ({ isOpen,
                 marginTop: '2rem'
               }}>
                 <button
-                  onClick={checkAnswers}
-                  disabled={showResults}
+                  onClick={toggleValidation}
                   style={{
-                    background: showResults ? 'linear-gradient(135deg, #9ca3af 0%, #6b7280 100%)' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                    background: showValidation ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)' : 'linear-gradient(135deg, #6b7280 0%, #4b5563 100%)',
                     color: 'white',
                     border: 'none',
                     borderRadius: '8px',
                     padding: '0.75rem 1.5rem',
                     fontSize: '1rem',
                     fontWeight: '600',
-                    cursor: showResults ? 'not-allowed' : 'pointer',
+                    cursor: 'pointer',
                     transition: 'transform 0.2s',
-                    opacity: showResults ? 0.7 : 1
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
                   }}
-                  onMouseEnter={(e) => !showResults && (e.currentTarget.style.transform = 'translateY(-2px)')}
+                  onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
                   onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
                 >
-                  {showResults ? 'Answers Checked' : 'Check Answers'}
+                  {showValidation ? <Eye size={16} /> : <EyeOff size={16} />}
+                  {showValidation ? 'Hide Validation' : 'Show Validation'}
                 </button>
                 
                 <button
