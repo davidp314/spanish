@@ -109,7 +109,7 @@ body {
   flex-wrap: wrap;
 }
 
-.practice-button, .reset-button, .back-button {
+.practice-button, .reset-button, .back-button, .reference-button {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 0.5rem;
@@ -145,6 +145,16 @@ body {
 .reset-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.reference-button {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  color: white;
+}
+
+.reference-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
 }
 
 .back-button {

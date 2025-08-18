@@ -81,6 +81,14 @@ spanish/
 - **Practice Tracking**: Individual conjugation practice counts and accuracy
 - **Verb Set Selection**: Beginner, Intermediate, and All Verbs options
 
+#### **Micro-Chunk 8: Conjugation Reference System** 🆕
+- **Comprehensive Reference Modal**: Full-screen modal with conjugation pattern reference
+- **Pattern Coverage**: Complete -AR, -ER, and -IR verb endings for present and preterite tenses
+- **Educational Content**: Clear explanations, examples, and key differences notes
+- **Interactive Design**: Smooth animations, responsive layout, and accessibility features
+- **Quick Access**: One-click reference button in main header for immediate access
+- **Professional UI**: Beautiful gradients, color-coded sections, and modern design
+
 ### 🔄 Current State
 The application is **fully functional** with:
 - **Browse Mode**: Advanced filtering and search across 50+ conjugations
@@ -98,6 +106,13 @@ The application is **fully functional** with:
 - **Rich Conjugation Cards**: Person, tense, verb type, difficulty, and practice stats
 - **Search Functionality**: Search across Spanish, English, and verb roots
 - **Progress Statistics**: Visual progress bar and comprehensive stats dashboard
+
+### **Reference Mode**
+- **Quick Access**: One-click reference button in main header
+- **Comprehensive Patterns**: Complete -AR, -ER, and -IR verb conjugation tables
+- **Dual Tense Coverage**: Present and preterite tense patterns in one view
+- **Educational Content**: Clear explanations, examples, and key differences
+- **Professional Design**: Beautiful gradients and color-coded sections
 
 ### **Practice Mode**
 - **Spaced Repetition**: Only shows conjugations due for practice
@@ -140,22 +155,23 @@ The application is **fully functional** with:
 2. **Limited Verb Set**: Currently 50+ conjugations (expandable)
 3. **No User Accounts**: Single-user application
 4. **Basic Spaced Repetition**: Simple algorithm (could be enhanced)
+5. **No Audio**: No pronunciation support for conjugations
 
 ## 🔮 Planned Features (Future Micro-Chunks)
 
-### **Micro-Chunk 8: Advanced Learning Modes**
+### **Micro-Chunk 9: Advanced Learning Modes**
 - Conjugation pattern recognition quizzes
 - Sentence building exercises
 - Audio pronunciation integration
 - Multiple choice assessments
 
-### **Micro-Chunk 9: Enhanced Analytics**
+### **Micro-Chunk 10: Enhanced Analytics**
 - Learning session statistics
 - Progress trends and insights
 - Export/import functionality
 - Advanced spaced repetition algorithms
 
-### **Micro-Chunk 10: User Experience Enhancements**
+### **Micro-Chunk 11: User Experience Enhancements**
 - Dark/light theme toggle
 - Accessibility improvements
 - Performance optimizations
@@ -301,9 +317,9 @@ When starting a new chat about this project:
 5. **Update this document** with any new implementations
 6. **Test thoroughly** after each change
 
-**Last Updated**: After Micro-Chunk 7 (Enhanced Flashcard Features & Conjugation System)
-**Current Status**: Fully functional with comprehensive conjugation system and compact practice mode
-**Next Phase**: Micro-Chunk 8 (Advanced Learning Modes)
+**Last Updated**: After Micro-Chunk 8 (Conjugation Reference System)
+**Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, and reference system
+**Next Phase**: Micro-Chunk 9 (Advanced Learning Modes)
 
 ---
 

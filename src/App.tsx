@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import VerbCard from './components/VerbCard';
 import Flashcard from './components/Flashcard';
+import ConjugationReference from './components/ConjugationReference';
 import type { Conjugation } from './data/conjugationData';
 import { allConjugations, verbSets, shouldPractice } from './data/conjugationData';
 import './App.css';
@@ -43,6 +44,7 @@ function App() {
   const [tenseFilter, setTenseFilter] = useState<'all' | 'present' | 'preterite'>('all');
   const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
   const [masteryFilter, setMasteryFilter] = useState<'all' | 'mastered' | 'not-mastered'>('all');
+  const [showReference, setShowReference] = useState(false);
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -262,6 +264,10 @@ function App() {
             🎯 Practice Mode ({practiceConjugations.length} due)
           </button>
           
+          <button onClick={() => setShowReference(true)} className="reference-button">
+            📚 Reference
+          </button>
+          
           <button onClick={handleResetProgress} className="reset-button">
             🔄 Reset Progress
           </button>
@@ -321,6 +327,12 @@ function App() {
           </button>
         </div>
       )}
+
+      {/* Conjugation Reference Modal */}
+      <ConjugationReference 
+        isOpen={showReference}
+        onClose={() => setShowReference(false)}
+      />
     </div>
   );
 }
