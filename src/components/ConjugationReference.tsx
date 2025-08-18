@@ -115,23 +115,6 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
 
         {/* Content */}
         <div style={{ padding: '2rem' }}>
-          {/* Info Box */}
-          <div style={{
-            background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-            border: '1px solid #f59e0b',
-            borderRadius: '12px',
-            padding: '1rem',
-            marginBottom: '2rem'
-          }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: '600', color: '#92400e', margin: '0 0 0.5rem 0' }}>
-              How to Use This Reference
-            </h3>
-            <p style={{ fontSize: '0.875rem', color: '#92400e', margin: 0, lineHeight: '1.5' }}>
-              <strong>Pattern:</strong> Stem + Ending = Conjugation. For example: <em>habl</em> + <em>o</em> = <strong>hablo</strong>.
-              <br />
-              <strong>Note:</strong> -ER and -IR verbs share the same endings in present tense, except for nosotros.
-            </p>
-          </div>
 
           {/* Main Reference Grid */}
           <div style={{
@@ -506,20 +489,6 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
             </div>
           </div>
 
-          {/* Footer */}
-          <div style={{
-            marginTop: '2rem',
-            padding: '1rem',
-            background: '#f8fafc',
-            borderRadius: '12px',
-            textAlign: 'center',
-            fontSize: '0.875rem',
-            color: '#64748b'
-          }}>
-            <p style={{ margin: 0 }}>
-              <strong>Tip:</strong> Practice these patterns regularly to build confidence with regular verb conjugations!
-            </p>
-          </div>
         </div>
       </div>
     </div>
