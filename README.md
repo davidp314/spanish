@@ -1,31 +1,30 @@
 # Spanish Verb Master 🎯
 
-A modern React application for learning Spanish verbs through interactive flashcards and progress tracking.
+A modern React application for learning Spanish verb conjugations through interactive flashcards and spaced repetition.
 
 ## ✨ Features
 
 ### 🎓 Learning Modes
-- **Browse Mode**: View all verbs in a grid layout with filtering and search
-- **Practice Mode**: Interactive flashcards with English-to-Spanish learning
-- **Progress Tracking**: Monitor your mastery of verbs over time
+- **Browse Mode**: View all verb conjugations in a grid layout with advanced filtering
+- **Practice Mode**: Interactive flashcards with spaced repetition algorithm
+- **Progress Tracking**: Monitor mastery of individual conjugations over time
 
-### 🔍 Smart Filtering
-- Filter by verb type (Regular/Irregular)
-- Filter by mastery status (All/Mastered/Not Mastered)
-- Search functionality for quick verb lookup
+### 🔍 Advanced Filtering
+- Filter by verb type (Regular/Irregular), tense (Present/Preterite), difficulty, and mastery status
+- Search functionality across Spanish, English, and verb roots
 - Real-time filtering with instant results
 
-### 📊 Progress Analytics
+### 📊 Enhanced Progress Analytics
 - Visual progress bar showing mastery percentage
-- Statistics dashboard with key metrics
-- Mastery indicators on individual verb cards
-- Reset progress functionality
+- Practice statistics with accuracy tracking
+- Spaced repetition system for optimal learning
+- Local storage persistence for progress
 
 ### 🎨 Modern UI/UX
 - Beautiful gradient designs and smooth animations
-- Responsive layout for all device sizes
+- Responsive layout optimized for all device sizes
 - Interactive 3D flip animations for flashcards
-- Intuitive navigation between modes
+- Compact, elegant practice mode design
 
 ## 🚀 Getting Started
 
@@ -67,11 +66,11 @@ npm run preview
 spanish/
 ├── src/
 │   ├── components/
-│   │   ├── VerbCard.tsx      # Individual verb display component
+│   │   ├── VerbCard.tsx      # Conjugation display component
 │   │   ├── Flashcard.tsx     # Interactive flashcard component
 │   │   └── ...
 │   ├── data/
-│   │   └── verbs.ts          # Verb data and types
+│   │   └── conjugationData.ts # Verb conjugation data and types
 │   ├── App.tsx               # Main application component
 │   ├── App.css               # Application styles
 │   └── main.tsx              # Application entry point
@@ -83,30 +82,28 @@ spanish/
 ## 🎯 How to Use
 
 ### Browse Mode
-1. **View Verbs**: See all available Spanish verbs in a grid layout
-2. **Filter**: Use type and status filters to narrow down verbs
-3. **Search**: Type to search for specific verbs
-4. **Select**: Click on verbs to see detailed information
-5. **Master**: Mark verbs as mastered with the star button
+1. **Select Verb Set**: Choose from Beginner, Intermediate, or All Verbs
+2. **Filter & Search**: Use multiple filters and search to find specific conjugations
+3. **View Details**: See person, tense, verb type, and difficulty information
+4. **Track Progress**: Monitor mastery status and practice statistics
 
 ### Practice Mode
 1. **Enter Practice**: Click "🎯 Practice Mode" button
-2. **Study**: See English prompts on flashcard fronts
-3. **Flip**: Click the card to reveal Spanish answers
-4. **Progress**: Mark verbs as mastered during practice
-5. **Navigate**: Use "Next Card" to continue learning
+2. **Study Conjugations**: Practice with spaced repetition algorithm
+3. **Answer Input**: Type Spanish answers before revealing correct responses
+4. **Track Mastery**: Mark conjugations as mastered during practice
 
 ## 🛠️ Technology Stack
 
 - **Frontend**: React 18 + TypeScript
 - **Build Tool**: Vite
-- **Styling**: CSS3 with custom animations
-- **State Management**: React Hooks (useState)
+- **Styling**: CSS3 with custom animations and responsive design
+- **State Management**: React Hooks with localStorage persistence
 - **Development**: Hot Module Replacement (HMR)
 
 ## 📱 Responsive Design
 
-The application is fully responsive and works on:
+The application is fully responsive and optimized for:
 - Desktop computers
 - Tablets
 - Mobile phones
@@ -114,15 +111,22 @@ The application is fully responsive and works on:
 
 ## 🔧 Customization
 
-### Adding New Verbs
-Edit `src/data/verbs.ts` to add new verbs:
+### Adding New Conjugations
+Edit `src/data/conjugationData.ts` to add new verb conjugations:
 ```typescript
 {
-  id: 'new-verb',
-  spanish: 'nuevo',
-  english: 'new',
-  type: 'regular',
-  mastered: false
+  id: 'new-verb-yo-present',
+  english: 'I do something',
+  spanish: 'hago',
+  verb: 'hacer',
+  type: 'irregular',
+  conjugation: 'er',
+  person: 'yo',
+  tense: 'present',
+  mastered: false,
+  difficulty: 'intermediate',
+  practiceCount: 0,
+  correctCount: 0
 }
 ```
 
@@ -167,7 +171,7 @@ If you encounter any issues or have questions:
 ## 🎉 Acknowledgments
 
 - Built with modern web technologies
-- Designed for optimal learning experience
+- Designed for optimal learning experience with spaced repetition
 - Inspired by language learning best practices
 
 ---

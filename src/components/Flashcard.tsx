@@ -1,111 +1,148 @@
 import React, { useState } from 'react';
-
-interface Verb {
-  id: string;
-  spanish: string;
-  english: string;
-  type: 'regular' | 'irregular';
-  mastered: boolean;
-}
+import type { Conjugation } from '../data/conjugationData';
 
 interface FlashcardProps {
-  verb: Verb;
-  onMastered: (verbId: string) => void;
+  conjugation: Conjugation;
   onNext: () => void;
-  isLastCard: boolean;
+  onMastered: (id: string) => void;
+  onPracticeResult: (id: string, correct: boolean) => void;
+  isLast: boolean;
 }
 
-const Flashcard: React.FC<FlashcardProps> = ({ verb, onMastered, onNext, isLastCard }) => {
+const Flashcard: React.FC<FlashcardProps> = ({ 
+  conjugation, 
+  onNext, 
+  onMastered, 
+  onPracticeResult,
+  isLast 
+}) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [showResult, setShowResult] = useState(false);
+  const [userAnswer, setUserAnswer] = useState('');
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
-    if (!showAnswer) {
-      setShowAnswer(true);
-    }
   };
 
-  const handleMastered = () => {
-    onMastered(verb.id);
-    if (!isLastCard) {
-      onNext();
-    }
+  const handleAnswerSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const correct = userAnswer.toLowerCase().trim() === conjugation.spanish.toLowerCase().trim();
+    setIsCorrect(correct);
+    setShowResult(true);
+    
+    // Track practice result
+    onPracticeResult(conjugation.id, correct);
+    
+    // Auto-flip after showing result
+    setTimeout(() => {
+      setIsFlipped(true);
+    }, 500);
   };
 
   const handleNext = () => {
+    setIsFlipped(false);
+    setShowResult(false);
+    setUserAnswer('');
     onNext();
   };
 
-  const handleShowAnswer = () => {
-    setShowAnswer(true);
+  const handleMastered = () => {
+    onMastered(conjugation.id);
+  };
+
+  const getPersonColor = (person: string) => {
+    const personColors: { [key: string]: string } = {
+      'yo': 'bg-pink-100 text-pink-800',
+      'tú': 'bg-indigo-100 text-indigo-800',
+      'él/ella/usted': 'bg-teal-100 text-teal-800',
+      'nosotros': 'bg-orange-100 text-orange-800',
+      'ellos/ellas/ustedes': 'bg-rose-100 text-rose-800'
+    };
+    return personColors[person] || 'bg-gray-100 text-gray-800';
   };
 
   return (
     <div className="flashcard-container">
-      {/* Flashcard */}
+      <div className="flashcard-info">
+        <div className="conjugation-badges">
+          <span className={`badge ${conjugation.type === 'regular' ? 'regular' : 'irregular'}`}>
+            {conjugation.type === 'regular' ? `Regular -${conjugation.conjugation}` : 'Irregular'}
+          </span>
+          <span className={`badge ${conjugation.tense === 'present' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}`}>
+            {conjugation.tense === 'present' ? 'Present' : 'Preterite'}
+          </span>
+          <span className={`badge ${getPersonColor(conjugation.person)}`}>
+            {conjugation.person}
+          </span>
+        </div>
+        
+        <div className="verb-root">
+          <strong>Verb:</strong> {conjugation.verb}
+        </div>
+      </div>
+
       <div 
         className={`flashcard ${isFlipped ? 'flipped' : ''}`}
         onClick={handleFlip}
       >
         <div className="flashcard-inner">
-          {/* Front side - English */}
           <div className="flashcard-front">
-            <div className="flashcard-content">
-              <div className="flashcard-label">English</div>
-              <h2 className="flashcard-question">{verb.english}</h2>
-              <div className="flashcard-hint">Click to see Spanish</div>
-            </div>
+            <h2 className="flashcard-prompt">{conjugation.english}</h2>
+            <p className="flashcard-hint">Click to reveal answer</p>
           </div>
           
-          {/* Back side - Spanish */}
           <div className="flashcard-back">
-            <div className="flashcard-content">
-              <div className="flashcard-label">Spanish</div>
-              <h2 className="flashcard-answer">{verb.spanish}</h2>
-              <div className="verb-type-badge">{verb.type}</div>
-            </div>
+            <h2 className="flashcard-answer">{conjugation.spanish}</h2>
+            <p className="flashcard-translation">{conjugation.english}</p>
           </div>
         </div>
       </div>
 
-      {/* Action Buttons */}
-      <div className="flashcard-actions">
-        {!showAnswer && (
-          <button 
-            className="action-btn show-answer-btn"
-            onClick={handleShowAnswer}
-          >
-            Show Answer
+      {!isFlipped && (
+        <form onSubmit={handleAnswerSubmit} className="answer-form">
+          <input
+            type="text"
+            value={userAnswer}
+            onChange={(e) => setUserAnswer(e.target.value)}
+            placeholder="Type your answer in Spanish..."
+            className="answer-input"
+            autoFocus
+          />
+          <button type="submit" className="submit-button">
+            Check Answer
           </button>
-        )}
+        </form>
+      )}
+
+      {showResult && (
+        <div className={`result-message ${isCorrect ? 'correct' : 'incorrect'}`}>
+          {isCorrect ? '¡Correcto! 🎉' : `¡Incorrecto! The answer is: ${conjugation.spanish}`}
+        </div>
+      )}
+
+      <div className="flashcard-actions">
+        <button 
+          onClick={handleMastered}
+          className={`mastery-button ${conjugation.mastered ? 'mastered' : ''}`}
+        >
+          {conjugation.mastered ? '⭐ Mastered' : '☆ Mark as Mastered'}
+        </button>
         
-        {showAnswer && (
-          <>
-            <button 
-              className="action-btn mastered-btn"
-              onClick={handleMastered}
-            >
-              {verb.mastered ? 'Already Mastered' : 'Mark as Mastered'}
-            </button>
-            
-            {!isLastCard && (
-              <button 
-                className="action-btn next-btn"
-                onClick={handleNext}
-              >
-                Next Card
-              </button>
-            )}
-          </>
-        )}
+        <button 
+          onClick={handleNext}
+          className="next-button"
+          disabled={!isFlipped}
+        >
+          {isLast ? 'Finish Practice' : 'Next Card →'}
+        </button>
       </div>
 
-      {/* Progress indicator */}
-      <div className="flashcard-progress">
-        <span className="progress-text">
-          {verb.mastered && '⭐ '}Verb {verb.id}
-        </span>
+      <div className="practice-stats">
+        <small>
+          Practice Count: {conjugation.practiceCount} | 
+          Accuracy: {conjugation.practiceCount > 0 ? Math.round((conjugation.correctCount / conjugation.practiceCount) * 100) : 0}%
+        </small>
       </div>
     </div>
   );

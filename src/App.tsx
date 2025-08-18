@@ -1,274 +1,328 @@
-import { useState } from 'react'
-import VerbCard from './components/VerbCard'
-import Flashcard from './components/Flashcard'
-import './App.css'
+import { useState, useEffect } from 'react';
+import VerbCard from './components/VerbCard';
+import Flashcard from './components/Flashcard';
+import type { Conjugation } from './data/conjugationData';
+import { allConjugations, verbSets, shouldPractice } from './data/conjugationData';
+import './App.css';
 
 function App() {
-  const [selectedVerb, setSelectedVerb] = useState<string | null>(null)
-  const [filterType, setFilterType] = useState<'all' | 'regular' | 'irregular'>('all')
-  const [filterMastered, setFilterMastered] = useState<'all' | 'mastered' | 'not-mastered'>('all')
-  const [searchTerm, setSearchTerm] = useState('')
-  const [isPracticeMode, setIsPracticeMode] = useState(false)
-  const [currentCardIndex, setCurrentCardIndex] = useState(0)
-
-  const [verbs, setVerbs] = useState<Array<{
-    id: string;
-    spanish: string;
-    english: string;
-    type: 'regular' | 'irregular';
-    mastered: boolean;
-  }>>([
-    { id: 'hablar', spanish: 'hablar', english: 'to speak', type: 'regular', mastered: false },
-    { id: 'comer', spanish: 'comer', english: 'to eat', type: 'regular', mastered: false },
-    { id: 'vivir', spanish: 'vivir', english: 'to live', type: 'regular', mastered: false },
-    { id: 'tener', spanish: 'tener', english: 'to have', type: 'irregular', mastered: false },
-    { id: 'estar', spanish: 'estar', english: 'to be', type: 'irregular', mastered: false }
-  ])
-
-  const toggleMastered = (verbId: string) => {
-    setVerbs(prevVerbs => 
-      prevVerbs.map(verb => 
-        verb.id === verbId 
-          ? { ...verb, mastered: !verb.mastered }
-          : verb
-      )
-    );
-  };
-
-  const resetAllProgress = () => {
-    setVerbs(prevVerbs => 
-      prevVerbs.map(verb => ({ ...verb, mastered: false }))
-    );
-  };
-
-  const startPracticeMode = () => {
-    setIsPracticeMode(true);
-    setCurrentCardIndex(0);
-  };
-
-  const exitPracticeMode = () => {
-    setIsPracticeMode(false);
-    setCurrentCardIndex(0);
-  };
-
-  const nextCard = () => {
-    if (currentCardIndex < filteredVerbs.length - 1) {
-      setCurrentCardIndex(currentCardIndex + 1);
+  // Load state from localStorage or use defaults
+  const loadStateFromStorage = () => {
+    try {
+      const savedState = localStorage.getItem('spanishConjugationsState');
+      if (savedState) {
+        const parsed = JSON.parse(savedState);
+        return {
+          conjugations: parsed.conjugations || allConjugations.map(c => ({ ...c })),
+          currentIndex: parsed.currentIndex || 0,
+          isPracticeMode: parsed.isPracticeMode || false,
+          selectedVerbSet: parsed.selectedVerbSet || 'beginner',
+          lastUpdated: parsed.lastUpdated || Date.now()
+        };
+      }
+    } catch (error) {
+      console.log('No saved state found or error loading state, using defaults');
     }
+    return {
+      conjugations: allConjugations.map(c => ({ ...c })),
+      currentIndex: 0,
+      isPracticeMode: false,
+      selectedVerbSet: 'beginner',
+      lastUpdated: Date.now()
+    };
   };
 
-  const handleFlashcardMastered = (verbId: string) => {
-    toggleMastered(verbId);
-  };
+  const initialState = loadStateFromStorage();
+  
+  const [conjugations, setConjugations] = useState<Conjugation[]>(initialState.conjugations);
+  const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex);
+  const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
+  const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [typeFilter, setTypeFilter] = useState<'all' | 'regular' | 'irregular'>('all');
+  const [tenseFilter, setTenseFilter] = useState<'all' | 'present' | 'preterite'>('all');
+  const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
+  const [masteryFilter, setMasteryFilter] = useState<'all' | 'mastered' | 'not-mastered'>('all');
 
-  // Filter and search logic
-  const filteredVerbs = verbs.filter(verb => {
-    // Type filter
-    if (filterType !== 'all' && verb.type !== filterType) return false;
+  // Save state to localStorage whenever important state changes
+  useEffect(() => {
+    const stateToSave = {
+      conjugations,
+      currentIndex,
+      isPracticeMode,
+      selectedVerbSet,
+      lastUpdated: Date.now()
+    };
+    localStorage.setItem('spanishConjugationsState', JSON.stringify(stateToSave));
+  }, [conjugations, currentIndex, isPracticeMode, selectedVerbSet]);
+
+  // Get current verb set
+  // const currentVerbSet = verbSets.find(set => set.id === selectedVerbSet) || verbSets[0];
+
+  // Filter conjugations based on current selection and filters
+  const filteredConjugations = conjugations.filter(conjugation => {
+    const matchesSearch = conjugation.english.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         conjugation.spanish.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         conjugation.verb.toLowerCase().includes(searchTerm.toLowerCase());
     
-    // Mastered filter
-    if (filterMastered === 'mastered' && !verb.mastered) return false;
-    if (filterMastered === 'not-mastered' && verb.mastered) return false;
-    
-    // Search filter
-    if (searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
-      return verb.spanish.toLowerCase().includes(searchLower) || 
-             verb.english.toLowerCase().includes(searchLower);
-    }
-    
-    return true;
+    const matchesType = typeFilter === 'all' || conjugation.type === typeFilter;
+    const matchesTense = tenseFilter === 'all' || conjugation.tense === tenseFilter;
+    const matchesDifficulty = difficultyFilter === 'all' || conjugation.difficulty === difficultyFilter;
+    const matchesMastery = masteryFilter === 'all' || 
+                          (masteryFilter === 'mastered' && conjugation.mastered) ||
+                          (masteryFilter === 'not-mastered' && !conjugation.mastered);
+
+    return matchesSearch && matchesType && matchesTense && matchesDifficulty && matchesMastery;
   });
 
-  return (
-    <div className="app">
-      <header className="header">
-        <div className="header-content">
+  // Get conjugations that should be practiced (spaced repetition)
+  const practiceConjugations = filteredConjugations.filter(shouldPractice);
+
+  const handleToggleMastery = (id: string) => {
+    setConjugations(prev => 
+      prev.map(c => c.id === id ? { ...c, mastered: !c.mastered } : c)
+    );
+  };
+
+  const handleConjugationSelect = (conjugation: Conjugation) => {
+    // For now, just log the selection - could be used for detailed view later
+    console.log('Selected conjugation:', conjugation);
+  };
+
+  const handlePracticeResult = (id: string, correct: boolean) => {
+    setConjugations(prev => 
+      prev.map(c => {
+        if (c.id === id) {
+          return {
+            ...c,
+            practiceCount: c.practiceCount + 1,
+            correctCount: c.correctCount + (correct ? 1 : 0),
+            lastPracticed: Date.now()
+          };
+        }
+        return c;
+      })
+    );
+  };
+
+  const handleNextCard = () => {
+    if (currentIndex < practiceConjugations.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      // Practice session complete
+      setIsPracticeMode(false);
+      setCurrentIndex(0);
+    }
+  };
+
+  const handleStartPractice = () => {
+    setCurrentIndex(0);
+    setIsPracticeMode(true);
+  };
+
+  const handleBackToBrowse = () => {
+    setIsPracticeMode(false);
+    setCurrentIndex(0);
+  };
+
+  const handleResetProgress = () => {
+    if (window.confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
+      setConjugations(allConjugations.map(c => ({ ...c, mastered: false, practiceCount: 0, correctCount: 0 })));
+      setCurrentIndex(0);
+    }
+  };
+
+  const handleVerbSetChange = (verbSetId: string) => {
+    setSelectedVerbSet(verbSetId);
+    setCurrentIndex(0);
+  };
+
+  // Calculate statistics
+  const masteredCount = conjugations.filter(c => c.mastered).length;
+  const totalPracticeCount = conjugations.reduce((sum, c) => sum + c.practiceCount, 0);
+  const totalCorrectCount = conjugations.reduce((sum, c) => sum + c.correctCount, 0);
+  const overallAccuracy = totalPracticeCount > 0 ? Math.round((totalCorrectCount / totalPracticeCount) * 100) : 0;
+
+  if (isPracticeMode && practiceConjugations.length > 0) {
+    const currentConjugation = practiceConjugations[currentIndex];
+    const isLastCard = currentIndex === practiceConjugations.length - 1;
+
+    return (
+      <div className="App practice-mode">
+        <div className="header">
           <div className="header-left">
-            <h1 className="title">Spanish Verb Master</h1>
-            <p className="subtitle">Learn Spanish verbs with ease</p>
+            <h1>🎯 Practice Mode</h1>
+            <p>Practice conjugations with spaced repetition</p>
           </div>
-          <div className="header-right">
-            {!isPracticeMode ? (
-              <button 
-                className="practice-mode-btn"
-                onClick={startPracticeMode}
-              >
-                🎯 Practice Mode
-              </button>
-            ) : (
-              <button 
-                className="exit-practice-btn"
-                onClick={exitPracticeMode}
-              >
-                📚 Exit Practice
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
-      
-      <main className="main">
-        {isPracticeMode ? (
-          /* Practice Mode - Flashcard */
-          <div className="practice-mode">
-            {filteredVerbs.length > 0 ? (
-              <Flashcard
-                verb={filteredVerbs[currentCardIndex]}
-                onMastered={handleFlashcardMastered}
-                onNext={nextCard}
-                isLastCard={currentCardIndex === filteredVerbs.length - 1}
-              />
-            ) : (
-              <div className="no-verbs-message">
-                <h2>No verbs to practice!</h2>
-                <p>Try adjusting your filters or add more verbs.</p>
-                <button 
-                  className="exit-practice-btn"
-                  onClick={exitPracticeMode}
-                >
-                  Back to Browse
-                </button>
-              </div>
-            )}
-          </div>
-        ) : (
-          /* Browse Mode - Original Content */
-          <>
-            {/* Filter Controls */}
-            <div className="filter-controls">
-          <div className="search-section">
-            <input
-              type="text"
-              placeholder="Search verbs..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
-          </div>
-          
-          <div className="filter-buttons">
-            <div className="filter-group">
-              <span className="filter-label">Type:</span>
-              <button 
-                className={`filter-btn ${filterType === 'all' ? 'active' : ''}`}
-                onClick={() => setFilterType('all')}
-              >
-                All
-              </button>
-              <button 
-                className={`filter-btn ${filterType === 'regular' ? 'active' : ''}`}
-                onClick={() => setFilterType('regular')}
-              >
-                Regular
-              </button>
-              <button 
-                className={`filter-btn ${filterType === 'irregular' ? 'active' : ''}`}
-                onClick={() => setFilterType('irregular')}
-              >
-                Irregular
-              </button>
-            </div>
-            
-            <div className="filter-group">
-              <span className="filter-label">Status:</span>
-              <button 
-                className={`filter-btn ${filterMastered === 'all' ? 'active' : ''}`}
-                onClick={() => setFilterMastered('all')}
-              >
-                All
-              </button>
-              <button 
-                className={`filter-btn ${filterMastered === 'mastered' ? 'active' : ''}`}
-                onClick={() => setFilterMastered('mastered')}
-              >
-                Mastered
-              </button>
-              <button 
-                className={`filter-btn ${filterMastered === 'not-mastered' ? 'active' : ''}`}
-                onClick={() => setFilterMastered('not-mastered')}
-              >
-                Not Mastered
-              </button>
-            </div>
-          </div>
-          
-          <button 
-            className="reset-button"
-            onClick={resetAllProgress}
-            title="Reset all progress"
-          >
-            Reset Progress
+          <button onClick={handleBackToBrowse} className="back-button">
+            ← Back to Browse
           </button>
         </div>
-        
-        <div className="verb-grid">
-          {filteredVerbs.map((verb) => (
-            <VerbCard
-              key={verb.id}
-              verb={verb}
-              isSelected={selectedVerb === verb.id}
-              onSelect={setSelectedVerb}
-              onToggleMastered={toggleMastered}
-            />
-          ))}
-        </div>
-        
-        <div className="progress-section">
-          <h3>Progress</h3>
-          <div className="progress-stats">
-            <div className="stat">
-              <span className="stat-label">Total Verbs:</span>
-              <span className="stat-value">{verbs.length}</span>
-            </div>
-            <div className="stat">
-              <span className="stat-label">Mastered:</span>
-              <span className="stat-value">{verbs.filter(v => v.mastered).length}</span>
-            </div>
-            <div className="stat">
-              <span className="stat-label">Progress:</span>
-              <span className="stat-value">
-                {Math.round((verbs.filter(v => v.mastered).length / verbs.length) * 100)}%
-              </span>
-            </div>
-            <div className="stat">
-              <span className="stat-label">Showing:</span>
-              <span className="stat-value">{filteredVerbs.length}</span>
-            </div>
+
+        <div className="practice-info">
+          <div className="practice-stats">
+            <span>Card {currentIndex + 1} of {practiceConjugations.length}</span>
+            <span>Due for practice: {practiceConjugations.length}</span>
           </div>
+        </div>
+
+        <div className="practice-content">
+          <Flashcard
+            conjugation={currentConjugation}
+            onNext={handleNextCard}
+            onMastered={handleToggleMastery}
+            onPracticeResult={handlePracticeResult}
+            isLast={isLastCard}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="App">
+      <div className="header">
+        <h1>🇪🇸 Spanish Verb Master</h1>
+        <p>Master Spanish verb conjugations with interactive flashcards</p>
+      </div>
+
+      <div className="controls">
+        <div className="verb-set-selector">
+          <label>Verb Set:</label>
+          <select 
+            value={selectedVerbSet} 
+            onChange={(e) => handleVerbSetChange(e.target.value)}
+            className="verb-set-select"
+          >
+            {verbSets.map(set => (
+              <option key={set.id} value={set.id}>
+                {set.name} ({set.conjugations.length})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="filters">
+          <input
+            type="text"
+            placeholder="Search conjugations..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+
+          <select 
+            value={typeFilter} 
+            onChange={(e) => setTypeFilter(e.target.value as any)}
+            className="filter-select"
+          >
+            <option value="all">All Types</option>
+            <option value="regular">Regular</option>
+            <option value="irregular">Irregular</option>
+          </select>
+
+          <select 
+            value={tenseFilter} 
+            onChange={(e) => setTenseFilter(e.target.value as any)}
+            className="filter-select"
+          >
+            <option value="all">All Tenses</option>
+            <option value="present">Present</option>
+            <option value="preterite">Preterite</option>
+          </select>
+
+          <select 
+            value={difficultyFilter} 
+            onChange={(e) => setDifficultyFilter(e.target.value as any)}
+            className="filter-select"
+          >
+            <option value="all">All Difficulties</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+
+          <select 
+            value={masteryFilter} 
+            onChange={(e) => setMasteryFilter(e.target.value as any)}
+            className="filter-select"
+          >
+            <option value="all">All Status</option>
+            <option value="mastered">Mastered</option>
+            <option value="not-mastered">Not Mastered</option>
+          </select>
+        </div>
+
+        <div className="actions">
+          <button 
+            onClick={handleStartPractice}
+            className="practice-button"
+            disabled={practiceConjugations.length === 0}
+          >
+            🎯 Practice Mode ({practiceConjugations.length} due)
+          </button>
           
-          {/* Progress Bar */}
-          <div className="progress-bar-container">
-            <div className="progress-bar">
-              <div 
-                className="progress-fill"
-                style={{ 
-                  width: `${Math.round((verbs.filter(v => v.mastered).length / verbs.length) * 100)}%` 
-                }}
-              />
-            </div>
-            <span className="progress-text">
-              {verbs.filter(v => v.mastered).length} of {verbs.length} verbs mastered
-            </span>
+          <button onClick={handleResetProgress} className="reset-button">
+            🔄 Reset Progress
+          </button>
+        </div>
+      </div>
+
+      <div className="progress-bar">
+        <div className="progress-content">
+          <span>Progress: {masteredCount}/{conjugations.length} mastered</span>
+          <div className="progress-fill" style={{ width: `${(masteredCount / conjugations.length) * 100}%` }}></div>
+        </div>
+      </div>
+
+      <div className="statistics">
+        <div className="stats-grid">
+          <div className="stat-box">
+            <div className="stat-number">{masteredCount}/{conjugations.length}</div>
+            <div className="stat-label">Mastery Progress</div>
+          </div>
+          <div className="stat-box">
+            <div className="stat-number">{overallAccuracy}%</div>
+            <div className="stat-label">Overall Accuracy</div>
+          </div>
+          <div className="stat-box">
+            <div className="stat-number">{conjugations.length - masteredCount}</div>
+            <div className="stat-label">Remaining</div>
+          </div>
+          <div className="stat-box">
+            <div className="stat-number">{practiceConjugations.length}</div>
+            <div className="stat-label">Due for Practice</div>
           </div>
         </div>
-        
-        {selectedVerb && (
-          <div className="selected-info">
-            <h2>Selected: {selectedVerb}</h2>
-            <button 
-              className="clear-button"
-              onClick={() => setSelectedVerb(null)}
-            >
-              Clear Selection
-            </button>
-          </div>
-        )}
-          </>
-        )}
-      </main>
+      </div>
+
+      <div className="conjugations-grid">
+        {filteredConjugations.map((conjugation) => (
+          <VerbCard
+            key={conjugation.id}
+            conjugation={conjugation}
+            onToggleMastery={handleToggleMastery}
+            onSelect={handleConjugationSelect}
+          />
+        ))}
+      </div>
+
+      {filteredConjugations.length === 0 && (
+        <div className="no-results">
+          <p>No conjugations match your current filters.</p>
+          <button onClick={() => {
+            setSearchTerm('');
+            setTypeFilter('all');
+            setTenseFilter('all');
+            setDifficultyFilter('all');
+            setMasteryFilter('all');
+          }} className="clear-filters-button">
+            Clear All Filters
+          </button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default App
+export default App;
