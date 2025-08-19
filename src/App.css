@@ -109,7 +109,7 @@ body {
   flex-wrap: wrap;
 }
 
-.practice-button, .reset-button, .back-button, .reference-button {
+.practice-button, .reset-button, .back-button, .reference-button, .verb-selection-button {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 0.5rem;

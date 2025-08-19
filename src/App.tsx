@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import VerbCard from './components/VerbCard';
 import Flashcard from './components/Flashcard';
 import ConjugationReference from './components/ConjugationReference';
+import VerbSelectionModal from './components/VerbSelectionModal';
 import type { Conjugation } from './data/conjugationData';
 import { allConjugations, verbSets, shouldPractice } from './data/conjugationData';
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
           currentIndex: parsed.currentIndex || 0,
           isPracticeMode: parsed.isPracticeMode || false,
           selectedVerbSet: parsed.selectedVerbSet || 'beginner',
+          selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(),
           lastUpdated: parsed.lastUpdated || Date.now()
         };
       }
@@ -29,8 +31,16 @@ function App() {
       currentIndex: 0,
       isPracticeMode: false,
       selectedVerbSet: 'beginner',
+      selectedVerbs: getUniqueVerbs(),
       lastUpdated: Date.now()
     };
+  };
+
+  // Helper function to get unique verbs from all conjugations
+  const getUniqueVerbs = (): string[] => {
+    const uniqueVerbs = new Set<string>();
+    allConjugations.forEach(conjugation => uniqueVerbs.add(conjugation.verb));
+    return Array.from(uniqueVerbs).sort();
   };
 
   const initialState = loadStateFromStorage();
@@ -39,12 +49,14 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex);
   const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
   const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet);
+  const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState<'all' | 'regular' | 'irregular'>('all');
   const [tenseFilter, setTenseFilter] = useState<'all' | 'present' | 'preterite'>('all');
   const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
   const [masteryFilter, setMasteryFilter] = useState<'all' | 'mastered' | 'not-mastered'>('all');
   const [showReference, setShowReference] = useState(false);
+  const [showVerbSelection, setShowVerbSelection] = useState(false);
   const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
@@ -55,10 +67,24 @@ function App() {
       currentIndex,
       isPracticeMode,
       selectedVerbSet,
+      selectedVerbs,
       lastUpdated: Date.now()
     };
     localStorage.setItem('spanishConjugationsState', JSON.stringify(stateToSave));
-  }, [conjugations, currentIndex, isPracticeMode, selectedVerbSet]);
+  }, [conjugations, currentIndex, isPracticeMode, selectedVerbSet, selectedVerbs]);
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === 'v' && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        setShowVerbSelection(true);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Get current verb set
   // const currentVerbSet = verbSets.find(set => set.id === selectedVerbSet) || verbSets[0];
@@ -127,6 +153,10 @@ function App() {
     setIsPracticeMode(false);
     setCurrentIndex(0);
     setPracticeSessionConjugations([]); // Clear the frozen array
+  };
+
+  const handleVerbSelectionSave = (newSelectedVerbs: string[]) => {
+    setSelectedVerbs(newSelectedVerbs);
   };
 
   const handleResetProgress = () => {
@@ -273,6 +303,10 @@ function App() {
             🎯 Practice Mode ({filteredConjugations.filter(shouldPractice).length} due)
           </button>
           
+          <button onClick={() => setShowVerbSelection(true)} className="verb-selection-button">
+            🎯 Verb Selection
+          </button>
+          
           <button onClick={() => setShowReference(true)} className="reference-button">
             📚 Reference
           </button>
@@ -335,6 +369,15 @@ function App() {
           </button>
         </div>
       )}
+
+      {/* Verb Selection Modal */}
+      <VerbSelectionModal
+        isOpen={showVerbSelection}
+        onClose={() => setShowVerbSelection(false)}
+        allConjugations={allConjugations}
+        selectedVerbs={selectedVerbs}
+        onSaveSelection={handleVerbSelectionSave}
+      />
 
       {/* Conjugation Reference Modal */}
       <ConjugationReference 
