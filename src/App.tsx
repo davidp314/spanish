@@ -383,15 +383,29 @@ function App() {
             <div className="practice-controls">
               <div className="practice-mode-selector">
                 <label>Mode:</label>
-                <select 
-                  value={practiceMode} 
-                  onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
-                  className="practice-mode-select"
-                >
-                  <option value="systematic">Systematic</option>
-                  <option value="random1">Random Mixed</option>
-                  <option value="random2">Mixed Systematic</option>
-                </select>
+                <div className="segmented-control">
+                  <button
+                    className={`segment ${practiceMode === 'systematic' ? 'active' : ''}`}
+                    onClick={() => setPracticeMode('systematic')}
+                    title="Practice all conjugations of one verb before moving to the next"
+                  >
+                    Systematic
+                  </button>
+                  <button
+                    className={`segment ${practiceMode === 'random1' ? 'active' : ''}`}
+                    onClick={() => setPracticeMode('random1')}
+                    title="Completely random verb + tense + person combinations"
+                  >
+                    Random
+                  </button>
+                  <button
+                    className={`segment ${practiceMode === 'random2' ? 'active' : ''}`}
+                    onClick={() => setPracticeMode('random2')}
+                    title="Systematic within verbs, random between verbs"
+                  >
+                    Mixed
+                  </button>
+                </div>
               </div>
               <button 
                 onClick={handleStartPractice}

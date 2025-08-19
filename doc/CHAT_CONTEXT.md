@@ -118,10 +118,20 @@ spanish/
 - **Professional Mode Selection**: Clean, intuitive interface for choosing practice strategies
 - **Spanish Accent Keyboard**: Elegant table-style accent character input with warm Spanish theme and keyboard shortcuts (1-9)
 
+#### **Micro-Chunk 11.5: UI Streamlining & Practice Mode Interface** ✅
+- **Progress Dashboard Transformation**: Converted browse mode grid to comprehensive progress overview
+- **Verb Set Selector Removal**: Eliminated redundant verb set selector from main interface
+- **Quick Actions Cleanup**: Removed redundant quick actions section for cleaner interface
+- **Compact Practice Controls**: Streamlined practice mode interface with space-efficient design
+- **Segmented Control Implementation**: Replaced dropdown with modern segmented control for practice modes
+- **Hover Tooltips**: Added descriptive tooltips for practice mode options without cluttering interface
+- **Professional Appearance**: Modern, clean interface that matches existing button proportions
+
 ### 🔄 Current State
 The application is **fully functional** with:
-- **Browse Mode**: Advanced filtering and search across 150 conjugations (15 verbs × 5 persons × 2 tenses)
+- **Progress Dashboard**: Comprehensive overview of learning progress and statistics instead of verb grid
 - **Practice Mode**: Three practice modes (Systematic, Random, Mixed) with stable spaced repetition flashcards and Spanish accent keyboard
+- **Streamlined Interface**: Clean, modern design with segmented control for practice modes and hover tooltips
 - **Progress Tracking**: Comprehensive mastery and practice statistics
 - **Responsive Design**: Optimized for all devices with efficient space usage
 - **Data Persistence**: Local storage for user progress and practice mode preferences
@@ -197,6 +207,14 @@ The application is **fully functional** with:
 4. **Basic Spaced Repetition**: Simple algorithm (could be enhanced)
 5. **No Audio**: No pronunciation support for conjugations
 
+### **High Priority Issues** 🚨
+1. **Practice Mode Verb Selection Optimization**: Current random modes don't intelligently select verbs to maximize learning efficiency
+   - **Impact**: Users may practice easy verbs repeatedly while neglecting challenging ones
+   - **Solution Needed**: Implement smart verb selection algorithm that considers difficulty, mastery status, and learning patterns
+   - **Priority**: 🔴 HIGH - Affects core learning effectiveness
+   - **Status**: ⚠️ Identified for immediate attention
+   - **Scope**: Update practice mode logic to prioritize verbs that need attention most
+
 ### **Code Quality & Refactoring Needs** 🆕
 1. **App.tsx Monolith**: Main component is 429 lines and handles too many responsibilities
    - **Impact**: Makes adding new features more complex and harder to maintain
@@ -218,31 +236,25 @@ The application is **fully functional** with:
 
 ## 🔮 Planned Features (Future Micro-Chunks)
 
-### **Micro-Chunk 11: Practice Mode Variations** 🆕
-- **Systematic Mode**: Practice all conjugations of one verb before moving to next
-- **Random Mode 1**: Completely random verb + tense + person combinations
-- **Random Mode 2**: Systematic within verbs, random between verbs
-- **Mode Persistence**: Practice mode choice saved between sessions
-- **Enhanced Practice Logic**: Practice sessions respect selected verbs and chosen mode
+### **Micro-Chunk 12: Practice Mode Optimization** 🚨 HIGH PRIORITY
+- **Smart Verb Selection**: Implement intelligent algorithm that prioritizes verbs needing attention
+- **Learning Efficiency**: Consider difficulty, mastery status, and practice history when selecting verbs
+- **Adaptive Practice**: Adjust practice patterns based on user performance and learning gaps
+- **Performance Analytics**: Track which verbs are consistently challenging and prioritize them
+- **Balanced Learning**: Ensure all selected verbs get appropriate practice time
 
-### **Micro-Chunk 12: Settings Import/Export** 🆕
+### **Micro-Chunk 13: Settings Import/Export**
 - **Comprehensive Export**: Verb selections, practice mode preferences, progress status
 - **Import Functionality**: Restore previous settings and progress from exported files
 - **Portable Learning**: Share configurations with study partners or teachers
 - **Backup/Restore**: Prevent losing carefully curated settings and progress
 - **Cross-Device Sync**: Maintain learning state across different devices
 
-### **Micro-Chunk 13: Advanced Learning Modes**
+### **Micro-Chunk 14: Advanced Learning Modes**
 - Conjugation pattern recognition quizzes
 - Sentence building exercises
 - Audio pronunciation integration
 - Multiple choice assessments
-
-### **Micro-Chunk 14: Enhanced Analytics**
-- Learning session statistics
-- Progress trends and insights
-- Advanced spaced repetition algorithms
-- Performance insights and recommendations
 
 ### **Micro-Chunk 15: User Experience Enhancements**
 - Dark/light theme toggle
@@ -397,9 +409,9 @@ When starting a new chat about this project:
 5. **Update this document** with any new implementations
 6. **Test thoroughly** after each change
 
-**Last Updated**: After Micro-Chunk 11 (Practice Mode Variations) - Completed
-**Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, reference system, verb selection system, and practice mode variations
-**Next Phase**: Micro-Chunk 12 (Settings Import/Export) - Ready to implement
+**Last Updated**: After Micro-Chunk 11.5 (UI Streamlining & Practice Mode Interface) - Completed
+**Current Status**: Fully functional with streamlined interface, segmented control for practice modes, progress dashboard, and comprehensive conjugation system
+**Next Phase**: Micro-Chunk 12 (Practice Mode Optimization) - HIGH PRIORITY for learning effectiveness
 
 ---
 
