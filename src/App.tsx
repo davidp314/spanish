@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import VerbCard from './components/VerbCard';
 import Flashcard from './components/Flashcard';
 import ConjugationReference from './components/ConjugationReference';
 import VerbSelectionModal from './components/VerbSelectionModal';
 import type { Conjugation } from './data/conjugationData';
-import { allConjugations, verbSets, shouldPractice } from './data/conjugationData';
+import { allConjugations, shouldPractice } from './data/conjugationData';
 import './App.css';
 
 function App() {
@@ -102,18 +101,22 @@ function App() {
   const [conjugations, setConjugations] = useState<Conjugation[]>(initialState.conjugations);
   const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex);
   const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
-  const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet);
+  // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [typeFilter, setTypeFilter] = useState<'all' | 'regular' | 'irregular'>('all');
-  const [tenseFilter, setTenseFilter] = useState<'all' | 'present' | 'preterite'>('all');
-  const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
-  const [masteryFilter, setMasteryFilter] = useState<'all' | 'mastered' | 'not-mastered'>('all');
-  const [showReference, setShowReference] = useState(false);
+  const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>(initialState.practiceMode);
+  // const [lastUpdated, setLastUpdated] = useState(initialState.lastUpdated); // No longer needed
+  
+  // Remove unused filter state variables
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [typeFilter, setTypeFilter] = useState<'all' | 'regular' | 'irregular'>('all');
+  // const [tenseFilter, setTenseFilter] = useState<'all' | 'present' | 'preterite'>('all');
+  // const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
+  // const [masteryFilter, setMasteryFilter] = useState<'all' | 'mastered' | 'not-mastered'>('all');
+  
   const [showVerbSelection, setShowVerbSelection] = useState(false);
-  const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
+  const [showReference, setShowReference] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>('systematic');
+  const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -121,13 +124,13 @@ function App() {
       conjugations,
       currentIndex,
       isPracticeMode,
-      selectedVerbSet,
+      // selectedVerbSet, // No longer needed
       selectedVerbs,
       practiceMode,
       lastUpdated: Date.now()
     };
     localStorage.setItem('spanishConjugationsState', JSON.stringify(stateToSave));
-  }, [conjugations, currentIndex, isPracticeMode, selectedVerbSet, selectedVerbs, practiceMode]);
+  }, [conjugations, currentIndex, isPracticeMode, selectedVerbs, practiceMode]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -142,27 +145,51 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Get current verb set
-  // const currentVerbSet = verbSets.find(set => set.id === selectedVerbSet) || verbSets[0];
-
-  // Filter conjugations based on current selection and filters
-  const filteredConjugations = conjugations.filter(conjugation => {
-    const matchesSearch = conjugation.english.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         conjugation.spanish.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         conjugation.verb.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesType = typeFilter === 'all' || conjugation.type === typeFilter;
-    const matchesTense = tenseFilter === 'all' || conjugation.tense === tenseFilter;
-    const matchesDifficulty = difficultyFilter === 'all' || conjugation.difficulty === difficultyFilter;
-    const matchesMastery = masteryFilter === 'all' || 
-                          (masteryFilter === 'mastered' && conjugation.mastered) ||
-                          (masteryFilter === 'not-mastered' && !conjugation.mastered);
-
-    return matchesSearch && matchesType && matchesTense && matchesDifficulty && matchesMastery;
-  });
-
   // Get conjugations that should be practiced (spaced repetition)
-  // Note: This is now calculated inline where needed to avoid stale references
+  const getConjugationsToPractice = () => {
+    // Filter by selected verbs first
+    const selectedConjugations = conjugations.filter(conjugation => 
+      selectedVerbs.includes(conjugation.verb)
+    );
+    
+    // Then apply spaced repetition logic
+    return selectedConjugations.filter(shouldPractice);
+  };
+
+  const handleStartPractice = () => {
+    // Get conjugations that should be practiced
+    const conjugationsToPractice = getConjugationsToPractice();
+    
+    // Apply practice mode ordering
+    let orderedConjugations: Conjugation[];
+    
+    switch (practiceMode) {
+      case 'systematic':
+        // Group by verb, then by tense, then by person
+        orderedConjugations = orderSystematically(conjugationsToPractice);
+        break;
+      case 'random1':
+        // Completely random order
+        orderedConjugations = shuffleArray([...conjugationsToPractice]);
+        break;
+      case 'random2':
+        // Systematic within verbs, random between verbs
+        orderedConjugations = orderMixedSystematic(conjugationsToPractice);
+        break;
+      default:
+        orderedConjugations = conjugationsToPractice;
+    }
+    
+    setPracticeSessionConjugations(orderedConjugations);
+    setCurrentIndex(0);
+    setIsPracticeMode(true);
+  };
+
+  const handleBackToBrowse = () => {
+    setIsPracticeMode(false);
+    setCurrentIndex(0);
+    setPracticeSessionConjugations([]); // Clear the frozen array
+  };
 
   const handleToggleMastery = (id: string) => {
     setConjugations(prev => 
@@ -197,41 +224,6 @@ function App() {
     }
   };
 
-  const handleStartPractice = () => {
-    // Get conjugations that should be practiced
-    const conjugationsToPractice = filteredConjugations.filter(shouldPractice);
-    
-    // Apply practice mode ordering
-    let orderedConjugations: Conjugation[];
-    
-    switch (practiceMode) {
-      case 'systematic':
-        // Group by verb, then by tense, then by person
-        orderedConjugations = orderSystematically(conjugationsToPractice);
-        break;
-      case 'random1':
-        // Completely random order
-        orderedConjugations = shuffleArray([...conjugationsToPractice]);
-        break;
-      case 'random2':
-        // Systematic within verbs, random between verbs
-        orderedConjugations = orderMixedSystematic(conjugationsToPractice);
-        break;
-      default:
-        orderedConjugations = conjugationsToPractice;
-    }
-    
-    setPracticeSessionConjugations(orderedConjugations);
-    setCurrentIndex(0);
-    setIsPracticeMode(true);
-  };
-
-  const handleBackToBrowse = () => {
-    setIsPracticeMode(false);
-    setCurrentIndex(0);
-    setPracticeSessionConjugations([]); // Clear the frozen array
-  };
-
   const handleVerbSelectionSave = (newSelectedVerbs: string[], newSelectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => {
     setSelectedVerbs(newSelectedVerbs);
     // TODO: Store tense selections for future use in practice mode
@@ -252,10 +244,10 @@ function App() {
     setShowResetConfirm(false);
   };
 
-  const handleVerbSetChange = (verbSetId: string) => {
-    setSelectedVerbSet(verbSetId);
-    setCurrentIndex(0);
-  };
+  // const handleVerbSetChange = (verbSetId: string) => {
+  //   setSelectedVerbSet(verbSetId);
+  //   setCurrentIndex(0);
+  // };
 
   // Calculate statistics
   const masteredCount = conjugations.filter(c => c.mastered).length;
@@ -319,213 +311,267 @@ function App() {
       </div>
 
       <div className="controls">
-        <div className="verb-set-selector">
-          <label>Verb Set:</label>
-          <select 
-            value={selectedVerbSet} 
-            onChange={(e) => handleVerbSetChange(e.target.value)}
-            className="verb-set-select"
-          >
-            {verbSets.map(set => (
-              <option key={set.id} value={set.id}>
-                {set.name} ({set.conjugations.length})
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="filters">
-          <input
-            type="text"
-            placeholder="Search conjugations..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
-
-          <select 
-            value={typeFilter} 
-            onChange={(e) => setTypeFilter(e.target.value as any)}
-            className="filter-select"
-          >
-            <option value="all">All Types</option>
-            <option value="regular">Regular</option>
-            <option value="irregular">Irregular</option>
-          </select>
-
-          <select 
-            value={tenseFilter} 
-            onChange={(e) => setTenseFilter(e.target.value as any)}
-            className="filter-select"
-          >
-            <option value="all">All Tenses</option>
-            <option value="present">Present</option>
-            <option value="preterite">Preterite</option>
-          </select>
-
-          <select 
-            value={difficultyFilter} 
-            onChange={(e) => setDifficultyFilter(e.target.value as any)}
-            className="filter-select"
-          >
-            <option value="all">All Difficulties</option>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-          </select>
-
-          <select 
-            value={masteryFilter} 
-            onChange={(e) => setMasteryFilter(e.target.value as any)}
-            className="filter-select"
-          >
-            <option value="all">All Status</option>
-            <option value="mastered">Mastered</option>
-            <option value="not-mastered">Not Mastered</option>
-          </select>
-        </div>
-
-        <div className="actions">
-          <div className="practice-controls">
-            <div className="practice-mode-preview">
-              <label>Practice Mode:</label>
-              <select 
-                value={practiceMode} 
-                onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
-                className="practice-mode-select"
-              >
-                <option value="systematic">Systematic: One verb at a time</option>
-                <option value="random1">Random: Mixed verbs & tenses</option>
-                <option value="random2">Mixed: Systematic within verbs</option>
-              </select>
-            </div>
-            <button 
-              onClick={handleStartPractice}
-              className="practice-button"
-              disabled={filteredConjugations.filter(shouldPractice).length === 0}
+          {/* Remove verb set selector - no longer needed */}
+          {/* <div className="verb-set-selector">
+            <label>Verb Set:</label>
+            <select 
+              value={selectedVerbSet} 
+              onChange={(e) => handleVerbSetChange(e.target.value)}
+              className="verb-set-select"
             >
-              🎯 Practice Mode ({filteredConjugations.filter(shouldPractice).length} due)
+              {verbSets.map(set => (
+                <option key={set.id} value={set.id}>
+                  {set.name} ({set.conjugations.length})
+                </option>
+              ))}
+            </select>
+          </div> */}
+
+          {/* Remove filters section - no longer needed for browsing individual conjugations */}
+          {/* <div className="filters">
+            <input
+              type="text"
+              placeholder="Search conjugations..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+
+            <select 
+              value={typeFilter} 
+              onChange={(e) => setTypeFilter(e.target.value as any)}
+              className="filter-select"
+            >
+              <option value="all">All Types</option>
+              <option value="regular">Regular</option>
+              <option value="irregular">Irregular</option>
+            </select>
+
+            <select 
+              value={tenseFilter} 
+              onChange={(e) => setTypeFilter(e.target.value as any)}
+              className="filter-select"
+            >
+              <option value="all">All Tenses</option>
+              <option value="present">Present</option>
+              <option value="preterite">Preterite</option>
+            </select>
+
+            <select 
+              value={difficultyFilter} 
+              onChange={(e) => setTypeFilter(e.target.value as any)}
+              className="filter-select"
+            >
+              <option value="all">All Difficulties</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+
+            <select 
+              value={masteryFilter} 
+              onChange={(e) => setTypeFilter(e.target.value as any)}
+              className="filter-select"
+            >
+              <option value="all">All Status</option>
+              <option value="mastered">Mastered</option>
+              <option value="not-mastered">Not Mastered</option>
+            </select>
+          </div> */}
+
+          <div className="actions">
+            <div className="practice-controls">
+              <div className="practice-mode-selector">
+                <label>Mode:</label>
+                <select 
+                  value={practiceMode} 
+                  onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
+                  className="practice-mode-select"
+                >
+                  <option value="systematic">Systematic</option>
+                  <option value="random1">Random Mixed</option>
+                  <option value="random2">Mixed Systematic</option>
+                </select>
+              </div>
+              <button 
+                onClick={handleStartPractice}
+                className="practice-button"
+                disabled={getConjugationsToPractice().length === 0}
+              >
+                🚀 Start Practice ({getConjugationsToPractice().length} due)
+              </button>
+            </div>
+            
+            {/* Remove the duplicate dropdown that was causing confusion */}
+            
+            <button onClick={() => setShowVerbSelection(true)} className="verb-selection-button">
+              🎯 Verb Selection
+            </button>
+            
+            <button onClick={() => setShowReference(true)} className="reference-button">
+              📚 Reference
+            </button>
+            
+            <button onClick={handleResetProgress} className="reset-button">
+              🔄 Reset Progress
             </button>
           </div>
-          
-          <button onClick={() => setShowVerbSelection(true)} className="verb-selection-button">
-            🎯 Verb Selection
-          </button>
-          
-          <button onClick={() => setShowReference(true)} className="reference-button">
-            📚 Reference
-          </button>
-          
-          <button onClick={handleResetProgress} className="reset-button">
-            🔄 Reset Progress
-          </button>
         </div>
-      </div>
 
-      <div className="progress-bar">
-        <div className="progress-content">
-          <span>Progress: {masteredCount}/{conjugations.length} mastered</span>
-          <div className="progress-fill" style={{ width: `${(masteredCount / conjugations.length) * 100}%` }}></div>
-        </div>
-      </div>
-
-      <div className="statistics">
-        <div className="stats-grid">
-          <div className="stat-box">
-            <div className="stat-number">{masteredCount}/{conjugations.length}</div>
-            <div className="stat-label">Mastery Progress</div>
-          </div>
-          <div className="stat-box">
-            <div className="stat-number">{overallAccuracy}%</div>
-            <div className="stat-label">Overall Accuracy</div>
-          </div>
-          <div className="stat-box">
-            <div className="stat-number">{conjugations.length - masteredCount}</div>
-            <div className="stat-label">Remaining</div>
-          </div>
-          <div className="stat-box">
-            <div className="stat-number">{filteredConjugations.filter(shouldPractice).length}</div>
-            <div className="stat-label">Due for Practice</div>
+        <div className="progress-bar">
+          <div className="progress-content">
+            <span>Progress: {masteredCount}/{conjugations.length} mastered</span>
+            <div className="progress-fill" style={{ width: `${(masteredCount / conjugations.length) * 100}%` }}></div>
           </div>
         </div>
-      </div>
 
-      <div className="conjugations-grid">
-        {filteredConjugations.map((conjugation) => (
-          <VerbCard
-            key={conjugation.id}
-            conjugation={conjugation}
-            onToggleMastery={handleToggleMastery}
-          />
-        ))}
-      </div>
-
-      {filteredConjugations.length === 0 && (
-        <div className="no-results">
-          <p>No conjugations match your current filters.</p>
-          <button onClick={() => {
-            setSearchTerm('');
-            setTypeFilter('all');
-            setTenseFilter('all');
-            setDifficultyFilter('all');
-            setMasteryFilter('all');
-          }} className="clear-filters-button">
-            Clear All Filters
-          </button>
-        </div>
-      )}
-
-      {/* Verb Selection Modal */}
-      <VerbSelectionModal
-        isOpen={showVerbSelection}
-        onClose={() => setShowVerbSelection(false)}
-        allConjugations={allConjugations}
-        selectedVerbs={selectedVerbs}
-        onSaveSelection={handleVerbSelectionSave}
-      />
-
-      {/* Conjugation Reference Modal */}
-      <ConjugationReference 
-        isOpen={showReference}
-        onClose={() => setShowReference(false)}
-      />
-
-      {/* Reset Progress Confirmation Modal */}
-      {showResetConfirm && (
-        <div className="modal-overlay">
-          <div className="modal-content reset-confirm-modal">
-            <div className="modal-header">
-              <h2>⚠️ Reset Progress</h2>
+        <div className="statistics">
+          <div className="stats-grid">
+            <div className="stat-box">
+              <div className="stat-number">{masteredCount}/{conjugations.length}</div>
+              <div className="stat-label">Mastery Progress</div>
             </div>
-            <div className="modal-body">
-              <p>Are you sure you want to reset all progress?</p>
-              <p className="warning-text">This action cannot be undone and will:</p>
-              <ul className="reset-warning-list">
-                <li>• Clear all mastery status</li>
-                <li>• Reset all practice counts</li>
-                <li>• Reset all accuracy scores</li>
-                <li>• Start you from the beginning</li>
-              </ul>
+            <div className="stat-box">
+              <div className="stat-number">{overallAccuracy}%</div>
+              <div className="stat-label">Overall Accuracy</div>
             </div>
-            <div className="modal-actions">
-              <button 
-                onClick={cancelResetProgress}
-                className="cancel-button"
-              >
-                Cancel
-              </button>
-              <button 
-                onClick={confirmResetProgress}
-                className="confirm-button"
-              >
-                Reset All Progress
-              </button>
+            <div className="stat-box">
+              <div className="stat-number">{conjugations.length - masteredCount}</div>
+              <div className="stat-label">Remaining</div>
+            </div>
+            <div className="stat-box">
+              <div className="stat-number">{getConjugationsToPractice().length}</div>
+              <div className="stat-label">Due for Practice</div>
             </div>
           </div>
+          
+          {/* Enhanced Progress Dashboard */}
+          <div className="progress-dashboard">
+            <div className="dashboard-section">
+              <h3>📊 Learning Overview</h3>
+              <div className="dashboard-grid">
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Selected Verbs</div>
+                  <div className="dashboard-value">{selectedVerbs.length} verbs</div>
+                  <div className="dashboard-detail">
+                    {selectedVerbs.slice(0, 3).join(', ')}
+                    {selectedVerbs.length > 3 && ` +${selectedVerbs.length - 3} more`}
+                  </div>
+                </div>
+                
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Practice Mode</div>
+                  <div className="dashboard-value">
+                    {practiceMode === 'systematic' && '🔄 Systematic'}
+                    {practiceMode === 'random1' && '🎲 Random Mixed'}
+                    {practiceMode === 'random2' && '🎯 Mixed Systematic'}
+                  </div>
+                  <div className="dashboard-detail">Current learning strategy</div>
+                </div>
+                
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Learning Streak</div>
+                  <div className="dashboard-value">
+                    {conjugations.filter(c => c.practiceCount > 0).length > 0 ? '🔥 Active' : '💤 New'}
+                  </div>
+                  <div className="dashboard-detail">
+                    {conjugations.filter(c => c.practiceCount > 0).length} conjugations practiced
+                  </div>
+                </div>
+                
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Next Practice</div>
+                  <div className="dashboard-value">
+                    {getConjugationsToPractice().length > 0 ? '🎯 Ready' : '✅ All Caught Up'}
+                  </div>
+                  <div className="dashboard-detail">
+                    {getConjugationsToPractice().length} conjugations due
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Remove redundant Quick Actions section */}
+            {/* <div className="dashboard-section">
+              <h3>🎯 Quick Actions</h3>
+              <div className="quick-actions">
+                <button 
+                  onClick={handleStartPractice}
+                  className="quick-action-button primary"
+                  disabled={getConjugationsToPractice().length === 0}
+                >
+                  🚀 Start Practice ({getConjugationsToPractice().length} due)
+                </button>
+                
+                <button 
+                  onClick={() => setShowVerbSelection(true)} 
+                  className="quick-action-button"
+                >
+                  ✏️ Change Verbs
+                </button>
+                
+                <button 
+                  onClick={() => setShowReference(true)} 
+                  className="quick-action-button"
+                >
+                  📚 View Reference
+                </button>
+              </div>
+            </div> */}
+          </div>
         </div>
-      )}
-    </div>
-  );
-}
 
-export default App;
+        {/* Verb Selection Modal */}
+        <VerbSelectionModal
+          isOpen={showVerbSelection}
+          onClose={() => setShowVerbSelection(false)}
+          allConjugations={allConjugations}
+          selectedVerbs={selectedVerbs}
+          onSaveSelection={handleVerbSelectionSave}
+        />
+
+        {/* Conjugation Reference Modal */}
+        <ConjugationReference 
+          isOpen={showReference}
+          onClose={() => setShowReference(false)}
+        />
+
+        {/* Reset Progress Confirmation Modal */}
+        {showResetConfirm && (
+          <div className="modal-overlay">
+            <div className="modal-content reset-confirm-modal">
+              <div className="modal-header">
+                <h2>⚠️ Reset Progress</h2>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to reset all progress?</p>
+                <p className="warning-text">This action cannot be undone and will:</p>
+                <ul className="reset-warning-list">
+                  <li>• Clear all mastery status</li>
+                  <li>• Reset all practice counts</li>
+                  <li>• Reset all accuracy scores</li>
+                  <li>• Start you from the beginning</li>
+                </ul>
+              </div>
+              <div className="modal-actions">
+                <button 
+                  onClick={cancelResetProgress}
+                  className="cancel-button"
+                >
+                  Cancel
+                </button>
+                <button 
+                  onClick={confirmResetProgress}
+                  className="confirm-button"
+                >
+                  Reset All Progress
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  export default App;
