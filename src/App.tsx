@@ -45,6 +45,8 @@ function App() {
   const [difficultyFilter, setDifficultyFilter] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
   const [masteryFilter, setMasteryFilter] = useState<'all' | 'mastered' | 'not-mastered'>('all');
   const [showReference, setShowReference] = useState(false);
+  const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -78,17 +80,12 @@ function App() {
   });
 
   // Get conjugations that should be practiced (spaced repetition)
-  const practiceConjugations = filteredConjugations.filter(shouldPractice);
+  // Note: This is now calculated inline where needed to avoid stale references
 
   const handleToggleMastery = (id: string) => {
     setConjugations(prev => 
       prev.map(c => c.id === id ? { ...c, mastered: !c.mastered } : c)
     );
-  };
-
-  const handleConjugationSelect = (conjugation: Conjugation) => {
-    // For now, just log the selection - could be used for detailed view later
-    console.log('Selected conjugation:', conjugation);
   };
 
   const handlePracticeResult = (id: string, correct: boolean) => {
@@ -108,16 +105,20 @@ function App() {
   };
 
   const handleNextCard = () => {
-    if (currentIndex < practiceConjugations.length - 1) {
+    if (currentIndex < practiceSessionConjugations.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
       // Practice session complete
       setIsPracticeMode(false);
       setCurrentIndex(0);
+      setPracticeSessionConjugations([]); // Clear the frozen array
     }
   };
 
   const handleStartPractice = () => {
+    // Freeze the practice conjugations for this session
+    const conjugationsToPractice = filteredConjugations.filter(shouldPractice);
+    setPracticeSessionConjugations(conjugationsToPractice);
     setCurrentIndex(0);
     setIsPracticeMode(true);
   };
@@ -125,13 +126,21 @@ function App() {
   const handleBackToBrowse = () => {
     setIsPracticeMode(false);
     setCurrentIndex(0);
+    setPracticeSessionConjugations([]); // Clear the frozen array
   };
 
   const handleResetProgress = () => {
-    if (window.confirm('Are you sure you want to reset all progress? This cannot be undone.')) {
-      setConjugations(allConjugations.map(c => ({ ...c, mastered: false, practiceCount: 0, correctCount: 0 })));
-      setCurrentIndex(0);
-    }
+    setShowResetConfirm(true);
+  };
+
+  const confirmResetProgress = () => {
+    setConjugations(allConjugations.map(c => ({ ...c, mastered: false, practiceCount: 0, correctCount: 0 })));
+    setCurrentIndex(0);
+    setShowResetConfirm(false);
+  };
+
+  const cancelResetProgress = () => {
+    setShowResetConfirm(false);
   };
 
   const handleVerbSetChange = (verbSetId: string) => {
@@ -145,9 +154,9 @@ function App() {
   const totalCorrectCount = conjugations.reduce((sum, c) => sum + c.correctCount, 0);
   const overallAccuracy = totalPracticeCount > 0 ? Math.round((totalCorrectCount / totalPracticeCount) * 100) : 0;
 
-  if (isPracticeMode && practiceConjugations.length > 0) {
-    const currentConjugation = practiceConjugations[currentIndex];
-    const isLastCard = currentIndex === practiceConjugations.length - 1;
+  if (isPracticeMode && practiceSessionConjugations.length > 0) {
+    const currentConjugation = practiceSessionConjugations[currentIndex];
+    const isLastCard = currentIndex === practiceSessionConjugations.length - 1;
 
     return (
       <div className="App practice-mode">
@@ -163,8 +172,8 @@ function App() {
 
         <div className="practice-info">
           <div className="practice-stats">
-            <span>Card {currentIndex + 1} of {practiceConjugations.length}</span>
-            <span>Due for practice: {practiceConjugations.length}</span>
+            <span>Card {currentIndex + 1} of {practiceSessionConjugations.length}</span>
+            <span>Due for practice: {practiceSessionConjugations.length}</span>
           </div>
         </div>
 
@@ -259,9 +268,9 @@ function App() {
           <button 
             onClick={handleStartPractice}
             className="practice-button"
-            disabled={practiceConjugations.length === 0}
+            disabled={filteredConjugations.filter(shouldPractice).length === 0}
           >
-            🎯 Practice Mode ({practiceConjugations.length} due)
+            🎯 Practice Mode ({filteredConjugations.filter(shouldPractice).length} due)
           </button>
           
           <button onClick={() => setShowReference(true)} className="reference-button">
@@ -296,7 +305,7 @@ function App() {
             <div className="stat-label">Remaining</div>
           </div>
           <div className="stat-box">
-            <div className="stat-number">{practiceConjugations.length}</div>
+            <div className="stat-number">{filteredConjugations.filter(shouldPractice).length}</div>
             <div className="stat-label">Due for Practice</div>
           </div>
         </div>
@@ -308,7 +317,6 @@ function App() {
             key={conjugation.id}
             conjugation={conjugation}
             onToggleMastery={handleToggleMastery}
-            onSelect={handleConjugationSelect}
           />
         ))}
       </div>
@@ -333,6 +341,41 @@ function App() {
         isOpen={showReference}
         onClose={() => setShowReference(false)}
       />
+
+      {/* Reset Progress Confirmation Modal */}
+      {showResetConfirm && (
+        <div className="modal-overlay">
+          <div className="modal-content reset-confirm-modal">
+            <div className="modal-header">
+              <h2>⚠️ Reset Progress</h2>
+            </div>
+            <div className="modal-body">
+              <p>Are you sure you want to reset all progress?</p>
+              <p className="warning-text">This action cannot be undone and will:</p>
+              <ul className="reset-warning-list">
+                <li>• Clear all mastery status</li>
+                <li>• Reset all practice counts</li>
+                <li>• Reset all accuracy scores</li>
+                <li>• Start you from the beginning</li>
+              </ul>
+            </div>
+            <div className="modal-actions">
+              <button 
+                onClick={cancelResetProgress}
+                className="cancel-button"
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={confirmResetProgress}
+                className="confirm-button"
+              >
+                Reset All Progress
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -34,16 +34,23 @@ const Flashcard: React.FC<FlashcardProps> = ({
     // Track practice result
     onPracticeResult(conjugation.id, correct);
     
-    // Auto-flip after showing result
-    setTimeout(() => {
-      setIsFlipped(true);
-    }, 500);
+    // No auto-flip - let user manually flip when ready
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    // If showing result and Enter is pressed, move to next card
+    if (showResult && e.key === 'Enter') {
+      e.preventDefault();
+      handleNext();
+    }
   };
 
   const handleNext = () => {
+    // Reset all state for the next card
     setIsFlipped(false);
     setShowResult(false);
     setUserAnswer('');
+    setIsCorrect(false);
     onNext();
   };
 
@@ -63,7 +70,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   return (
-    <div className="flashcard-container">
+    <div className="flashcard-container" onKeyDown={handleKeyDown} tabIndex={0}>
       <div className="flashcard-info">
         <div className="conjugation-badges">
           <span className={`badge ${conjugation.type === 'regular' ? 'regular' : 'irregular'}`}>
@@ -85,11 +92,17 @@ const Flashcard: React.FC<FlashcardProps> = ({
       <div 
         className={`flashcard ${isFlipped ? 'flipped' : ''}`}
         onClick={handleFlip}
+        style={{ 
+          border: showResult ? '3px solid #3b82f6' : 'none',
+          cursor: showResult ? 'pointer' : 'default'
+        }}
       >
         <div className="flashcard-inner">
           <div className="flashcard-front">
             <h2 className="flashcard-prompt">{conjugation.english}</h2>
-            <p className="flashcard-hint">Click to reveal answer</p>
+            <p className="flashcard-hint">
+              {showResult ? 'Click card to see Spanish answer' : 'Click to reveal answer'}
+            </p>
           </div>
           
           <div className="flashcard-back">
@@ -132,7 +145,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
         <button 
           onClick={handleNext}
           className="next-button"
-          disabled={!isFlipped}
+          disabled={!showResult}
         >
           {isLast ? 'Finish Practice' : 'Next Card →'}
         </button>

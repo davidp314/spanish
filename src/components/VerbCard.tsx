@@ -4,10 +4,9 @@ import type { Conjugation } from '../data/conjugationData';
 interface VerbCardProps {
   conjugation: Conjugation;
   onToggleMastery: (id: string) => void;
-  onSelect: (conjugation: Conjugation) => void;
 }
 
-const VerbCard: React.FC<VerbCardProps> = ({ conjugation, onToggleMastery, onSelect }) => {
+const VerbCard: React.FC<VerbCardProps> = ({ conjugation, onToggleMastery }) => {
   const handleMasteryToggle = (e: React.MouseEvent) => {
     e.stopPropagation();
     onToggleMastery(conjugation.id);
@@ -40,7 +39,6 @@ const VerbCard: React.FC<VerbCardProps> = ({ conjugation, onToggleMastery, onSel
   return (
     <div 
       className={`verb-card ${conjugation.mastered ? 'mastered' : ''}`}
-      onClick={() => onSelect(conjugation)}
     >
       <div className="verb-header">
         <div className="verb-info">
