@@ -17,7 +17,6 @@ function App() {
           conjugations: parsed.conjugations || allConjugations.map(c => ({ ...c })),
           currentIndex: parsed.currentIndex || 0,
           isPracticeMode: parsed.isPracticeMode || false,
-          selectedVerbSet: parsed.selectedVerbSet || 'beginner',
           selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(),
           practiceMode: parsed.practiceMode || 'systematic',
           lastUpdated: parsed.lastUpdated || Date.now()
@@ -30,7 +29,6 @@ function App() {
       conjugations: allConjugations.map(c => ({ ...c })),
       currentIndex: 0,
       isPracticeMode: false,
-      selectedVerbSet: 'beginner',
       selectedVerbs: getUniqueVerbs(),
       practiceMode: 'systematic',
       lastUpdated: Date.now()
