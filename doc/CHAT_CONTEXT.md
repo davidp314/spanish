@@ -167,19 +167,40 @@ The application is **fully functional** with:
 
 ## 🔮 Planned Features (Future Micro-Chunks)
 
-### **Micro-Chunk 9: Advanced Learning Modes**
+### **Micro-Chunk 10: Verb Selection System** 🆕
+- **Verb Selection Modal**: Alphabetical list of unique verbs with search functionality
+- **Verb-Level Selection**: Select entire verbs (not individual conjugations) with all tenses included
+- **Default Selection**: All verbs selected by default for new users
+- **Persistent Selections**: Verb choices saved between sessions
+- **Search & Filter**: Easy navigation through verb list with keyboard and mouse support
+
+### **Micro-Chunk 11: Practice Mode Variations** 🆕
+- **Systematic Mode**: Practice all conjugations of one verb before moving to next
+- **Random Mode 1**: Completely random verb + tense + person combinations
+- **Random Mode 2**: Systematic within verbs, random between verbs
+- **Mode Persistence**: Practice mode choice saved between sessions
+- **Enhanced Practice Logic**: Practice sessions respect selected verbs and chosen mode
+
+### **Micro-Chunk 12: Settings Import/Export** 🆕
+- **Comprehensive Export**: Verb selections, practice mode preferences, progress status
+- **Import Functionality**: Restore previous settings and progress from exported files
+- **Portable Learning**: Share configurations with study partners or teachers
+- **Backup/Restore**: Prevent losing carefully curated settings and progress
+- **Cross-Device Sync**: Maintain learning state across different devices
+
+### **Micro-Chunk 13: Advanced Learning Modes**
 - Conjugation pattern recognition quizzes
 - Sentence building exercises
 - Audio pronunciation integration
 - Multiple choice assessments
 
-### **Micro-Chunk 10: Enhanced Analytics**
+### **Micro-Chunk 14: Enhanced Analytics**
 - Learning session statistics
 - Progress trends and insights
-- Export/import functionality
 - Advanced spaced repetition algorithms
+- Performance insights and recommendations
 
-### **Micro-Chunk 11: User Experience Enhancements**
+### **Micro-Chunk 15: User Experience Enhancements**
 - Dark/light theme toggle
 - Accessibility improvements
 - Performance optimizations
@@ -327,9 +348,9 @@ When starting a new chat about this project:
 5. **Update this document** with any new implementations
 6. **Test thoroughly** after each change
 
-**Last Updated**: After Micro-Chunk 8 (Conjugation Reference System)
+**Last Updated**: After Micro-Chunk 9 (Bug Fixes & UX Improvements) - Planning Micro-Chunk 10 (Verb Selection System)
 **Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, and reference system
-**Next Phase**: Micro-Chunk 9 (Advanced Learning Modes)
+**Next Phase**: Micro-Chunk 10 (Verb Selection System)
 
 ---
 
