@@ -155,8 +155,10 @@ function App() {
     setPracticeSessionConjugations([]); // Clear the frozen array
   };
 
-  const handleVerbSelectionSave = (newSelectedVerbs: string[]) => {
+  const handleVerbSelectionSave = (newSelectedVerbs: string[], newSelectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => {
     setSelectedVerbs(newSelectedVerbs);
+    // TODO: Store tense selections for future use in practice mode
+    console.log('Tense selections:', newSelectedTenses);
   };
 
   const handleResetProgress = () => {

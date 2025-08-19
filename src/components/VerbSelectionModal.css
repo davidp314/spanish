@@ -100,9 +100,15 @@
 .bulk-actions {
   padding: 16px 24px;
   display: flex;
+  justify-content: space-between;
   gap: 12px;
   border-bottom: 1px solid #e2e8f0;
   background: #f8fafc;
+}
+
+.verb-actions, .tense-actions {
+  display: flex;
+  gap: 12px;
 }
 
 .bulk-action-button {
@@ -197,10 +203,28 @@
   color: #92400e;
 }
 
-.tense-indicators {
+.tense-selection {
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
+}
+
+.tense-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.tense-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.tense-checkbox input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .tense-badge {

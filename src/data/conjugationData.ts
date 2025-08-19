@@ -46,12 +46,26 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'comer-nosotros-present', english: 'we eat', spanish: 'comemos', verb: 'comer', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
   { id: 'comer-ellos-present', english: 'they eat, you eat (formal, plural)', spanish: 'comen', verb: 'comer', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
 
+  // Regular -er verbs: beber (Present)
+  { id: 'beber-yo-present', english: 'I drink', spanish: 'bebo', verb: 'beber', type: 'regular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-tu-present', english: 'you drink (informal, singular)', spanish: 'bebes', verb: 'beber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-el-present', english: 'he/she drinks, you drink (formal, singular)', spanish: 'bebe', verb: 'beber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-nosotros-present', english: 'we drink', spanish: 'bebemos', verb: 'beber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-ellos-present', english: 'they drink, you drink (formal, plural)', spanish: 'beben', verb: 'beber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+
   // Regular -ir verbs: vivir (Present)
   { id: 'vivir-yo-present', english: 'I live', spanish: 'vivo', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
   { id: 'vivir-tu-present', english: 'you live (informal, singular)', spanish: 'vives', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
   { id: 'vivir-el-present', english: 'he/she lives, you live (formal, singular)', spanish: 'vive', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
   { id: 'vivir-nosotros-present', english: 'we live', spanish: 'vivimos', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
   { id: 'vivir-ellos-present', english: 'they live, you live (formal, plural)', spanish: 'viven', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+
+  // Regular -ir verbs: escribir (Present)
+  { id: 'escribir-yo-present', english: 'I write', spanish: 'escribo', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-tu-present', english: 'you write (informal, singular)', spanish: 'escribes', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-el-present', english: 'he/she writes, you write (formal, singular)', spanish: 'escribe', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-nosotros-present', english: 'we write', spanish: 'escribimos', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-ellos-present', english: 'they write, you write (formal, plural)', spanish: 'escriben', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'beginner', practiceCount: 0, correctCount: 0 },
 
   // Irregular verbs: tener (Present)
   { id: 'tener-yo-present', english: 'I have', spanish: 'tengo', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
@@ -72,7 +86,49 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'ir-tu-present', english: 'you go (informal, singular)', spanish: 'vas', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
   { id: 'ir-el-present', english: 'he/she goes, you go (formal, singular)', spanish: 'va', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
   { id: 'ir-nosotros-present', english: 'we go', spanish: 'vamos', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
-  { id: 'ir-ellos-present', english: 'they go, you go (formal, plural)', spanish: 'van', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 }
+  { id: 'ir-ellos-present', english: 'they go, you go (formal, plural)', spanish: 'van', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: mentir (Present)
+  { id: 'mentir-yo-present', english: 'I lie', spanish: 'miento', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-tu-present', english: 'you lie (informal, singular)', spanish: 'mientes', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-el-present', english: 'he/she lies, you lie (formal, singular)', spanish: 'miente', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-nosotros-present', english: 'we lie', spanish: 'mentimos', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-ellos-present', english: 'they lie, you lie (formal, plural)', spanish: 'mienten', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: leer (Present)
+  { id: 'leer-yo-present', english: 'I read', spanish: 'leo', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'leer-tu-present', english: 'you read (informal, singular)', spanish: 'lees', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'leer-el-present', english: 'he/she reads, you read (formal, singular)', spanish: 'lee', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'leer-nosotros-present', english: 'we read', spanish: 'leemos', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'leer-ellos-present', english: 'they read, you read (formal, plural)', spanish: 'leen', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: poner (Present)
+  { id: 'poner-yo-present', english: 'I put', spanish: 'pongo', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poner-tu-present', english: 'you put (informal, singular)', spanish: 'pones', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poner-el-present', english: 'he/she puts, you put (formal, singular)', spanish: 'pone', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poner-nosotros-present', english: 'we put', spanish: 'ponemos', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poner-ellos-present', english: 'they put, you put (formal, plural)', spanish: 'ponen', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: dejar (Present)
+  { id: 'dejar-yo-present', english: 'I leave/let', spanish: 'dejo', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-tu-present', english: 'you leave/let (informal, singular)', spanish: 'dejas', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-el-present', english: 'he/she leaves/lets, you leave/let (formal, singular)', spanish: 'deja', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-nosotros-present', english: 'we leave/let', spanish: 'dejamos', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-ellos-present', english: 'they leave/let, you leave/let (formal, plural)', spanish: 'dejan', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: decir (Present)
+  { id: 'decir-yo-present', english: 'I say/tell', spanish: 'digo', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'decir-tu-present', english: 'you say/tell (informal, singular)', spanish: 'dices', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'decir-el-present', english: 'he/she says/tells, you say/tell (formal, singular)', spanish: 'dice', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'decir-nosotros-present', english: 'we say/tell', spanish: 'decimos', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'decir-ellos-present', english: 'they say/tell, you say/tell (formal, plural)', spanish: 'dicen', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: poder (Present)
+  { id: 'poder-yo-present', english: 'I can/am able to', spanish: 'puedo', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poder-tu-present', english: 'you can/are able to (informal, singular)', spanish: 'puedes', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poder-el-present', english: 'he/she can/is able to, you can/are able to (formal, singular)', spanish: 'puede', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poder-nosotros-present', english: 'we can/are able to', spanish: 'podemos', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'poder-ellos-present', english: 'they can/are able to, you can/are able to (formal, plural)', spanish: 'pueden', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -96,7 +152,42 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'vivir-tu-preterite', english: 'you lived (informal, singular)', spanish: 'viviste', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
   { id: 'vivir-el-preterite', english: 'he/she lived, you lived (formal, singular)', spanish: 'vivió', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
   { id: 'vivir-nosotros-preterite', english: 'we lived', spanish: 'vivimos', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
-  { id: 'vivir-ellos-preterite', english: 'they lived, you lived (formal, plural)', spanish: 'vivieron', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 }
+  { id: 'vivir-ellos-preterite', english: 'they lived, you lived (formal, plural)', spanish: 'vivieron', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: beber (Preterite)
+  { id: 'beber-yo-preterite', english: 'I drank', spanish: 'bebí', verb: 'beber', type: 'regular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-tu-preterite', english: 'you drank (informal, singular)', spanish: 'bebiste', verb: 'beber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-el-preterite', english: 'he/she drank, you drank (formal, singular)', spanish: 'bebió', verb: 'beber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-nosotros-preterite', english: 'we drank', spanish: 'bebimos', verb: 'beber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'beber-ellos-preterite', english: 'they drank, you drank (formal, plural)', spanish: 'bebieron', verb: 'beber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Regular -ir verbs: escribir (Preterite)
+  { id: 'escribir-yo-preterite', english: 'I wrote', spanish: 'escribí', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-tu-preterite', english: 'you wrote (informal, singular)', spanish: 'escribiste', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-el-preterite', english: 'he/she wrote, you wrote (formal, singular)', spanish: 'escribió', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-nosotros-preterite', english: 'we wrote', spanish: 'escribimos', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-ellos-preterite', english: 'they wrote, you wrote (formal, plural)', spanish: 'escribieron', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: tener (Preterite)
+  { id: 'tener-yo-preterite', english: 'I had', spanish: 'tuve', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'tener-tu-preterite', english: 'you had (informal, singular)', spanish: 'tuviste', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'tener-el-preterite', english: 'he/she had, you had (formal, singular)', spanish: 'tuvo', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'tener-nosotros-preterite', english: 'we had', spanish: 'tuvimos', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'tener-ellos-preterite', english: 'they had, you had (formal, plural)', spanish: 'tuvieron', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: estar (Preterite)
+  { id: 'estar-yo-preterite', english: 'I was', spanish: 'estuve', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'estar-tu-preterite', english: 'you were (informal, singular)', spanish: 'estuviste', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'estar-el-preterite', english: 'he/she was, you were (formal, singular)', spanish: 'estuvo', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'estar-nosotros-preterite', english: 'we were', spanish: 'estuvimos', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'estar-ellos-preterite', english: 'they were, you were (formal, plural)', spanish: 'estuvieron', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ir (Preterite)
+  { id: 'ir-yo-preterite', english: 'I went', spanish: 'fui', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'ir-tu-preterite', english: 'you went (informal, singular)', spanish: 'fuiste', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'ir-el-preterite', english: 'he/she went, you went (formal, singular)', spanish: 'fue', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'ir-nosotros-preterite', english: 'we went', spanish: 'fuimos', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 },
+  { id: 'ir-ellos-preterite', english: 'they went, you went (formal, plural)', spanish: 'fueron', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, difficulty: 'intermediate', practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations

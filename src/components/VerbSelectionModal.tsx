@@ -7,7 +7,7 @@ interface VerbSelectionModalProps {
   onClose: () => void;
   allConjugations: Conjugation[];
   selectedVerbs: string[];
-  onSaveSelection: (selectedVerbs: string[]) => void;
+  onSaveSelection: (selectedVerbs: string[], selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => void;
 }
 
 interface VerbInfo {
@@ -19,6 +19,8 @@ interface VerbInfo {
   hasPreterite: boolean;
 }
 
+
+
 const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   isOpen,
   onClose,
@@ -29,6 +31,7 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [searchMode, setSearchMode] = useState<'spanish' | 'english'>('spanish');
   const [localSelectedVerbs, setLocalSelectedVerbs] = useState<string[]>(selectedVerbs);
+  const [localSelectedTenses, setLocalSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>({});
 
   // Extract unique verbs from conjugations
   const uniqueVerbs = useMemo(() => {
@@ -88,6 +91,46 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
     );
   };
 
+  const handleTenseToggle = (verb: string, tense: 'present' | 'preterite') => {
+    setLocalSelectedTenses(prev => {
+      const newTenses = {
+        ...prev,
+        [verb]: {
+          ...prev[verb],
+          [tense]: !prev[verb]?.[tense]
+        }
+      };
+      
+      // Check if all tenses for this verb are now deselected
+      const verbTenses = newTenses[verb];
+      if (verbTenses && !verbTenses.present && !verbTenses.preterite) {
+        // Auto-deselect the verb if no tenses are selected
+        setLocalSelectedVerbs(prev => prev.filter(v => v !== verb));
+        // Show visual feedback (could be enhanced with a toast notification)
+        console.log(`Verb '${verb}' auto-deselected - no tenses chosen`);
+      }
+      
+      return newTenses;
+    });
+  };
+
+  const handleSelectAllTenses = () => {
+    const newTenses: { [verb: string]: { present: boolean; preterite: boolean } } = {};
+    filteredVerbs.forEach(verb => {
+      newTenses[verb.verb] = {
+        present: verb.hasPresent,
+        preterite: verb.hasPreterite
+      };
+    });
+    setLocalSelectedTenses(newTenses);
+  };
+
+  const handleDeselectAllTenses = () => {
+    setLocalSelectedTenses({});
+    // When deselecting all tenses, also deselect all verbs
+    setLocalSelectedVerbs([]);
+  };
+
   const handleSelectAll = () => {
     setLocalSelectedVerbs(filteredVerbs.map(v => v.verb));
   };
@@ -97,7 +140,7 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   };
 
   const handleSave = () => {
-    onSaveSelection(localSelectedVerbs);
+    onSaveSelection(localSelectedVerbs, localSelectedTenses);
     onClose();
   };
 
@@ -146,12 +189,22 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
         </div>
 
         <div className="bulk-actions">
-          <button onClick={handleSelectAll} className="bulk-action-button">
-            Select All
-          </button>
-          <button onClick={handleDeselectAll} className="bulk-action-button">
-            Deselect All
-          </button>
+          <div className="verb-actions">
+            <button onClick={handleSelectAll} className="bulk-action-button">
+              Select All Verbs
+            </button>
+            <button onClick={handleDeselectAll} className="bulk-action-button">
+              Deselect All Verbs
+            </button>
+          </div>
+          <div className="tense-actions">
+            <button onClick={handleSelectAllTenses} className="bulk-action-button">
+              Select All Tenses
+            </button>
+            <button onClick={handleDeselectAllTenses} className="bulk-action-button">
+              Deselect All Tenses
+            </button>
+          </div>
         </div>
 
         <div className="verbs-list">
@@ -171,12 +224,28 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
                   </span>
                 </label>
               </div>
-              <div className="tense-indicators">
+              <div className="tense-selection">
                 {verbInfo.hasPresent && (
-                  <span className="tense-badge present">Present</span>
+                  <label className="tense-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={localSelectedTenses[verbInfo.verb]?.present || false}
+                      onChange={() => handleTenseToggle(verbInfo.verb, 'present')}
+                      disabled={!localSelectedVerbs.includes(verbInfo.verb)}
+                    />
+                    <span className="tense-badge present">Present</span>
+                  </label>
                 )}
                 {verbInfo.hasPreterite && (
-                  <span className="tense-badge preterite">Preterite</span>
+                  <label className="tense-checkbox">
+                    <input
+                      type="checkbox"
+                      disabled={!localSelectedVerbs.includes(verbInfo.verb)}
+                      checked={localSelectedTenses[verbInfo.verb]?.preterite || false}
+                      onChange={() => handleTenseToggle(verbInfo.verb, 'preterite')}
+                    />
+                    <span className="tense-badge preterite">Preterite</span>
+                  </label>
                 )}
               </div>
             </div>
