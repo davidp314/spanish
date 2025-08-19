@@ -97,14 +97,25 @@ spanish/
 - **Improved Card Interaction**: Added visual feedback (blue border, cursor changes) when cards are clickable
 - **Clean State Management**: Eliminated state interference between cards and improved component lifecycle
 
+#### **Micro-Chunk 10: Verb Selection System** ✅
+- **Verb Selection Modal**: Full-screen modal with compact, horizontal-first design for efficient laptop viewing
+- **Verb-Level Selection**: Select entire verbs with individual tense control (Present/Preterite)
+- **Smart Tense Selection**: Individual checkboxes for each tense with auto-deselection logic
+- **Search & Filter**: Toggle between Spanish/English alphabetical ordering with real-time search
+- **Bulk Operations**: Select All/Deselect All for both verbs and tenses
+- **Persistent State**: Verb and tense selections saved in localStorage between sessions
+- **Keyboard Shortcut**: 'V' key to open verb selection modal quickly
+- **Professional UI**: Consistent with existing design language and responsive layout
+
 ### 🔄 Current State
 The application is **fully functional** with:
-- **Browse Mode**: Advanced filtering and search across 50+ conjugations
+- **Browse Mode**: Advanced filtering and search across 150 conjugations (15 verbs × 5 persons × 2 tenses)
 - **Practice Mode**: Stable spaced repetition flashcards with manual card flipping
 - **Progress Tracking**: Comprehensive mastery and practice statistics
 - **Responsive Design**: Optimized for all devices with efficient space usage
 - **Data Persistence**: Local storage for user progress
 - **Professional UI**: Modern, elegant design with smooth animations and modals
+- **Verb Selection System**: Complete verb and tense selection with persistent preferences
 
 ## 🎯 Key Features Implemented
 
@@ -135,6 +146,14 @@ The application is **fully functional** with:
 - **Filtered Views**: Multiple filter combinations for focused learning
 - **Progress Persistence**: User progress saved between sessions
 
+### **Verb Selection System**
+- **Comprehensive Verb Coverage**: 15 essential Spanish verbs (regular and irregular)
+- **Dual Tense Support**: Present and preterite tenses for all verbs
+- **Smart Selection Interface**: Verb-level selection with individual tense control
+- **Search & Organization**: Spanish/English alphabetical ordering with real-time filtering
+- **Bulk Operations**: Efficient selection management for large verb sets
+- **Persistent Preferences**: User selections maintained across sessions
+
 ## 🚧 Known Issues & Solutions
 
 ### **Resolved Issues**
@@ -160,19 +179,12 @@ The application is **fully functional** with:
 
 ### **Current Limitations**
 1. **No Cloud Sync**: Progress is local only
-2. **Limited Verb Set**: Currently 50+ conjugations (expandable)
+2. **Verb Set Scope**: Currently 150 conjugations (15 verbs × 5 persons × 2 tenses) - focused on essential verbs
 3. **No User Accounts**: Single-user application
 4. **Basic Spaced Repetition**: Simple algorithm (could be enhanced)
 5. **No Audio**: No pronunciation support for conjugations
 
 ## 🔮 Planned Features (Future Micro-Chunks)
-
-### **Micro-Chunk 10: Verb Selection System** 🆕
-- **Verb Selection Modal**: Alphabetical list of unique verbs with search functionality
-- **Verb-Level Selection**: Select entire verbs (not individual conjugations) with all tenses included
-- **Default Selection**: All verbs selected by default for new users
-- **Persistent Selections**: Verb choices saved between sessions
-- **Search & Filter**: Easy navigation through verb list with keyboard and mouse support
 
 ### **Micro-Chunk 11: Practice Mode Variations** 🆕
 - **Systematic Mode**: Practice all conjugations of one verb before moving to next
@@ -305,6 +317,8 @@ interface Conjugation {
 - ✅ Local storage persistence for user progress
 - ✅ Professional modal system with custom confirmation dialogs
 - ✅ Enhanced keyboard navigation for efficient practice flow
+- ✅ Verb Selection System with individual tense control
+- ✅ Expanded verb set: 15 essential verbs with 150 total conjugations
 
 ### **Quality Indicators**
 - No console errors during normal operation
@@ -348,9 +362,9 @@ When starting a new chat about this project:
 5. **Update this document** with any new implementations
 6. **Test thoroughly** after each change
 
-**Last Updated**: After Micro-Chunk 9 (Bug Fixes & UX Improvements) - Planning Micro-Chunk 10 (Verb Selection System)
-**Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, and reference system
-**Next Phase**: Micro-Chunk 10 (Verb Selection System)
+**Last Updated**: After Micro-Chunk 10 (Verb Selection System) - Ready for Micro-Chunk 11 (Practice Mode Variations)
+**Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, reference system, and verb selection system
+**Next Phase**: Micro-Chunk 11 (Practice Mode Variations)
 
 ---
 
