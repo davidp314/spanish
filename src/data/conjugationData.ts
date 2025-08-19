@@ -204,3 +204,59 @@ export const shouldPractice = (conjugation: Conjugation): boolean => {
   
   return daysSinceLastPractice >= interval;
 };
+
+// Smart selection algorithm: Calculate practice priority for each conjugation
+export const calculatePracticePriority = (conjugation: Conjugation): number => {
+  let priority = 0;
+  
+  // 1. Mastery status (highest priority - unmastered conjugations need attention)
+  priority += conjugation.mastered ? 0 : 10;
+  
+  // 2. Time since last practice (medium priority - longer = higher priority)
+  if (conjugation.lastPracticed) {
+    const daysSinceLastPractice = (Date.now() - conjugation.lastPracticed) / (1000 * 60 * 60 * 24);
+    // Max 5 points after 2 weeks of no practice
+    priority += Math.min(5, Math.floor(daysSinceLastPractice / 3));
+  } else {
+    // Never practiced - high priority
+    priority += 5;
+  }
+  
+  // 3. Success rate (lower priority - struggling conjugations need more practice)
+  if (conjugation.practiceCount > 0) {
+    const accuracy = conjugation.correctCount / conjugation.practiceCount;
+    if (accuracy < 0.6) priority += 4;        // Very low accuracy
+    else if (accuracy < 0.8) priority += 2;   // Low accuracy
+    else if (accuracy < 0.9) priority += 1;   // Moderate accuracy
+    // High accuracy (≥0.9) gets 0 points
+  } else {
+    // Never practiced - add 3 points
+    priority += 3;
+  }
+  
+  // 4. Verb complexity (irregular verbs are generally harder)
+  priority += conjugation.type === 'irregular' ? 2 : 0;
+  
+  // 5. Tense complexity (preterite is generally harder than present)
+  priority += conjugation.tense === 'preterite' ? 1 : 0;
+  
+  return priority;
+};
+
+// Get conjugations ordered by practice priority (highest priority first)
+export const getConjugationsByPriority = (conjugations: Conjugation[]): Conjugation[] => {
+  return [...conjugations].sort((a, b) => {
+    const priorityA = calculatePracticePriority(a);
+    const priorityB = calculatePracticePriority(b);
+    return priorityB - priorityA; // Higher priority first
+  });
+};
+
+// Smart selection: Get conjugations that should be practiced, ordered by priority
+export const getSmartPracticeConjugations = (conjugations: Conjugation[]): Conjugation[] => {
+  // First filter by spaced repetition logic
+  const dueForPractice = conjugations.filter(shouldPractice);
+  
+  // Then order by priority
+  return getConjugationsByPriority(dueForPractice);
+};

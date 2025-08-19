@@ -3,7 +3,7 @@ import Flashcard from './components/Flashcard';
 import ConjugationReference from './components/ConjugationReference';
 import VerbSelectionModal from './components/VerbSelectionModal';
 import type { Conjugation } from './data/conjugationData';
-import { allConjugations, shouldPractice } from './data/conjugationData';
+import { allConjugations, shouldPractice, getSmartPracticeConjugations, getConjugationsByPriority, calculatePracticePriority } from './data/conjugationData';
 import './App.css';
 
 function App() {
@@ -71,29 +71,6 @@ function App() {
     });
   };
 
-  // Helper function to order conjugations with systematic within verbs, random between verbs
-  const orderMixedSystematic = (conjugations: Conjugation[]): Conjugation[] => {
-    // Group by verb
-    const verbGroups = new Map<string, Conjugation[]>();
-    conjugations.forEach(conjugation => {
-      if (!verbGroups.has(conjugation.verb)) {
-        verbGroups.set(conjugation.verb, []);
-      }
-      verbGroups.get(conjugation.verb)!.push(conjugation);
-    });
-    
-    // Order each verb group systematically
-    const orderedGroups = Array.from(verbGroups.values()).map(group => 
-      orderSystematically(group)
-    );
-    
-    // Shuffle the order of verb groups (shuffle the array of arrays)
-    const shuffledGroups = [...orderedGroups].sort(() => Math.random() - 0.5);
-    
-    // Flatten the groups
-    return shuffledGroups.flat();
-  };
-
   const initialState = loadStateFromStorage();
   
   const [conjugations, setConjugations] = useState<Conjugation[]>(initialState.conjugations);
@@ -133,6 +110,14 @@ function App() {
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      // Only activate shortcuts when not typing in an input field
+      const target = event.target as HTMLElement;
+      const isTyping = target.tagName === 'INPUT' || 
+                      target.tagName === 'TEXTAREA' || 
+                      target.contentEditable === 'true';
+      
+      if (isTyping) return; // Don't activate shortcuts when typing
+      
       if (event.key.toLowerCase() === 'v' && !event.ctrlKey && !event.metaKey) {
         event.preventDefault();
         setShowVerbSelection(true);
@@ -155,25 +140,63 @@ function App() {
   };
 
   const handleStartPractice = () => {
-    // Get conjugations that should be practiced
-    const conjugationsToPractice = getConjugationsToPractice();
+    // Get conjugations that should be practiced using smart selection
+    const conjugationsToPractice = getSmartPracticeConjugations(
+      conjugations.filter(conjugation => selectedVerbs.includes(conjugation.verb))
+    );
     
-    // Apply practice mode ordering
+    // Apply practice mode ordering with smart selection
     let orderedConjugations: Conjugation[];
     
     switch (practiceMode) {
       case 'systematic':
-        // Group by verb, then by tense, then by person
-        orderedConjugations = orderSystematically(conjugationsToPractice);
+        // Group by verb, then order each verb's conjugations by priority
+        const verbGroups = new Map<string, Conjugation[]>();
+        conjugationsToPractice.forEach(conjugation => {
+          if (!verbGroups.has(conjugation.verb)) {
+            verbGroups.set(conjugation.verb, []);
+          }
+          verbGroups.get(conjugation.verb)!.push(conjugation);
+        });
+        
+        // Order each verb group by priority, then by systematic order
+        orderedConjugations = Array.from(verbGroups.values()).map(group => {
+          const priorityOrdered = getConjugationsByPriority(group);
+          return orderSystematically(priorityOrdered);
+        }).flat();
         break;
+        
       case 'random1':
-        // Completely random order
-        orderedConjugations = shuffleArray([...conjugationsToPractice]);
+        // Smart random: Use priority-weighted selection instead of pure randomness
+        // Start with highest priority conjugations, then gradually introduce variety
+        const highPriority = conjugationsToPractice.slice(0, Math.ceil(conjugationsToPractice.length * 0.7));
+        const remaining = conjugationsToPractice.slice(Math.ceil(conjugationsToPractice.length * 0.7));
+        
+        // Shuffle high priority and remaining separately, then combine
+        const shuffledHigh = shuffleArray([...highPriority]);
+        const shuffledRemaining = shuffleArray([...remaining]);
+        orderedConjugations = [...shuffledHigh, ...shuffledRemaining];
         break;
+        
       case 'random2':
-        // Systematic within verbs, random between verbs
-        orderedConjugations = orderMixedSystematic(conjugationsToPractice);
+        // Smart systematic within verbs: Order verbs by priority, then systematic within each verb
+        const verbPriorityMap = new Map<string, number>();
+        conjugationsToPractice.forEach(conjugation => {
+          const currentPriority = verbPriorityMap.get(conjugation.verb) || 0;
+          verbPriorityMap.set(conjugation.verb, Math.max(currentPriority, calculatePracticePriority(conjugation)));
+        });
+        
+        // Sort verbs by their highest priority conjugation
+        const sortedVerbs = Array.from(verbPriorityMap.entries())
+          .sort(([, priorityA], [, priorityB]) => priorityB - priorityA)
+          .map(([verb]) => verb);
+        
+        // Order conjugations systematically within each verb, following verb priority order
+        orderedConjugations = sortedVerbs.flatMap(verb => 
+          orderSystematically(conjugationsToPractice.filter(c => c.verb === verb))
+        );
         break;
+        
       default:
         orderedConjugations = conjugationsToPractice;
     }
@@ -503,33 +526,63 @@ function App() {
               </div>
             </div>
             
-            {/* Remove redundant Quick Actions section */}
-            {/* <div className="dashboard-section">
-              <h3>🎯 Quick Actions</h3>
-              <div className="quick-actions">
-                <button 
-                  onClick={handleStartPractice}
-                  className="quick-action-button primary"
-                  disabled={getConjugationsToPractice().length === 0}
-                >
-                  🚀 Start Practice ({getConjugationsToPractice().length} due)
-                </button>
+            {/* Smart Selection Insights */}
+            <div className="dashboard-section">
+              <h3>🧠 Smart Selection Insights</h3>
+              <div className="dashboard-grid">
+                <div className="dashboard-item">
+                  <div className="dashboard-label">High Priority</div>
+                  <div className="dashboard-value">
+                    {getSmartPracticeConjugations(
+                      conjugations.filter(c => selectedVerbs.includes(c.verb))
+                    ).slice(0, 3).length} conjugations
+                  </div>
+                  <div className="dashboard-detail">
+                    Need immediate attention
+                  </div>
+                </div>
                 
-                <button 
-                  onClick={() => setShowVerbSelection(true)} 
-                  className="quick-action-button"
-                >
-                  ✏️ Change Verbs
-                </button>
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Learning Gaps</div>
+                  <div className="dashboard-value">
+                    {conjugations.filter(c => 
+                      selectedVerbs.includes(c.verb) && 
+                      c.practiceCount > 0 && 
+                      (c.correctCount / c.practiceCount) < 0.7
+                    ).length} conjugations
+                  </div>
+                  <div className="dashboard-detail">
+                    Struggling with accuracy
+                  </div>
+                </div>
                 
-                <button 
-                  onClick={() => setShowReference(true)} 
-                  className="quick-action-button"
-                >
-                  📚 View Reference
-                </button>
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Neglected</div>
+                  <div className="dashboard-value">
+                    {conjugations.filter(c => 
+                      selectedVerbs.includes(c.verb) && 
+                      (!c.lastPracticed || 
+                       (Date.now() - c.lastPracticed) > (7 * 24 * 60 * 60 * 1000))
+                    ).length} conjugations
+                  </div>
+                  <div className="dashboard-detail">
+                    Haven't practiced in a week
+                  </div>
+                </div>
+                
+                <div className="dashboard-item">
+                  <div className="dashboard-label">Smart Mode</div>
+                  <div className="dashboard-value">
+                    {practiceMode === 'systematic' ? '🔄 Priority + Systematic' : 
+                     practiceMode === 'random1' ? '🎲 Priority + Smart Random' : 
+                     '🎯 Priority + Mixed'}
+                  </div>
+                  <div className="dashboard-detail">
+                    AI-powered practice ordering
+                  </div>
+                </div>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
 
