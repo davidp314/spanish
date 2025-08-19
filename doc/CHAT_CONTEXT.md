@@ -107,15 +107,27 @@ spanish/
 - **Keyboard Shortcut**: 'V' key to open verb selection modal quickly
 - **Professional UI**: Consistent with existing design language and responsive layout
 
+#### **Micro-Chunk 11: Practice Mode Variations** ✅
+- **Systematic Mode**: Practice all conjugations of one verb before moving to the next verb
+- **Random Mode 1**: Completely random verb + tense + person combinations for unpredictable practice
+- **Random Mode 2**: Systematic within verbs, random between verbs for balanced learning
+- **Mode Persistence**: Practice mode choice saved in localStorage between sessions
+- **Enhanced Practice Logic**: Practice sessions respect selected verbs and chosen mode
+- **Dual UI Integration**: Practice mode selection available in both browse and practice views
+- **Smart Ordering Algorithms**: Efficient sorting and shuffling for optimal learning patterns
+- **Professional Mode Selection**: Clean, intuitive interface for choosing practice strategies
+- **Spanish Accent Keyboard**: Elegant table-style accent character input with warm Spanish theme and keyboard shortcuts (1-9)
+
 ### 🔄 Current State
 The application is **fully functional** with:
 - **Browse Mode**: Advanced filtering and search across 150 conjugations (15 verbs × 5 persons × 2 tenses)
-- **Practice Mode**: Stable spaced repetition flashcards with manual card flipping
+- **Practice Mode**: Three practice modes (Systematic, Random, Mixed) with stable spaced repetition flashcards and Spanish accent keyboard
 - **Progress Tracking**: Comprehensive mastery and practice statistics
 - **Responsive Design**: Optimized for all devices with efficient space usage
-- **Data Persistence**: Local storage for user progress
+- **Data Persistence**: Local storage for user progress and practice mode preferences
 - **Professional UI**: Modern, elegant design with smooth animations and modals
 - **Verb Selection System**: Complete verb and tense selection with persistent preferences
+- **Practice Mode Variations**: Flexible learning strategies for different study preferences
 
 ## 🎯 Key Features Implemented
 
@@ -139,6 +151,7 @@ The application is **fully functional** with:
 - **Practice Tracking**: Records practice count and accuracy
 - **Compact Design**: Efficient vertical space usage
 - **Mastery Integration**: Mark conjugations as mastered during practice
+- **Spanish Accent Keyboard**: Elegant accent character input with keyboard shortcuts (1-9)
 
 ### **Data Management**
 - **Conjugation Structure**: Rich data with person, tense, verb type, difficulty
@@ -183,6 +196,25 @@ The application is **fully functional** with:
 3. **No User Accounts**: Single-user application
 4. **Basic Spaced Repetition**: Simple algorithm (could be enhanced)
 5. **No Audio**: No pronunciation support for conjugations
+
+### **Code Quality & Refactoring Needs** 🆕
+1. **App.tsx Monolith**: Main component is 429 lines and handles too many responsibilities
+   - **Impact**: Makes adding new features more complex and harder to maintain
+   - **Solution Needed**: Extract practice logic, filtering, and state management into custom hooks
+   - **Priority**: Medium-High (should be addressed after Micro-Chunk 11 completion)
+   - **Status**: ⚠️ Identified for future refactoring
+
+2. **State Management Complexity**: Multiple related state variables that could be consolidated
+   - **Impact**: Potential for state synchronization issues and complex state updates
+   - **Solution Needed**: Consolidate related state into logical groups or custom hooks
+   - **Priority**: Medium (can be addressed during refactoring phase)
+   - **Status**: ⚠️ Identified for future refactoring
+
+3. **Mixed Concerns**: UI logic mixed with business logic in main component
+   - **Impact**: Harder to test and maintain individual features
+   - **Solution Needed**: Separate UI components from business logic
+   - **Priority**: Medium (can be addressed during refactoring phase)
+   - **Status**: ⚠️ Identified for future refactoring
 
 ## 🔮 Planned Features (Future Micro-Chunks)
 
@@ -319,6 +351,9 @@ interface Conjugation {
 - ✅ Enhanced keyboard navigation for efficient practice flow
 - ✅ Verb Selection System with individual tense control
 - ✅ Expanded verb set: 15 essential verbs with 150 total conjugations
+- ✅ Practice Mode Variations with three distinct learning strategies
+- ✅ Smart practice ordering algorithms for optimal learning patterns
+- ✅ Spanish Accent Keyboard with elegant design and keyboard shortcuts
 
 ### **Quality Indicators**
 - No console errors during normal operation
@@ -362,9 +397,9 @@ When starting a new chat about this project:
 5. **Update this document** with any new implementations
 6. **Test thoroughly** after each change
 
-**Last Updated**: After Micro-Chunk 10 (Verb Selection System) - Ready for Micro-Chunk 11 (Practice Mode Variations)
-**Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, reference system, and verb selection system
-**Next Phase**: Micro-Chunk 11 (Practice Mode Variations)
+**Last Updated**: After Micro-Chunk 11 (Practice Mode Variations) - Completed
+**Current Status**: Fully functional with comprehensive conjugation system, compact practice mode, reference system, verb selection system, and practice mode variations
+**Next Phase**: Micro-Chunk 12 (Settings Import/Export) - Ready to implement
 
 ---
 

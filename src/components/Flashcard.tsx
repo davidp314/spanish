@@ -43,6 +43,48 @@ const Flashcard: React.FC<FlashcardProps> = ({
       e.preventDefault();
       handleNext();
     }
+    
+    // Handle accent character shortcuts (only when not showing result)
+    if (!showResult && !e.ctrlKey && !e.metaKey) {
+      switch (e.key) {
+        case '1':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'á');
+          break;
+        case '2':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'é');
+          break;
+        case '3':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'í');
+          break;
+        case '4':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'ó');
+          break;
+        case '5':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'ú');
+          break;
+        case '6':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'ñ');
+          break;
+        case '7':
+          e.preventDefault();
+          setUserAnswer(prev => prev + 'ü');
+          break;
+        case '8':
+          e.preventDefault();
+          setUserAnswer(prev => prev + '¿');
+          break;
+        case '9':
+          e.preventDefault();
+          setUserAnswer(prev => prev + '¡');
+          break;
+      }
+    }
   };
 
   const handleNext = () => {
@@ -114,6 +156,80 @@ const Flashcard: React.FC<FlashcardProps> = ({
 
       {!isFlipped && (
         <form onSubmit={handleAnswerSubmit} className="answer-form">
+          <div className="accent-keyboard">
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'á')}
+              className="accent-button"
+              title="á (Press 1)"
+            >
+              á
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'é')}
+              className="accent-button"
+              title="é (Press 2)"
+            >
+              é
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'í')}
+              className="accent-button"
+              title="í (Press 3)"
+            >
+              í
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'ó')}
+              className="accent-button"
+              title="ó (Press 4)"
+            >
+              ó
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'ú')}
+              className="accent-button"
+              title="ú (Press 5)"
+            >
+              ú
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'ñ')}
+              className="accent-button"
+              title="ñ (Press 6)"
+            >
+              ñ
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + 'ü')}
+              className="accent-button"
+              title="ü (Press 7)"
+            >
+              ü
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + '¿')}
+              className="accent-button"
+              title="¿ (Press 8)"
+            >
+              ¿
+            </button>
+            <button
+              type="button"
+              onClick={() => setUserAnswer(prev => prev + '¡')}
+              className="accent-button"
+              title="¡ (Press 9)"
+            >
+              ¡
+            </button>
+          </div>
           <input
             type="text"
             value={userAnswer}

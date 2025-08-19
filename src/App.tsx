@@ -20,6 +20,7 @@ function App() {
           isPracticeMode: parsed.isPracticeMode || false,
           selectedVerbSet: parsed.selectedVerbSet || 'beginner',
           selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(),
+          practiceMode: parsed.practiceMode || 'systematic',
           lastUpdated: parsed.lastUpdated || Date.now()
         };
       }
@@ -32,6 +33,7 @@ function App() {
       isPracticeMode: false,
       selectedVerbSet: 'beginner',
       selectedVerbs: getUniqueVerbs(),
+      practiceMode: 'systematic',
       lastUpdated: Date.now()
     };
   };
@@ -41,6 +43,58 @@ function App() {
     const uniqueVerbs = new Set<string>();
     allConjugations.forEach(conjugation => uniqueVerbs.add(conjugation.verb));
     return Array.from(uniqueVerbs).sort();
+  };
+
+  // Helper function to shuffle an array (Fisher-Yates algorithm)
+  const shuffleArray = (array: Conjugation[]): Conjugation[] => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Helper function to order conjugations systematically (by verb, then tense, then person)
+  const orderSystematically = (conjugations: Conjugation[]): Conjugation[] => {
+    const personOrder = ['yo', 'tú', 'él/ella/usted', 'nosotros', 'ellos/ellas/ustedes'];
+    const tenseOrder = ['present', 'preterite'];
+    
+    return conjugations.sort((a, b) => {
+      // First sort by verb
+      if (a.verb !== b.verb) {
+        return a.verb.localeCompare(b.verb);
+      }
+      // Then by tense
+      if (a.tense !== b.tense) {
+        return tenseOrder.indexOf(a.tense) - tenseOrder.indexOf(b.tense);
+      }
+      // Then by person
+      return personOrder.indexOf(a.person) - personOrder.indexOf(b.person);
+    });
+  };
+
+  // Helper function to order conjugations with systematic within verbs, random between verbs
+  const orderMixedSystematic = (conjugations: Conjugation[]): Conjugation[] => {
+    // Group by verb
+    const verbGroups = new Map<string, Conjugation[]>();
+    conjugations.forEach(conjugation => {
+      if (!verbGroups.has(conjugation.verb)) {
+        verbGroups.set(conjugation.verb, []);
+      }
+      verbGroups.get(conjugation.verb)!.push(conjugation);
+    });
+    
+    // Order each verb group systematically
+    const orderedGroups = Array.from(verbGroups.values()).map(group => 
+      orderSystematically(group)
+    );
+    
+    // Shuffle the order of verb groups (shuffle the array of arrays)
+    const shuffledGroups = [...orderedGroups].sort(() => Math.random() - 0.5);
+    
+    // Flatten the groups
+    return shuffledGroups.flat();
   };
 
   const initialState = loadStateFromStorage();
@@ -59,6 +113,7 @@ function App() {
   const [showVerbSelection, setShowVerbSelection] = useState(false);
   const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>('systematic');
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -68,10 +123,11 @@ function App() {
       isPracticeMode,
       selectedVerbSet,
       selectedVerbs,
+      practiceMode,
       lastUpdated: Date.now()
     };
     localStorage.setItem('spanishConjugationsState', JSON.stringify(stateToSave));
-  }, [conjugations, currentIndex, isPracticeMode, selectedVerbSet, selectedVerbs]);
+  }, [conjugations, currentIndex, isPracticeMode, selectedVerbSet, selectedVerbs, practiceMode]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -142,9 +198,30 @@ function App() {
   };
 
   const handleStartPractice = () => {
-    // Freeze the practice conjugations for this session
+    // Get conjugations that should be practiced
     const conjugationsToPractice = filteredConjugations.filter(shouldPractice);
-    setPracticeSessionConjugations(conjugationsToPractice);
+    
+    // Apply practice mode ordering
+    let orderedConjugations: Conjugation[];
+    
+    switch (practiceMode) {
+      case 'systematic':
+        // Group by verb, then by tense, then by person
+        orderedConjugations = orderSystematically(conjugationsToPractice);
+        break;
+      case 'random1':
+        // Completely random order
+        orderedConjugations = shuffleArray([...conjugationsToPractice]);
+        break;
+      case 'random2':
+        // Systematic within verbs, random between verbs
+        orderedConjugations = orderMixedSystematic(conjugationsToPractice);
+        break;
+      default:
+        orderedConjugations = conjugationsToPractice;
+    }
+    
+    setPracticeSessionConjugations(orderedConjugations);
     setCurrentIndex(0);
     setIsPracticeMode(true);
   };
@@ -203,6 +280,18 @@ function App() {
         </div>
 
         <div className="practice-info">
+          <div className="practice-mode-selector">
+            <label>Practice Mode:</label>
+            <select 
+              value={practiceMode} 
+              onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
+              className="practice-mode-select"
+            >
+              <option value="systematic">Systematic: One verb at a time</option>
+              <option value="random1">Random: Mixed verbs & tenses</option>
+              <option value="random2">Mixed: Systematic within verbs</option>
+            </select>
+          </div>
           <div className="practice-stats">
             <span>Card {currentIndex + 1} of {practiceSessionConjugations.length}</span>
             <span>Due for practice: {practiceSessionConjugations.length}</span>
@@ -297,13 +386,27 @@ function App() {
         </div>
 
         <div className="actions">
-          <button 
-            onClick={handleStartPractice}
-            className="practice-button"
-            disabled={filteredConjugations.filter(shouldPractice).length === 0}
-          >
-            🎯 Practice Mode ({filteredConjugations.filter(shouldPractice).length} due)
-          </button>
+          <div className="practice-controls">
+            <div className="practice-mode-preview">
+              <label>Practice Mode:</label>
+              <select 
+                value={practiceMode} 
+                onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
+                className="practice-mode-select"
+              >
+                <option value="systematic">Systematic: One verb at a time</option>
+                <option value="random1">Random: Mixed verbs & tenses</option>
+                <option value="random2">Mixed: Systematic within verbs</option>
+              </select>
+            </div>
+            <button 
+              onClick={handleStartPractice}
+              className="practice-button"
+              disabled={filteredConjugations.filter(shouldPractice).length === 0}
+            >
+              🎯 Practice Mode ({filteredConjugations.filter(shouldPractice).length} due)
+            </button>
+          </div>
           
           <button onClick={() => setShowVerbSelection(true)} className="verb-selection-button">
             🎯 Verb Selection
