@@ -1,4 +1,5 @@
 import React from 'react';
+import './ConjugationReference.css';
 
 interface ConjugationReferenceProps {
   isOpen: boolean;
@@ -36,451 +37,295 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
   if (!isOpen) return null;
 
   return (
-    <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        zIndex: 1000,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '1rem'
-      }}
-      onClick={handleBackdropClick}
-    >
-      <div style={{
-        background: 'white',
-        borderRadius: '20px',
-        maxWidth: '1200px',
-        width: '100%',
-        maxHeight: '90vh',
-        overflow: 'auto',
-        position: 'relative'
-      }}>
+    <div className="conjugation-reference-overlay" onClick={handleBackdropClick}>
+      <div className="conjugation-reference-modal">
         {/* Header */}
-        <div style={{
-          background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-          color: 'white',
-          padding: '1.5rem',
-          borderRadius: '20px 20px 0 0',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <div style={{
-              width: '32px',
-              height: '32px',
-              background: 'rgba(255, 255, 255, 0.2)',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
+        <div className="conjugation-reference-header">
+          <div className="header-content">
+            <div className="header-icon">
               📚
             </div>
-            <div>
-              <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: 0 }}>
-                Spanish Verb Conjugation Reference
-              </h1>
-              <p style={{ fontSize: '0.875rem', opacity: 0.9, margin: 0 }}>
-                Regular verb patterns for present and preterite tenses
-              </p>
+            <div className="header-text">
+              <h1>Spanish Verb Conjugation Reference</h1>
+              <p>Regular verb patterns for present and preterite tenses</p>
             </div>
           </div>
           
-          <button
-            onClick={onClose}
-            style={{
-              width: '40px',
-              height: '40px',
-              background: 'rgba(255, 255, 255, 0.2)',
-              border: 'none',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              fontSize: '20px',
-              color: 'white'
-            }}
-          >
+          <button className="close-button" onClick={onClose}>
             ✕
           </button>
         </div>
 
         {/* Content */}
-        <div style={{ padding: '2rem' }}>
+        <div className="conjugation-reference-content">
 
           {/* Main Reference Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(500px, 1fr))',
-            gap: '2rem'
-          }}>
+          <div className="reference-grid">
             {/* Present Tense */}
             <div>
-              <h2 style={{
-                fontSize: '1.5rem',
-                fontWeight: 'bold',
-                marginBottom: '1.5rem',
-                textAlign: 'center',
-                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                color: 'white',
-                padding: '0.75rem',
-                borderRadius: '12px'
-              }}>
-                Present Tense
-              </h2>
+                             <h2 className="tense-title">
+                  Present Tense
+                </h2>
 
               {/* -AR Verbs */}
-              <div style={{
-                background: '#eff6ff',
-                border: '2px solid #3b82f6',
-                borderRadius: '12px',
-                padding: '1.5rem',
-                marginBottom: '1.5rem'
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 'bold',
-                  color: '#1e40af',
-                  marginBottom: '1rem'
-                }}>
-                  <span style={{
-                    background: '#3b82f6',
-                    color: 'white',
-                    padding: '4px 8px',
-                    borderRadius: '6px',
-                    fontSize: '0.75rem',
-                    fontWeight: '600',
-                    marginRight: '8px'
-                  }}>
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
                     -AR
                   </span>
                   Regular -AR Verbs (hablar - to speak)
                 </h3>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr',
-                  gap: '0.5rem',
-                  fontSize: '0.875rem'
-                }}>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Person</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Ending</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Example</div>
+                <div className="regular-verb-table">
+                  <div className="table-header">
+                    <div>Person</div>
+                    <div>Ending</div>
+                    <div>Example</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px' }}>yo</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-o</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>hablo</div>
+                  <div className="table-row">
+                    <div>yo</div>
+                    <div>-o</div>
+                    <div>hablo</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>tú</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-as</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>hablas</div>
+                  <div className="table-row">
+                    <div>tú</div>
+                    <div>-as</div>
+                    <div>hablas</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px' }}>él/ella/usted</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-a</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>habla</div>
+                  <div className="table-row">
+                    <div>él/ella/usted</div>
+                    <div>-a</div>
+                    <div>habla</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>nosotros</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-amos</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>hablamos</div>
+                  <div className="table-row">
+                    <div>nosotros</div>
+                    <div>-amos</div>
+                    <div>hablamos</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px' }}>ellos/ellas/ustedes</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-an</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>hablan</div>
+                  <div className="table-row">
+                    <div>ellos/ellas/ustedes</div>
+                    <div>-an</div>
+                    <div>hablan</div>
+                  </div>
                 </div>
               </div>
 
               {/* -ER Verbs */}
-              <div style={{
-                background: '#f0fdf4',
-                border: '2px solid #10b981',
-                borderRadius: '12px',
-                padding: '1.5rem',
-                marginBottom: '1.5rem'
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 'bold',
-                  color: '#065f46',
-                  marginBottom: '1rem'
-                }}>
-                  <span style={{
-                    background: '#10b981',
-                    color: 'white',
-                    padding: '4px 8px',
-                    borderRadius: '6px',
-                    fontSize: '0.75rem',
-                    fontWeight: '600',
-                    marginRight: '8px'
-                  }}>
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
                     -ER
                   </span>
                   Regular -ER Verbs (comer - to eat)
                 </h3>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr',
-                  gap: '0.5rem',
-                  fontSize: '0.875rem'
-                }}>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Person</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Ending</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Example</div>
+                <div className="regular-verb-table">
+                  <div className="table-header">
+                    <div>Person</div>
+                    <div>Ending</div>
+                    <div>Example</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px' }}>yo</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-o</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>como</div>
+                  <div className="table-row">
+                    <div>yo</div>
+                    <div>-o</div>
+                    <div>como</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>tú</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-es</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>comes</div>
+                  <div className="table-row">
+                    <div>tú</div>
+                    <div>-es</div>
+                    <div>comes</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px' }}>él/ella/usted</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-e</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>come</div>
+                  <div className="table-row">
+                    <div>él/ella/usted</div>
+                    <div>-e</div>
+                    <div>come</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>nosotros</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-emos</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>comemos</div>
+                  <div className="table-row">
+                    <div>nosotros</div>
+                    <div>-emos</div>
+                    <div>comemos</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px' }}>ellos/ellas/ustedes</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-en</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>comen</div>
+                  <div className="table-row">
+                    <div>ellos/ellas/ustedes</div>
+                    <div>-en</div>
+                    <div>comen</div>
+                  </div>
                 </div>
               </div>
 
               {/* -IR Verbs */}
-              <div style={{
-                background: '#faf5ff',
-                border: '2px solid #8b5cf6',
-                borderRadius: '12px',
-                padding: '1.5rem'
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 'bold',
-                  color: '#5b21b6',
-                  marginBottom: '1rem'
-                }}>
-                  <span style={{
-                    background: '#8b5cf6',
-                    color: 'white',
-                    padding: '4px 8px',
-                    borderRadius: '6px',
-                    fontSize: '0.75rem',
-                    fontWeight: '600',
-                    marginRight: '8px'
-                  }}>
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
                     -IR
                   </span>
                   Regular -IR Verbs (vivir - to live)
                 </h3>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr',
-                  gap: '0.5rem',
-                  fontSize: '0.875rem'
-                }}>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Person</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Ending</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Example</div>
+                <div className="regular-verb-table">
+                  <div className="table-header">
+                    <div>Person</div>
+                    <div>Ending</div>
+                    <div>Example</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px' }}>yo</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-o</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>vivo</div>
+                  <div className="table-row">
+                    <div>yo</div>
+                    <div>-o</div>
+                    <div>vivo</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>tú</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-es</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>vives</div>
+                  <div className="table-row">
+                    <div>tú</div>
+                    <div>-es</div>
+                    <div>vives</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px' }}>él/ella/usted</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-e</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>vive</div>
+                  <div className="table-row">
+                    <div>él/ella/usted</div>
+                    <div>-e</div>
+                    <div>vive</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>nosotros</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-imos</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>vivimos</div>
+                  <div className="table-row">
+                    <div>nosotros</div>
+                    <div>-imos</div>
+                    <div>vivimos</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px' }}>ellos/ellas/ustedes</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-en</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>viven</div>
+                  <div className="table-row">
+                    <div>ellos/ellas/ustedes</div>
+                    <div>-en</div>
+                    <div>viven</div>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Preterite Tense */}
             <div>
-              <h2 style={{
-                fontSize: '1.5rem',
-                fontWeight: 'bold',
-                marginBottom: '1.5rem',
-                textAlign: 'center',
-                background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-                color: 'white',
-                padding: '0.75rem',
-                borderRadius: '12px'
-              }}>
+              <h2 className="tense-title preterite-tense">
                 Preterite Tense (Simple Past)
               </h2>
 
               {/* -AR Verbs Preterite */}
-              <div style={{
-                background: '#eff6ff',
-                border: '2px solid #3b82f6',
-                borderRadius: '12px',
-                padding: '1.5rem',
-                marginBottom: '1.5rem'
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 'bold',
-                  color: '#1e40af',
-                  marginBottom: '1rem'
-                }}>
-                  <span style={{
-                    background: '#3b82f6',
-                    color: 'white',
-                    padding: '4px 8px',
-                    borderRadius: '6px',
-                    fontSize: '0.75rem',
-                    fontWeight: '600',
-                    marginRight: '8px'
-                  }}>
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
                     -AR
                   </span>
                   Regular -AR Verbs (hablar - to speak)
                 </h3>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr',
-                  gap: '0.5rem',
-                  fontSize: '0.875rem'
-                }}>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Person</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Ending</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Example</div>
+                <div className="regular-verb-table">
+                  <div className="table-header">
+                    <div>Person</div>
+                    <div>Ending</div>
+                    <div>Example</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px' }}>yo</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-é</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>hablé</div>
+                  <div className="table-row">
+                    <div>yo</div>
+                    <div>-é</div>
+                    <div>hablé</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>tú</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-aste</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>hablaste</div>
+                  <div className="table-row">
+                    <div>tú</div>
+                    <div>-aste</div>
+                    <div>hablaste</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px' }}>él/ella/usted</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-ó</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>habló</div>
+                  <div className="table-row">
+                    <div>él/ella/usted</div>
+                    <div>-ó</div>
+                    <div>habló</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>nosotros</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-amos</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>hablamos</div>
+                  <div className="table-row">
+                    <div>nosotros</div>
+                    <div>-amos</div>
+                    <div>hablamos</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px' }}>ellos/ellas/ustedes</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-aron</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(59, 130, 246, 0.1)', borderRadius: '6px', fontWeight: '600' }}>hablaron</div>
+                  <div className="table-row">
+                    <div>ellos/ellas/ustedes</div>
+                    <div>-aron</div>
+                    <div>hablaron</div>
+                  </div>
                 </div>
               </div>
 
               {/* -ER/-IR Verbs Preterite */}
-              <div style={{
-                background: '#f0fdf4',
-                border: '2px solid #10b981',
-                borderRadius: '12px',
-                padding: '1.5rem',
-                marginBottom: '1.5rem'
-              }}>
-                <h3 style={{
-                  fontSize: '1.25rem',
-                  fontWeight: 'bold',
-                  color: '#065f46',
-                  marginBottom: '1rem'
-                }}>
-                  <span style={{
-                    background: '#10b981',
-                    color: 'white',
-                    padding: '4px 8px',
-                    borderRadius: '6px',
-                    fontSize: '0.75rem',
-                    fontWeight: '600',
-                    marginRight: '8px'
-                  }}>
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
                     -ER/-IR
                   </span>
                   Regular -ER/-IR Verbs (comer/vivir)
                 </h3>
                 
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr 1fr 1fr',
-                  gap: '0.5rem',
-                  fontSize: '0.875rem'
-                }}>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Person</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Ending</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Example (-ER)</div>
-                  <div style={{ fontWeight: '600', color: '#374151' }}>Example (-IR)</div>
+                <div className="regular-verb-table four-columns">
+                  <div className="table-header">
+                    <div>Person</div>
+                    <div>Ending</div>
+                    <div>Example (-ER)</div>
+                    <div>Example (-IR)</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px' }}>yo</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-í</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>comí</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>viví</div>
+                  <div className="table-row">
+                    <div>yo</div>
+                    <div>-í</div>
+                    <div>comí</div>
+                    <div>viví</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>tú</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-iste</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>comiste</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>viviste</div>
+                  <div className="table-row">
+                    <div>tú</div>
+                    <div>-iste</div>
+                    <div>comiste</div>
+                    <div>viviste</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px' }}>él/ella/usted</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-ió</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>comió</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>vivió</div>
+                  <div className="table-row">
+                    <div>él/ella/usted</div>
+                    <div>-ió</div>
+                    <div>comió</div>
+                    <div>vivió</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px' }}>nosotros</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontFamily: 'monospace' }}>-imos</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>comimos</div>
-                  <div style={{ padding: '0.5rem', background: 'white', borderRadius: '6px', fontWeight: '600' }}>vivimos</div>
+                  <div className="table-row">
+                    <div>nosotros</div>
+                    <div>-imos</div>
+                    <div>comimos</div>
+                    <div>vivimos</div>
+                  </div>
                   
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px' }}>ellos/ellas/ustedes</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontFamily: 'monospace' }}>-ieron</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>comieron</div>
-                  <div style={{ padding: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '6px', fontWeight: '600' }}>vivieron</div>
+                  <div className="table-row">
+                    <div>ellos/ellas/ustedes</div>
+                    <div>-ieron</div>
+                    <div>comieron</div>
+                    <div>vivieron</div>
+                  </div>
                 </div>
               </div>
 
               {/* Key Differences Note */}
-              <div style={{
-                background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-                border: '1px solid #f59e0b',
-                borderRadius: '12px',
-                padding: '1rem',
-                marginTop: '1rem'
-              }}>
-                <h4 style={{
-                  fontSize: '1rem',
-                  fontWeight: '600',
-                  color: '#92400e',
-                  margin: '0 0 0.5rem 0'
-                }}>
+              <div className="key-differences-note">
+                <h4>
                   Key Differences to Remember:
                 </h4>
-                <ul style={{
-                  fontSize: '0.875rem',
-                  color: '#92400e',
-                  margin: 0,
-                  paddingLeft: '1.5rem',
-                  lineHeight: '1.5'
-                }}>
+                <ul>
                   <li><strong>Present:</strong> -ER and -IR share endings except nosotros (-emos vs -imos)</li>
                   <li><strong>Preterite:</strong> -ER and -IR have identical endings</li>
                   <li><strong>Nosotros:</strong> -AR and -ER/-IR share -amos in preterite</li>

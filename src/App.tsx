@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Flashcard from './components/Flashcard';
 import ConjugationReference from './components/ConjugationReference';
 import VerbSelectionModal from './components/VerbSelectionModal';
+import ThemeToggle from './components/ThemeToggle';
 import type { Conjugation } from './data/conjugationData';
 import { allConjugations, shouldPractice, getSmartPracticeConjugations, getConjugationsByPriority, calculatePracticePriority } from './data/conjugationData';
 import './App.css';
@@ -287,9 +288,12 @@ function App() {
             <h1>🎯 Practice Mode</h1>
             <p>Practice conjugations with spaced repetition</p>
           </div>
-          <button onClick={handleBackToBrowse} className="back-button">
-            ← Back to Browse
-          </button>
+          <div className="header-right">
+            <ThemeToggle />
+            <button onClick={handleBackToBrowse} className="back-button">
+              ← Back to Browse
+            </button>
+          </div>
         </div>
 
         <div className="practice-info">
@@ -446,6 +450,8 @@ function App() {
             <button onClick={() => setShowReference(true)} className="reference-button">
               📚 Reference
             </button>
+            
+            <ThemeToggle />
             
             <button onClick={handleResetProgress} className="reset-button">
               🔄 Reset Progress
