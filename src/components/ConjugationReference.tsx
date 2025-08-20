@@ -78,39 +78,39 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
                 
                 <div className="regular-verb-table">
                   <div className="table-header">
-                    <div>Person</div>
-                    <div>Ending</div>
-                    <div>Example</div>
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>yo</div>
-                    <div>-o</div>
-                    <div>hablo</div>
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-o</div>
+                    <div className="example-col">hablo</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>tú</div>
-                    <div>-as</div>
-                    <div>hablas</div>
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-as</div>
+                    <div className="example-col">hablas</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>él/ella/usted</div>
-                    <div>-a</div>
-                    <div>habla</div>
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-a</div>
+                    <div className="example-col">habla</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>nosotros</div>
-                    <div>-amos</div>
-                    <div>hablamos</div>
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-amos</div>
+                    <div className="example-col">hablamos</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>ellos/ellas/ustedes</div>
-                    <div>-an</div>
-                    <div>hablan</div>
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-an</div>
+                    <div className="example-col">hablan</div>
                   </div>
                 </div>
               </div>
@@ -126,39 +126,39 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
                 
                 <div className="regular-verb-table">
                   <div className="table-header">
-                    <div>Person</div>
-                    <div>Ending</div>
-                    <div>Example</div>
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>yo</div>
-                    <div>-o</div>
-                    <div>como</div>
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-o</div>
+                    <div className="example-col">como</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>tú</div>
-                    <div>-es</div>
-                    <div>comes</div>
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-es</div>
+                    <div className="example-col">comes</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>él/ella/usted</div>
-                    <div>-e</div>
-                    <div>come</div>
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-e</div>
+                    <div className="example-col">come</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>nosotros</div>
-                    <div>-emos</div>
-                    <div>comemos</div>
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-emos</div>
+                    <div className="example-col">comemos</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>ellos/ellas/ustedes</div>
-                    <div>-en</div>
-                    <div>comen</div>
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-en</div>
+                    <div className="example-col">comen</div>
                   </div>
                 </div>
               </div>
@@ -174,39 +174,39 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
                 
                 <div className="regular-verb-table">
                   <div className="table-header">
-                    <div>Person</div>
-                    <div>Ending</div>
-                    <div>Example</div>
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>yo</div>
-                    <div>-o</div>
-                    <div>vivo</div>
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-o</div>
+                    <div className="example-col">vivo</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>tú</div>
-                    <div>-es</div>
-                    <div>vives</div>
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-es</div>
+                    <div className="example-col">vives</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>él/ella/usted</div>
-                    <div>-e</div>
-                    <div>vive</div>
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-e</div>
+                    <div className="example-col">vive</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>nosotros</div>
-                    <div>-imos</div>
-                    <div>vivimos</div>
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-imos</div>
+                    <div className="example-col">vivimos</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>ellos/ellas/ustedes</div>
-                    <div>-en</div>
-                    <div>viven</div>
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-en</div>
+                    <div className="example-col">viven</div>
                   </div>
                 </div>
               </div>
@@ -229,39 +229,39 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
                 
                 <div className="regular-verb-table">
                   <div className="table-header">
-                    <div>Person</div>
-                    <div>Ending</div>
-                    <div>Example</div>
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>yo</div>
-                    <div>-é</div>
-                    <div>hablé</div>
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-é</div>
+                    <div className="example-col">hablé</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>tú</div>
-                    <div>-aste</div>
-                    <div>hablaste</div>
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-aste</div>
+                    <div className="example-col">hablaste</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>él/ella/usted</div>
-                    <div>-ó</div>
-                    <div>habló</div>
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-ó</div>
+                    <div className="example-col">habló</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>nosotros</div>
-                    <div>-amos</div>
-                    <div>hablamos</div>
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-amos</div>
+                    <div className="example-col">hablamos</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>ellos/ellas/ustedes</div>
-                    <div>-aron</div>
-                    <div>hablaron</div>
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-aron</div>
+                    <div className="example-col">hablaron</div>
                   </div>
                 </div>
               </div>
@@ -277,45 +277,45 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
                 
                 <div className="regular-verb-table four-columns">
                   <div className="table-header">
-                    <div>Person</div>
-                    <div>Ending</div>
-                    <div>Example (-ER)</div>
-                    <div>Example (-IR)</div>
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example (-ER)</div>
+                    <div className="example-col">Example (-IR)</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>yo</div>
-                    <div>-í</div>
-                    <div>comí</div>
-                    <div>viví</div>
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-í</div>
+                    <div className="example-col">comí</div>
+                    <div className="example-col">viví</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>tú</div>
-                    <div>-iste</div>
-                    <div>comiste</div>
-                    <div>viviste</div>
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-iste</div>
+                    <div className="example-col">comiste</div>
+                    <div className="example-col">viviste</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>él/ella/usted</div>
-                    <div>-ió</div>
-                    <div>comió</div>
-                    <div>vivió</div>
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-ió</div>
+                    <div className="example-col">comió</div>
+                    <div className="example-col">vivió</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>nosotros</div>
-                    <div>-imos</div>
-                    <div>comimos</div>
-                    <div>vivimos</div>
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-imos</div>
+                    <div className="example-col">comimos</div>
+                    <div className="example-col">vivimos</div>
                   </div>
                   
                   <div className="table-row">
-                    <div>ellos/ellas/ustedes</div>
-                    <div>-ieron</div>
-                    <div>comieron</div>
-                    <div>vivieron</div>
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-ieron</div>
+                    <div className="example-col">comieron</div>
+                    <div className="example-col">vivieron</div>
                   </div>
                 </div>
               </div>

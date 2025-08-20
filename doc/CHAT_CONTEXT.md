@@ -155,6 +155,23 @@ spanish/
 - **Smooth Theme Transitions**: All theme changes are animated for polished user experience
 - **Accessibility Compliance**: Dark mode maintains proper contrast ratios and keyboard navigation
 
+#### **Micro-Chunk 14.5: Conjugation Reference Table Layout Enhancement** ✅
+- **Table-Based Layout**: Converted block-based conjugation reference to clean table format with Person | Ending | Example columns
+- **Professional Table Design**: Implemented proper CSS Grid layout with consistent column alignment and spacing
+- **Enhanced Visual Hierarchy**: Person column left-aligned, Ending/Example columns center-aligned with distinct styling
+- **Interactive Elements**: Added hover effects and smooth transitions for better user engagement
+- **Improved Readability**: Better spacing, borders, and typography for easier scanning of conjugation patterns
+- **Responsive Table Design**: Maintains clean layout across different screen sizes and devices
+- **Theme Consistency**: Full integration with existing light/dark mode system
+
+#### **Micro-Chunk 14.6: Dark Mode UI Fixes & Button Enhancements** ✅
+- **Input Field Contrast**: Fixed text input visibility in dark mode for practice mode answer fields
+- **Mastery Button Styling**: Enhanced mastery button (☆/⭐) with proper dark mode contrast and theme-aware hover effects
+- **Next Button Styling**: Added complete styling for practice mode next button with professional gradients and animations
+- **CSS Variable System**: Created `--mastery-color` variable for consistent golden star color across themes
+- **Hover Effect Improvements**: Replaced hardcoded dark overlays with theme-aware background changes
+- **Button State Consistency**: Ensured all interactive elements work properly in both light and dark modes
+
 ### 🔄 Current State
 The application is **fully functional** with:
 - **Progress Dashboard**: Comprehensive overview of learning progress and statistics instead of verb grid
@@ -172,6 +189,8 @@ The application is **fully functional** with:
 - **Learning Analytics**: Real-time insights into learning gaps, priority areas, and neglected content
 - **Intelligent Practice Ordering**: Practice sessions automatically focus on what needs attention most
 - **Dark Mode Support**: Complete light/dark theme system with automatic system preference detection and persistent user choice
+- **Enhanced Conjugation Reference**: Professional table-based layout with improved readability and interactive elements
+- **Complete Dark Mode Support**: All UI elements now properly styled for both light and dark themes with consistent contrast
 
 ## 🎯 Key Features Implemented
 
@@ -436,9 +455,9 @@ When starting a new chat about this project:
 5. **Update this document** with any new implementations
 6. **Test thoroughly** after each change
 
-**Last Updated**: After Micro-Chunk 13 (Practice Mode Optimization) - Completed
-**Current Status**: Fully functional with streamlined interface, segmented control for practice modes, progress dashboard, comprehensive conjugation system, clean data model without difficulty classifications, smart selection algorithm with AI-powered practice prioritization, learning analytics, and intelligent practice ordering
-**Next Phase**: Micro-Chunk 14 (Settings Import/Export) - HIGH PRIORITY for data portability and backup
+**Last Updated**: After Micro-Chunk 14.6 (Dark Mode UI Fixes & Button Enhancements) - Completed
+**Current Status**: Fully functional with streamlined interface, segmented control for practice modes, progress dashboard, comprehensive conjugation system with enhanced table-based reference layout, clean data model without difficulty classifications, smart selection algorithm with AI-powered practice prioritization, learning analytics, intelligent practice ordering, complete dark mode support, and all UI contrast issues resolved
+**Next Phase**: Micro-Chunk 15 (Settings Import/Export) - HIGH PRIORITY for data portability and backup
 
 ---
 
