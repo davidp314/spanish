@@ -906,11 +906,20 @@ body {
   text-align: left;
 }
 
-.practice-mode-selector label {
+.practice-mode-selector label,
+.practice-type-selector label {
   font-weight: 600;
   color: var(--text-tertiary);
   white-space: nowrap;
   font-size: 0.9rem;
+}
+
+.practice-type-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0;
+  text-align: left;
 }
 
 

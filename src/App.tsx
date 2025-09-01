@@ -23,7 +23,7 @@ function App() {
           lastUpdated: parsed.lastUpdated || Date.now()
         };
       }
-    } catch (error) {
+    } catch {
       console.log('No saved state found or error loading state, using defaults');
     }
     return {
@@ -80,6 +80,7 @@ function App() {
   // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
   const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>(initialState.practiceMode);
+  const [practiceType, setPracticeType] = useState<'quiz' | 'mastery'>('quiz');
   // const [lastUpdated, setLastUpdated] = useState(initialState.lastUpdated); // No longer needed
   
   // Remove unused filter state variables
@@ -93,6 +94,7 @@ function App() {
   const [showReference, setShowReference] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
+  const [masteredInSession, setMasteredInSession] = useState<Set<string>>(new Set());
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -150,7 +152,7 @@ function App() {
     let orderedConjugations: Conjugation[];
     
     switch (practiceMode) {
-      case 'systematic':
+      case 'systematic': {
         // Group by verb, then order each verb's conjugations by priority
         const verbGroups = new Map<string, Conjugation[]>();
         conjugationsToPractice.forEach(conjugation => {
@@ -166,8 +168,9 @@ function App() {
           return orderSystematically(priorityOrdered);
         }).flat();
         break;
+      }
         
-      case 'random1':
+      case 'random1': {
         // Smart random: Use priority-weighted selection instead of pure randomness
         // Start with highest priority conjugations, then gradually introduce variety
         const highPriority = conjugationsToPractice.slice(0, Math.ceil(conjugationsToPractice.length * 0.7));
@@ -178,8 +181,9 @@ function App() {
         const shuffledRemaining = shuffleArray([...remaining]);
         orderedConjugations = [...shuffledHigh, ...shuffledRemaining];
         break;
+      }
         
-      case 'random2':
+      case 'random2': {
         // Smart systematic within verbs: Order verbs by priority, then systematic within each verb
         const verbPriorityMap = new Map<string, number>();
         conjugationsToPractice.forEach(conjugation => {
@@ -197,6 +201,7 @@ function App() {
           orderSystematically(conjugationsToPractice.filter(c => c.verb === verb))
         );
         break;
+      }
         
       default:
         orderedConjugations = conjugationsToPractice;
@@ -204,6 +209,7 @@ function App() {
     
     setPracticeSessionConjugations(orderedConjugations);
     setCurrentIndex(0);
+    setMasteredInSession(new Set()); // Clear mastery tracking for new session
     setIsPracticeMode(true);
   };
 
@@ -211,6 +217,7 @@ function App() {
     setIsPracticeMode(false);
     setCurrentIndex(0);
     setPracticeSessionConjugations([]); // Clear the frozen array
+    setMasteredInSession(new Set()); // Clear mastery tracking
   };
 
   const handleToggleMastery = (id: string) => {
@@ -233,16 +240,46 @@ function App() {
         return c;
       })
     );
+    
+    // Track mastery in current session for mastery mode
+    if (correct && practiceType === 'mastery') {
+      setMasteredInSession(prev => new Set(prev).add(id));
+    }
   };
 
   const handleNextCard = () => {
-    if (currentIndex < practiceSessionConjugations.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+    if (practiceType === 'quiz') {
+      // Quiz mode: go through once
+      if (currentIndex < practiceSessionConjugations.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        // Practice session complete
+        setIsPracticeMode(false);
+        setCurrentIndex(0);
+        setPracticeSessionConjugations([]);
+        setMasteredInSession(new Set());
+      }
     } else {
-      // Practice session complete
-      setIsPracticeMode(false);
-      setCurrentIndex(0);
-      setPracticeSessionConjugations([]); // Clear the frozen array
+      // Mastery mode: continue until all are correct
+      if (currentIndex < practiceSessionConjugations.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        // Check if all conjugations have been answered correctly
+        const allMastered = practiceSessionConjugations.every(c => masteredInSession.has(c.id));
+        
+        if (allMastered) {
+          // All mastered, end session
+          setIsPracticeMode(false);
+          setCurrentIndex(0);
+          setPracticeSessionConjugations([]);
+          setMasteredInSession(new Set());
+        } else {
+          // Continue with remaining conjugations
+          const remainingConjugations = practiceSessionConjugations.filter(c => !masteredInSession.has(c.id));
+          setPracticeSessionConjugations(remainingConjugations);
+          setCurrentIndex(0);
+        }
+      }
     }
   };
 
@@ -429,6 +466,25 @@ function App() {
                     title="Systematic within verbs, random between verbs"
                   >
                     Mixed
+                  </button>
+                </div>
+              </div>
+              <div className="practice-type-selector">
+                <label>Type:</label>
+                <div className="segmented-control">
+                  <button
+                    className={`segment ${practiceType === 'quiz' ? 'active' : ''}`}
+                    onClick={() => setPracticeType('quiz')}
+                    title="Go through each conjugation once and see results"
+                  >
+                    Quiz
+                  </button>
+                  <button
+                    className={`segment ${practiceType === 'mastery' ? 'active' : ''}`}
+                    onClick={() => setPracticeType('mastery')}
+                    title="Continue practicing until all conjugations are answered correctly"
+                  >
+                    Mastery
                   </button>
                 </div>
               </div>

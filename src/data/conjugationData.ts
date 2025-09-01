@@ -99,12 +99,12 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'poner-nosotros-present', english: 'we put', spanish: 'ponemos', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'poner-ellos-present', english: 'they put, you put (formal, plural)', spanish: 'ponen', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
 
-  // Irregular verbs: dejar (Present)
-  { id: 'dejar-yo-present', english: 'I leave/let', spanish: 'dejo', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'dejar-tu-present', english: 'you leave/let (informal, singular)', spanish: 'dejas', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'dejar-el-present', english: 'he/she leaves/lets, you leave/let (formal, singular)', spanish: 'deja', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'dejar-nosotros-present', english: 'we leave/let', spanish: 'dejamos', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'dejar-ellos-present', english: 'they leave/let, you leave/let (formal, plural)', spanish: 'dejan', verb: 'dejar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  // Regular -ar verbs: dejar (Present)
+  { id: 'dejar-yo-present', english: 'I leave/let', spanish: 'dejo', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-tu-present', english: 'you leave/let (informal, singular)', spanish: 'dejas', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-el-present', english: 'he/she leaves/lets, you leave/let (formal, singular)', spanish: 'deja', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-nosotros-present', english: 'we leave/let', spanish: 'dejamos', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-ellos-present', english: 'they leave/let, you leave/let (formal, plural)', spanish: 'dejan', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
 
   // Irregular verbs: decir (Present)
   { id: 'decir-yo-present', english: 'I say/tell', spanish: 'digo', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
@@ -177,7 +177,56 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'ir-tu-preterite', english: 'you went (informal, singular)', spanish: 'fuiste', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'ir-el-preterite', english: 'he/she went, you went (formal, singular)', spanish: 'fue', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'ir-nosotros-preterite', english: 'we went', spanish: 'fuimos', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'ir-ellos-preterite', english: 'they went, you went (formal, plural)', spanish: 'fueron', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'ir-ellos-preterite', english: 'they went, you went (formal, plural)', spanish: 'fueron', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: caminar (Preterite)
+  { id: 'caminar-yo-preterite', english: 'I walked', spanish: 'caminé', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-tu-preterite', english: 'you walked (informal, singular)', spanish: 'caminaste', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-el-preterite', english: 'he/she walked, you walked (formal, singular)', spanish: 'caminó', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-nosotros-preterite', english: 'we walked', spanish: 'caminamos', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-ellos-preterite', english: 'they walked, you walked (formal, plural)', spanish: 'caminaron', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: decir (Preterite)
+  { id: 'decir-yo-preterite', english: 'I said/told', spanish: 'dije', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-tu-preterite', english: 'you said/told (informal, singular)', spanish: 'dijiste', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-el-preterite', english: 'he/she said/told, you said/told (formal, singular)', spanish: 'dijo', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-nosotros-preterite', english: 'we said/told', spanish: 'dijimos', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-ellos-preterite', english: 'they said/told, you said/told (formal, plural)', spanish: 'dijeron', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: dejar (Preterite) - Note: dejar is actually regular, not irregular
+  { id: 'dejar-yo-preterite', english: 'I left/let', spanish: 'dejé', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-tu-preterite', english: 'you left/let (informal, singular)', spanish: 'dejaste', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-el-preterite', english: 'he/she left/let, you left/let (formal, singular)', spanish: 'dejó', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-nosotros-preterite', english: 'we left/let', spanish: 'dejamos', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-ellos-preterite', english: 'they left/let, you left/let (formal, plural)', spanish: 'dejaron', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: leer (Preterite)
+  { id: 'leer-yo-preterite', english: 'I read', spanish: 'leí', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-tu-preterite', english: 'you read (informal, singular)', spanish: 'leíste', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-el-preterite', english: 'he/she read, you read (formal, singular)', spanish: 'leyó', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-nosotros-preterite', english: 'we read', spanish: 'leímos', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-ellos-preterite', english: 'they read, you read (formal, plural)', spanish: 'leyeron', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: mentir (Preterite)
+  { id: 'mentir-yo-preterite', english: 'I lied', spanish: 'mentí', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-tu-preterite', english: 'you lied (informal, singular)', spanish: 'mentiste', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-el-preterite', english: 'he/she lied, you lied (formal, singular)', spanish: 'mintió', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-nosotros-preterite', english: 'we lied', spanish: 'mentimos', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-ellos-preterite', english: 'they lied, you lied (formal, plural)', spanish: 'mintieron', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: poder (Preterite)
+  { id: 'poder-yo-preterite', english: 'I could/was able to', spanish: 'pude', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-tu-preterite', english: 'you could/were able to (informal, singular)', spanish: 'pudiste', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-el-preterite', english: 'he/she could/was able to, you could/were able to (formal, singular)', spanish: 'pudo', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-nosotros-preterite', english: 'we could/were able to', spanish: 'pudimos', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-ellos-preterite', english: 'they could/were able to, you could/were able to (formal, plural)', spanish: 'pudieron', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: poner (Preterite)
+  { id: 'poner-yo-preterite', english: 'I put', spanish: 'puse', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-tu-preterite', english: 'you put (informal, singular)', spanish: 'pusiste', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-el-preterite', english: 'he/she put, you put (formal, singular)', spanish: 'puso', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-nosotros-preterite', english: 'we put', spanish: 'pusimos', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-ellos-preterite', english: 'they put, you put (formal, plural)', spanish: 'pusieron', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations

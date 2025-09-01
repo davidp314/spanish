@@ -1,0 +1,178 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Development Commands
+
+- `npm run dev` - Start development server with Vite
+- `npm run build` - Build for production (runs TypeScript compilation then Vite build)  
+- `npm run lint` - Run ESLint to check code quality
+- `npm run preview` - Preview the production build
+- `./start-dev.sh` - Startup script for consistent port 5173 usage (recommended)
+
+## Project Overview
+
+**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 15 essential Spanish verbs (150 total conjugations).
+
+### Current State
+- **Fully functional** with comprehensive conjugation system
+- **Smart learning algorithm** with AI-powered practice prioritization  
+- **Dark/light mode** with system preference detection
+- **Progress dashboard** instead of traditional verb grid browsing
+- **Dual practice system** with three ordering modes and two practice types
+- **Verb selection system** with individual tense control
+- **Professional UI** with animations, modals, and responsive design
+
+## Code Architecture
+
+### Core Application Flow
+- `App.tsx` (704 lines) - Main component handling all state and logic
+- Two primary modes: **Browse Mode** (progress dashboard) and **Practice Mode** (flashcards)
+- State persisted to localStorage for progress tracking across sessions
+- **Theme system** with React context and CSS variables
+
+### Key State Management
+- `conjugations`: Array of all verb conjugations with progress tracking
+- `selectedVerbs`: User-selected verbs to practice 
+- `practiceMode`: Practice ordering strategy ('systematic', 'random1', 'random2')
+- `practiceType`: Practice completion behavior ('quiz', 'mastery')
+- `practiceSessionConjugations`: Frozen array for stable practice sessions
+- `masteredInSession`: Set tracking correct answers in mastery mode
+- Theme state managed via React context with localStorage persistence
+
+### Data Structure
+
+**Conjugation Interface** (`src/data/conjugationData.ts`):
+```typescript
+interface Conjugation {
+  id: string;
+  english: string; 
+  spanish: string;
+  verb: string;
+  type: 'regular' | 'irregular';
+  conjugation: 'ar' | 'er' | 'ir';
+  person: 'yo' | 'tú' | 'él/ella/usted' | 'nosotros' | 'ellos/ellas/ustedes';
+  tense: 'present' | 'preterite';
+  mastered: boolean;
+  lastPracticed?: number; // timestamp for spaced repetition
+  practiceCount: number;
+  correctCount: number;
+}
+```
+
+**Note:** The `difficulty` property and verb set system were removed in favor of performance-based smart selection.
+
+### Smart Learning System
+
+**Spaced Repetition:** 
+- `shouldPractice()` determines when conjugations need review
+- `getSpacedRepetitionInterval()` calculates intervals based on accuracy (0-7 days)
+
+**Priority Algorithm:** 
+`calculatePracticePriority()` scores conjugations (0-22+ points) based on:
+- Mastery status (unmastered = +10 points) 
+- Time since last practice (+5 max for 2+ weeks, +5 for never practiced)
+- Success rate (struggling <60% accuracy = +4 points)
+- Verb complexity (irregular = +2 points)  
+- Tense complexity (preterite = +1 point)
+
+**Smart Practice System:**
+
+*Practice Modes (ordering):*
+- **Systematic:** Priority-ordered verbs, systematic conjugation order within each verb
+- **Random:** Smart weighted selection (70% high priority, 30% remaining), shuffled
+- **Mixed:** Verbs ordered by highest priority conjugation, systematic within each verb
+
+*Practice Types (completion behavior):*
+- **Quiz:** Go through each conjugation once, then show results and return to dashboard
+- **Mastery:** Continue practicing until all conjugations are answered correctly at least once
+
+### Key Components
+
+- `Flashcard.tsx` - Interactive practice cards with Spanish accent keyboard
+- `VerbSelectionModal.tsx` - Comprehensive verb/tense selection with search
+- `ConjugationReference.tsx` - Professional table-based conjugation patterns reference
+- `ThemeToggle.tsx` - Dark/light mode toggle with moon/sun icons
+- `ThemeContext.tsx` - Theme state management and system preference detection
+- `VerbCard.tsx` - Individual conjugation display (used in modals)
+
+### Architecture Notes
+
+**Current Limitations:**
+- `App.tsx` is monolithic (704 lines) - needs refactoring into custom hooks
+- Mixed UI/business logic concerns
+- State management complexity with multiple related variables
+
+**Technology Stack:**
+- React 18 + TypeScript + Vite
+- Custom CSS with CSS variables for theming (Tailwind was attempted but caused issues)
+- localStorage for persistence
+- No external state management library
+
+## Known Issues & Solutions
+
+### Resolved Issues ✅
+- **Port consistency:** Fixed with `start-dev.sh` script
+- **Practice session stability:** Implemented frozen practice arrays
+- **Dark mode contrast:** All UI elements properly styled for both themes
+- **Card state persistence:** Fixed unexpected card changes during practice
+- **Keyboard navigation:** Enter key support for practice flow
+
+### Current Limitations
+- **No cloud sync:** Progress is local only
+- **Single-user:** No user accounts system
+- **Basic spaced repetition:** Could be enhanced further
+- **No audio:** No pronunciation support
+
+### High Priority for Future Development
+- **Settings Import/Export:** Backup and restore progress/settings
+- **App.tsx Refactoring:** Extract logic into custom hooks
+- **Advanced Learning Modes:** Pattern recognition, sentence building
+
+## Development Guidelines
+
+### Micro-Chunk Approach
+- Implement features in small, testable increments
+- Test thoroughly after each chunk
+- Clear success criteria for each phase
+- Maintain rollback capability
+
+### Code Quality Standards
+- TypeScript for type safety
+- Component-based architecture with proper props interfaces
+- Consistent naming conventions
+- Responsive design with efficient space utilization
+- CSS variables for theme consistency
+
+### Key Files to Understand
+- `src/App.tsx` - Main application logic (needs refactoring)
+- `src/data/conjugationData.ts` - All conjugation data and smart algorithms
+- `src/components/Flashcard.tsx` - Core practice functionality
+- `src/contexts/ThemeContext.tsx` - Theme system
+- `src/App.css` - All styles with CSS variables for theming
+- `start-dev.sh` - Development server management
+
+## Troubleshooting
+
+### Common Issues
+- **Port 5173 in use:** Use `./start-dev.sh` script
+- **Theme not persisting:** Check localStorage and ThemeContext
+- **Practice session instability:** Ensure `practiceSessionConjugations` is used consistently
+- **Dark mode styling issues:** Verify CSS variables usage
+
+### Debug Commands
+```bash
+# Kill development servers and restart
+pkill -f "npm run dev"
+./start-dev.sh
+
+# Check port usage
+lsof -i:5173
+```
+
+### Success Indicators
+- No console errors during operation
+- Smooth theme transitions
+- Stable practice sessions without unexpected card changes
+- Proper contrast in both light and dark modes
+- Fast response times and intuitive interface

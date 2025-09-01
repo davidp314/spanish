@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import type { Conjugation } from '../data/conjugationData';
 
 interface FlashcardProps {
@@ -20,6 +20,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [showResult, setShowResult] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -100,6 +101,20 @@ const Flashcard: React.FC<FlashcardProps> = ({
     onMastered(conjugation.id);
   };
 
+  const addAccentCharacter = (character: string) => {
+    setUserAnswer(prev => {
+      const newValue = prev + character;
+      // Refocus the input field and set cursor to end after clicking accent button
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.setSelectionRange(newValue.length, newValue.length);
+        }
+      }, 0);
+      return newValue;
+    });
+  };
+
   const getPersonColor = (person: string) => {
     const personColors: { [key: string]: string } = {
       'yo': 'bg-pink-100 text-pink-800',
@@ -159,7 +174,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
           <div className="accent-keyboard">
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'á')}
+              onClick={() => addAccentCharacter('á')}
               className="accent-button"
               title="á (Press 1)"
             >
@@ -167,7 +182,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'é')}
+              onClick={() => addAccentCharacter('é')}
               className="accent-button"
               title="é (Press 2)"
             >
@@ -175,7 +190,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'í')}
+              onClick={() => addAccentCharacter('í')}
               className="accent-button"
               title="í (Press 3)"
             >
@@ -183,7 +198,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'ó')}
+              onClick={() => addAccentCharacter('ó')}
               className="accent-button"
               title="ó (Press 4)"
             >
@@ -191,7 +206,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'ú')}
+              onClick={() => addAccentCharacter('ú')}
               className="accent-button"
               title="ú (Press 5)"
             >
@@ -199,7 +214,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'ñ')}
+              onClick={() => addAccentCharacter('ñ')}
               className="accent-button"
               title="ñ (Press 6)"
             >
@@ -207,7 +222,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + 'ü')}
+              onClick={() => addAccentCharacter('ü')}
               className="accent-button"
               title="ü (Press 7)"
             >
@@ -215,7 +230,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + '¿')}
+              onClick={() => addAccentCharacter('¿')}
               className="accent-button"
               title="¿ (Press 8)"
             >
@@ -223,7 +238,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
             <button
               type="button"
-              onClick={() => setUserAnswer(prev => prev + '¡')}
+              onClick={() => addAccentCharacter('¡')}
               className="accent-button"
               title="¡ (Press 9)"
             >
@@ -231,6 +246,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
             </button>
           </div>
           <input
+            ref={inputRef}
             type="text"
             value={userAnswer}
             onChange={(e) => setUserAnswer(e.target.value)}

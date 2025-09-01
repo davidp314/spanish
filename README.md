@@ -5,8 +5,8 @@ A modern React application for learning Spanish verb conjugations through intera
 ## ✨ Features
 
 ### 🎓 Learning Modes
-- **Browse Mode**: View all verb conjugations in a grid layout with advanced filtering
-- **Practice Mode**: Interactive flashcards with spaced repetition algorithm
+- **Browse Mode**: Progress dashboard with smart learning algorithm and verb selection
+- **Practice Mode**: Interactive flashcards with dual practice system (Quiz/Mastery) and spaced repetition
 - **Reference Mode**: Comprehensive conjugation pattern reference for quick lookup
 - **Progress Tracking**: Monitor mastery of individual conjugations over time
 
@@ -89,10 +89,12 @@ spanish/
 4. **Track Progress**: Monitor mastery status and practice statistics
 
 ### Practice Mode
-1. **Enter Practice**: Click "🎯 Practice Mode" button
-2. **Study Conjugations**: Practice with spaced repetition algorithm
+1. **Select Practice Options**: Choose ordering mode (Systematic/Random/Mixed) and practice type (Quiz/Mastery)
+2. **Start Practice**: Click "🚀 Start Practice" to begin with conjugations prioritized by spaced repetition
 3. **Answer Input**: Type Spanish answers before revealing correct responses
-4. **Track Mastery**: Mark conjugations as mastered during practice
+4. **Practice Types**:
+   - **Quiz Mode**: Go through each conjugation once, then return to dashboard with results
+   - **Mastery Mode**: Continue practicing until all conjugations are answered correctly
 
 ### Reference Mode
 1. **Access Reference**: Click "📚 Reference" button for conjugation patterns
