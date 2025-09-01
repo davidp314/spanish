@@ -19,7 +19,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Smart learning algorithm** with AI-powered practice prioritization  
 - **Dark/light mode** with system preference detection
 - **Progress dashboard** instead of traditional verb grid browsing
-- **Dual practice system** with three ordering modes and two practice types
+- **Dual practice system** with three ordering modes, two practice types, and contextual smart/manual modes
 - **Verb selection system** with individual tense control
 - **Professional UI** with animations, modals, and responsive design
 
@@ -86,6 +86,14 @@ interface Conjugation {
 *Practice Types (completion behavior):*
 - **Quiz:** Go through each conjugation once, then show results and return to dashboard
 - **Mastery:** Continue practicing until all conjugations are answered correctly at least once
+
+*Practice Modes (selection behavior):*
+- **Smart Mode:** Uses spaced repetition algorithm to determine which conjugations are due
+- **Manual Mode:** Practices all selected conjugations regardless of spaced repetition timing
+
+**Contextual Practice Interface:** The practice button adapts based on spaced repetition status:
+- When conjugations are due: Shows "Start Practice" (smart mode) with "Manual Practice" link
+- When 0 conjugations due: Shows "Practice Selected" (manual mode) as primary option
 
 ### Key Components
 

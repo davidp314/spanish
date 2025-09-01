@@ -142,11 +142,20 @@ function App() {
     return selectedConjugations.filter(shouldPractice);
   };
 
-  const handleStartPractice = () => {
-    // Get conjugations that should be practiced using smart selection
-    const conjugationsToPractice = getSmartPracticeConjugations(
-      conjugations.filter(conjugation => selectedVerbs.includes(conjugation.verb))
+  // Get all selected conjugations (for manual practice mode)
+  const getSelectedConjugations = () => {
+    return conjugations.filter(conjugation => 
+      selectedVerbs.includes(conjugation.verb)
     );
+  };
+
+  const handleStartPractice = (manualMode: boolean = false) => {
+    // Get conjugations to practice - either smart or manual mode
+    const conjugationsToPractice = manualMode 
+      ? getSelectedConjugations()
+      : getSmartPracticeConjugations(
+          conjugations.filter(conjugation => selectedVerbs.includes(conjugation.verb))
+        );
     
     // Apply practice mode ordering with smart selection
     let orderedConjugations: Conjugation[];
@@ -488,13 +497,31 @@ function App() {
                   </button>
                 </div>
               </div>
-              <button 
-                onClick={handleStartPractice}
-                className="practice-button"
-                disabled={getConjugationsToPractice().length === 0}
-              >
-                🚀 Start Practice ({getConjugationsToPractice().length} due)
-              </button>
+              {getConjugationsToPractice().length > 0 ? (
+                <button 
+                  onClick={() => handleStartPractice(false)}
+                  className="practice-button"
+                >
+                  🚀 Start Practice ({getConjugationsToPractice().length} due)
+                </button>
+              ) : (
+                <button 
+                  onClick={() => handleStartPractice(true)}
+                  className="practice-button manual-practice"
+                  disabled={getSelectedConjugations().length === 0}
+                >
+                  📝 Practice Selected ({getSelectedConjugations().length} verbs)
+                </button>
+              )}
+              {getConjugationsToPractice().length > 0 && (
+                <button 
+                  onClick={() => handleStartPractice(true)}
+                  className="manual-practice-link"
+                  disabled={getSelectedConjugations().length === 0}
+                >
+                  Manual Practice
+                </button>
+              )}
             </div>
             
             {/* Remove the duplicate dropdown that was causing confusion */}

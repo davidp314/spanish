@@ -90,11 +90,16 @@ spanish/
 
 ### Practice Mode
 1. **Select Practice Options**: Choose ordering mode (Systematic/Random/Mixed) and practice type (Quiz/Mastery)
-2. **Start Practice**: Click "🚀 Start Practice" to begin with conjugations prioritized by spaced repetition
+2. **Contextual Practice**: Interface adapts based on spaced repetition status
+   - **When verbs are due**: "🚀 Start Practice" (smart mode) with "Manual Practice" link
+   - **When 0 verbs due**: "📝 Practice Selected" (manual mode) as primary option
 3. **Answer Input**: Type Spanish answers before revealing correct responses
 4. **Practice Types**:
    - **Quiz Mode**: Go through each conjugation once, then return to dashboard with results
    - **Mastery Mode**: Continue practicing until all conjugations are answered correctly
+5. **Practice Modes**:
+   - **Smart Mode**: Uses spaced repetition algorithm for optimal timing
+   - **Manual Mode**: Practice all selected verbs regardless of timing
 
 ### Reference Mode
 1. **Access Reference**: Click "📚 Reference" button for conjugation patterns

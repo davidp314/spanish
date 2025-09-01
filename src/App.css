@@ -417,6 +417,26 @@ body {
   cursor: not-allowed;
 }
 
+.manual-practice-link {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+.manual-practice-link:hover:not(:disabled) {
+  color: var(--accent-primary);
+}
+
+.manual-practice-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .reset-button {
   background: var(--gradient-danger);
   color: white;
