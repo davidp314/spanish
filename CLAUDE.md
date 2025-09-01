@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 15 essential Spanish verbs (150 total conjugations).
+**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 16 essential Spanish verbs (160 total conjugations).
 
 ### Current State
 - **Fully functional** with comprehensive conjugation system
@@ -123,6 +123,12 @@ interface Conjugation {
 - **Single-user:** No user accounts system
 - **Basic spaced repetition:** Could be enhanced further
 - **No audio:** No pronunciation support
+
+### Verb Addition Policy
+**Default behavior:** Unless otherwise instructed, when adding new verbs to the application, always include both present and preterite tense conjugations for all persons (yo, tú, él/ella/usted, nosotros, ellos/ellas/ustedes). This maintains consistency with the existing conjugation system and ensures complete coverage for each verb.
+
+### Documentation Update Policy
+**"Update our documents"** refers to updating CLAUDE.md and README.md as necessary, while avoiding documentation bloat. Focus on essential information and keep updates concise and relevant to the actual changes made.
 
 ### High Priority for Future Development
 - **Settings Import/Export:** Backup and restore progress/settings
