@@ -20,6 +20,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [showResult, setShowResult] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
+  const [showVerb, setShowVerb] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFlip = () => {
@@ -142,7 +143,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
         </div>
         
         <div className="verb-root">
-          <strong>Verb:</strong> {conjugation.verb}
+          <strong>Verb:</strong> {showVerb ? conjugation.verb : '***'}
+          <button
+            onClick={() => setShowVerb(!showVerb)}
+            className="verb-toggle"
+            title={showVerb ? "Hide verb" : "Show verb"}
+            type="button"
+          >
+            {showVerb ? '👁️' : '👁️‍🗨️'}
+          </button>
         </div>
       </div>
 

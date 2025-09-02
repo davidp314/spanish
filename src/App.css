@@ -617,6 +617,31 @@ body {
   padding: 0.5rem;
   background: var(--bg-stats);
   border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.verb-toggle {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.verb-toggle:hover {
+  opacity: 1;
+  background: var(--bg-segment-hover);
+  transform: scale(1.1);
+}
+
+.verb-toggle:active {
+  transform: scale(0.95);
 }
 
 .conjugation-badges {
@@ -1180,7 +1205,9 @@ body {
   padding: 0.4rem;
   background: var(--bg-stats);
   border-radius: 0.5rem;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .flashcard {
