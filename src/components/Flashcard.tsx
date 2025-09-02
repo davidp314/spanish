@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import type { Conjugation } from '../data/conjugationData';
+import ConjugationReferenceModal from './ConjugationReferenceModal';
 
 interface FlashcardProps {
   conjugation: Conjugation;
@@ -7,6 +8,7 @@ interface FlashcardProps {
   onMastered: (id: string) => void;
   onPracticeResult: (id: string, correct: boolean) => void;
   isLast: boolean;
+  allConjugations: Conjugation[];
 }
 
 const Flashcard: React.FC<FlashcardProps> = ({ 
@@ -14,13 +16,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
   onNext, 
   onMastered, 
   onPracticeResult,
-  isLast 
+  isLast,
+  allConjugations 
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
   const [showVerb, setShowVerb] = useState(false);
+  const [showReferenceModal, setShowReferenceModal] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFlip = () => {
@@ -275,6 +279,16 @@ const Flashcard: React.FC<FlashcardProps> = ({
         </div>
       )}
 
+      <div className="flashcard-reference">
+        <button 
+          onClick={() => setShowReferenceModal(true)}
+          className="reference-button"
+          type="button"
+        >
+          Reference
+        </button>
+      </div>
+
       <div className="flashcard-actions">
         <button 
           onClick={handleMastered}
@@ -298,6 +312,13 @@ const Flashcard: React.FC<FlashcardProps> = ({
           Accuracy: {conjugation.practiceCount > 0 ? Math.round((conjugation.correctCount / conjugation.practiceCount) * 100) : 0}%
         </small>
       </div>
+
+      <ConjugationReferenceModal
+        isOpen={showReferenceModal}
+        onClose={() => setShowReferenceModal(false)}
+        allConjugations={allConjugations}
+        currentConjugation={conjugation}
+      />
     </div>
   );
 };

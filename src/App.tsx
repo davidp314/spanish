@@ -368,6 +368,7 @@ function App() {
             onMastered={handleToggleMastery}
             onPracticeResult={handlePracticeResult}
             isLast={isLastCard}
+            allConjugations={conjugations}
           />
         </div>
       </div>

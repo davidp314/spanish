@@ -22,6 +22,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Dual practice system** with three ordering modes, two practice types, and contextual smart/manual modes
 - **Verb selection system** with individual tense control
 - **Verb visibility toggle** with eye icon to hide/show verbs during practice for increased difficulty
+- **Contextual conjugation reference** with modal showing full verb conjugation table during practice
 - **Professional UI** with animations, modals, and responsive design
 
 ## Code Architecture
@@ -98,9 +99,10 @@ interface Conjugation {
 
 ### Key Components
 
-- `Flashcard.tsx` - Interactive practice cards with Spanish accent keyboard and verb visibility toggle
+- `Flashcard.tsx` - Interactive practice cards with Spanish accent keyboard, verb visibility toggle, and conjugation reference modal
 - `VerbSelectionModal.tsx` - Comprehensive verb/tense selection with search
 - `ConjugationReference.tsx` - Professional table-based conjugation patterns reference
+- `ConjugationReferenceModal.tsx` - Contextual verb conjugation reference during practice
 - `ThemeToggle.tsx` - Dark/light mode toggle with moon/sun icons
 - `ThemeContext.tsx` - Theme state management and system preference detection
 - `VerbCard.tsx` - Individual conjugation display (used in modals)
