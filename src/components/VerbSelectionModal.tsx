@@ -7,6 +7,7 @@ interface VerbSelectionModalProps {
   onClose: () => void;
   allConjugations: Conjugation[];
   selectedVerbs: string[];
+  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } };
   onSaveSelection: (selectedVerbs: string[], selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => void;
 }
 
@@ -26,12 +27,13 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   onClose,
   allConjugations,
   selectedVerbs,
+  selectedTenses,
   onSaveSelection
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchMode, setSearchMode] = useState<'spanish' | 'english'>('spanish');
   const [localSelectedVerbs, setLocalSelectedVerbs] = useState<string[]>(selectedVerbs);
-  const [localSelectedTenses, setLocalSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>({});
+  const [localSelectedTenses, setLocalSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(selectedTenses);
 
   // Extract unique verbs from conjugations
   const uniqueVerbs = useMemo(() => {
@@ -80,15 +82,16 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       setLocalSelectedVerbs(selectedVerbs);
+      setLocalSelectedTenses(selectedTenses);
     }
-  }, [isOpen, selectedVerbs]);
+  }, [isOpen, selectedVerbs, selectedTenses]);
 
   const handleVerbToggle = (verb: string) => {
-    setLocalSelectedVerbs(prev => 
-      prev.includes(verb) 
+    setLocalSelectedVerbs(prev => {
+      return prev.includes(verb) 
         ? prev.filter(v => v !== verb)
-        : [...prev, verb]
-    );
+        : [...prev, verb];
+    });
   };
 
   const handleTenseToggle = (verb: string, tense: 'present' | 'preterite') => {
@@ -106,8 +109,6 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
       if (verbTenses && !verbTenses.present && !verbTenses.preterite) {
         // Auto-deselect the verb if no tenses are selected
         setLocalSelectedVerbs(prev => prev.filter(v => v !== verb));
-        // Show visual feedback (could be enhanced with a toast notification)
-        console.log(`Verb '${verb}' auto-deselected - no tenses chosen`);
       }
       
       return newTenses;
@@ -146,6 +147,7 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
 
   const handleCancel = () => {
     setLocalSelectedVerbs(selectedVerbs);
+    setLocalSelectedTenses(selectedTenses);
     onClose();
   };
 

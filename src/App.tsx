@@ -14,11 +14,29 @@ function App() {
       const savedState = localStorage.getItem('spanishConjugationsState');
       if (savedState) {
         const parsed = JSON.parse(savedState);
+        
+        // IMPORTANT: Always use the latest allConjugations as the source of truth
+        // Merge saved progress data with latest conjugation definitions
+        const mergedConjugations = allConjugations.map(current => {
+          const saved = parsed.conjugations?.find((c: any) => c.id === current.id);
+          if (saved) {
+            return {
+              ...current, // Use current definition
+              mastered: saved.mastered || false,
+              practiceCount: saved.practiceCount || 0,
+              correctCount: saved.correctCount || 0,
+              lastPracticed: saved.lastPracticed
+            };
+          }
+          return { ...current };
+        });
+        
         return {
-          conjugations: parsed.conjugations || allConjugations.map(c => ({ ...c })),
+          conjugations: mergedConjugations,
           currentIndex: parsed.currentIndex || 0,
           isPracticeMode: parsed.isPracticeMode || false,
           selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(),
+          selectedTenses: parsed.selectedTenses || {},
           practiceMode: parsed.practiceMode || 'systematic',
           lastUpdated: parsed.lastUpdated || Date.now()
         };
@@ -31,6 +49,7 @@ function App() {
       currentIndex: 0,
       isPracticeMode: false,
       selectedVerbs: getUniqueVerbs(),
+      selectedTenses: {},
       practiceMode: 'systematic',
       lastUpdated: Date.now()
     };
@@ -79,6 +98,7 @@ function App() {
   const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
   // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
+  const [selectedTenses, setSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(initialState.selectedTenses || {});
   const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>(initialState.practiceMode);
   const [practiceType, setPracticeType] = useState<'quiz' | 'mastery'>('mastery');
   // const [lastUpdated, setLastUpdated] = useState(initialState.lastUpdated); // No longer needed
@@ -104,11 +124,12 @@ function App() {
       isPracticeMode,
       // selectedVerbSet, // No longer needed
       selectedVerbs,
+      selectedTenses,
       practiceMode,
       lastUpdated: Date.now()
     };
     localStorage.setItem('spanishConjugationsState', JSON.stringify(stateToSave));
-  }, [conjugations, currentIndex, isPracticeMode, selectedVerbs, practiceMode]);
+  }, [conjugations, currentIndex, isPracticeMode, selectedVerbs, selectedTenses, practiceMode]);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -131,12 +152,27 @@ function App() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Helper function to check if a conjugation is selected (verb + tense)
+  const isConjugationSelected = (conjugation: Conjugation): boolean => {
+    if (!selectedVerbs.includes(conjugation.verb)) {
+      return false;
+    }
+    
+    const verbTenses = selectedTenses[conjugation.verb];
+    
+    // If no specific tenses selected for this verb, include all tenses
+    if (!verbTenses) {
+      return true;
+    }
+    
+    // Check if this specific tense is selected
+    return verbTenses[conjugation.tense] || false;
+  };
+
   // Get conjugations that should be practiced (spaced repetition)
   const getConjugationsToPractice = () => {
-    // Filter by selected verbs first
-    const selectedConjugations = conjugations.filter(conjugation => 
-      selectedVerbs.includes(conjugation.verb)
-    );
+    // Filter by selected verbs and tenses first
+    const selectedConjugations = conjugations.filter(isConjugationSelected);
     
     // Then apply spaced repetition logic
     return selectedConjugations.filter(shouldPractice);
@@ -144,9 +180,7 @@ function App() {
 
   // Get all selected conjugations (for manual practice mode)
   const getSelectedConjugations = () => {
-    return conjugations.filter(conjugation => 
-      selectedVerbs.includes(conjugation.verb)
-    );
+    return conjugations.filter(isConjugationSelected);
   };
 
   const handleStartPractice = (manualMode: boolean = false) => {
@@ -154,7 +188,7 @@ function App() {
     const conjugationsToPractice = manualMode 
       ? getSelectedConjugations()
       : getSmartPracticeConjugations(
-          conjugations.filter(conjugation => selectedVerbs.includes(conjugation.verb))
+          conjugations.filter(isConjugationSelected)
         );
     
     // Apply practice mode ordering with smart selection
@@ -294,8 +328,7 @@ function App() {
 
   const handleVerbSelectionSave = (newSelectedVerbs: string[], newSelectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => {
     setSelectedVerbs(newSelectedVerbs);
-    // TODO: Store tense selections for future use in practice mode
-    console.log('Tense selections:', newSelectedTenses);
+    setSelectedTenses(newSelectedTenses);
   };
 
   const handleResetProgress = () => {
@@ -682,6 +715,7 @@ function App() {
           onClose={() => setShowVerbSelection(false)}
           allConjugations={allConjugations}
           selectedVerbs={selectedVerbs}
+          selectedTenses={selectedTenses}
           onSaveSelection={handleVerbSelectionSave}
         />
 

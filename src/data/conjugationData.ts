@@ -125,7 +125,56 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'querer-tu-present', english: 'you want (informal, singular)', spanish: 'quieres', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'querer-el-present', english: 'he/she wants, you want (formal, singular)', spanish: 'quiere', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'querer-nosotros-present', english: 'we want', spanish: 'queremos', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'querer-ellos-present', english: 'they want, you want (formal, plural)', spanish: 'quieren', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'querer-ellos-present', english: 'they want, you want (formal, plural)', spanish: 'quieren', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: traer (Present)
+  { id: 'traer-yo-present', english: 'I bring', spanish: 'traigo', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-tu-present', english: 'you bring (informal, singular)', spanish: 'traes', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-el-present', english: 'he/she brings, you bring (formal, singular)', spanish: 'trae', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-nosotros-present', english: 'we bring', spanish: 'traemos', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-ellos-present', english: 'they bring, you bring (formal, plural)', spanish: 'traen', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: saber (Present)
+  { id: 'saber-yo-present', english: 'I know', spanish: 'sé', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-tu-present', english: 'you know (informal, singular)', spanish: 'sabes', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-el-present', english: 'he/she knows, you know (formal, singular)', spanish: 'sabe', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-nosotros-present', english: 'we know', spanish: 'sabemos', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-ellos-present', english: 'they know, you know (formal, plural)', spanish: 'saben', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: caerse (Present)
+  { id: 'caerse-yo-present', english: 'I fall down', spanish: 'me caigo', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-tu-present', english: 'you fall down (informal, singular)', spanish: 'te caes', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-el-present', english: 'he/she falls down, you fall down (formal, singular)', spanish: 'se cae', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-nosotros-present', english: 'we fall down', spanish: 'nos caemos', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-ellos-present', english: 'they fall down, you fall down (formal, plural)', spanish: 'se caen', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: buscar (Present)
+  { id: 'buscar-yo-present', english: 'I look for', spanish: 'busco', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-tu-present', english: 'you look for (informal, singular)', spanish: 'buscas', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-el-present', english: 'he/she looks for, you look for (formal, singular)', spanish: 'busca', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-nosotros-present', english: 'we look for', spanish: 'buscamos', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-ellos-present', english: 'they look for, you look for (formal, plural)', spanish: 'buscan', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: mirar (Present)
+  { id: 'mirar-yo-present', english: 'I look at', spanish: 'miro', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-tu-present', english: 'you look at (informal, singular)', spanish: 'miras', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-el-present', english: 'he/she looks at, you look at (formal, singular)', spanish: 'mira', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-nosotros-present', english: 'we look at', spanish: 'miramos', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-ellos-present', english: 'they look at, you look at (formal, plural)', spanish: 'miran', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: encontrar (Present) - stem change o→ue
+  { id: 'encontrar-yo-present', english: 'I find', spanish: 'encuentro', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-tu-present', english: 'you find (informal, singular)', spanish: 'encuentras', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-el-present', english: 'he/she finds, you find (formal, singular)', spanish: 'encuentra', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-nosotros-present', english: 'we find', spanish: 'encontramos', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-ellos-present', english: 'they find, you find (formal, plural)', spanish: 'encuentran', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: esconder (Present)
+  { id: 'esconder-yo-present', english: 'I hide', spanish: 'escondo', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-tu-present', english: 'you hide (informal, singular)', spanish: 'escondes', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-el-present', english: 'he/she hides, you hide (formal, singular)', spanish: 'esconde', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-nosotros-present', english: 'we hide', spanish: 'escondemos', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-ellos-present', english: 'they hide, you hide (formal, plural)', spanish: 'esconden', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -240,7 +289,56 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'querer-tu-preterite', english: 'you wanted (informal, singular)', spanish: 'quisiste', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'querer-el-preterite', english: 'he/she wanted, you wanted (formal, singular)', spanish: 'quiso', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'querer-nosotros-preterite', english: 'we wanted', spanish: 'quisimos', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'querer-ellos-preterite', english: 'they wanted, you wanted (formal, plural)', spanish: 'quisieron', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'querer-ellos-preterite', english: 'they wanted, you wanted (formal, plural)', spanish: 'quisieron', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: traer (Preterite)
+  { id: 'traer-yo-preterite', english: 'I brought', spanish: 'traje', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-tu-preterite', english: 'you brought (informal, singular)', spanish: 'trajiste', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-el-preterite', english: 'he/she brought, you brought (formal, singular)', spanish: 'trajo', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-nosotros-preterite', english: 'we brought', spanish: 'trajimos', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-ellos-preterite', english: 'they brought, you brought (formal, plural)', spanish: 'trajeron', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: saber (Preterite)
+  { id: 'saber-yo-preterite', english: 'I knew', spanish: 'supe', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-tu-preterite', english: 'you knew (informal, singular)', spanish: 'supiste', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-el-preterite', english: 'he/she knew, you knew (formal, singular)', spanish: 'supo', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-nosotros-preterite', english: 'we knew', spanish: 'supimos', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-ellos-preterite', english: 'they knew, you knew (formal, plural)', spanish: 'supieron', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: caerse (Preterite)
+  { id: 'caerse-yo-preterite', english: 'I fell down', spanish: 'me caí', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-tu-preterite', english: 'you fell down (informal, singular)', spanish: 'te caíste', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-el-preterite', english: 'he/she fell down, you fell down (formal, singular)', spanish: 'se cayó', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-nosotros-preterite', english: 'we fell down', spanish: 'nos caímos', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-ellos-preterite', english: 'they fell down, you fell down (formal, plural)', spanish: 'se cayeron', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: buscar (Preterite) - Note: spelling change c→qu before é
+  { id: 'buscar-yo-preterite', english: 'I looked for', spanish: 'busqué', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-tu-preterite', english: 'you looked for (informal, singular)', spanish: 'buscaste', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-el-preterite', english: 'he/she looked for, you looked for (formal, singular)', spanish: 'buscó', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-nosotros-preterite', english: 'we looked for', spanish: 'buscamos', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-ellos-preterite', english: 'they looked for, you looked for (formal, plural)', spanish: 'buscaron', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: mirar (Preterite)
+  { id: 'mirar-yo-preterite', english: 'I looked at', spanish: 'miré', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-tu-preterite', english: 'you looked at (informal, singular)', spanish: 'miraste', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-el-preterite', english: 'he/she looked at, you looked at (formal, singular)', spanish: 'miró', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-nosotros-preterite', english: 'we looked at', spanish: 'miramos', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-ellos-preterite', english: 'they looked at, you looked at (formal, plural)', spanish: 'miraron', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: encontrar (Preterite) - no stem change in preterite
+  { id: 'encontrar-yo-preterite', english: 'I found', spanish: 'encontré', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-tu-preterite', english: 'you found (informal, singular)', spanish: 'encontraste', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-el-preterite', english: 'he/she found, you found (formal, singular)', spanish: 'encontró', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-nosotros-preterite', english: 'we found', spanish: 'encontramos', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-ellos-preterite', english: 'they found, you found (formal, plural)', spanish: 'encontraron', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: esconder (Preterite)
+  { id: 'esconder-yo-preterite', english: 'I hid', spanish: 'escondí', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-tu-preterite', english: 'you hid (informal, singular)', spanish: 'escondiste', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-el-preterite', english: 'he/she hid, you hid (formal, singular)', spanish: 'escondió', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-nosotros-preterite', english: 'we hid', spanish: 'escondimos', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-ellos-preterite', english: 'they hid, you hid (formal, plural)', spanish: 'escondieron', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations
