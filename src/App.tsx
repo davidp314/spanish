@@ -80,7 +80,7 @@ function App() {
   // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
   const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>(initialState.practiceMode);
-  const [practiceType, setPracticeType] = useState<'quiz' | 'mastery'>('quiz');
+  const [practiceType, setPracticeType] = useState<'quiz' | 'mastery'>('mastery');
   // const [lastUpdated, setLastUpdated] = useState(initialState.lastUpdated); // No longer needed
   
   // Remove unused filter state variables
