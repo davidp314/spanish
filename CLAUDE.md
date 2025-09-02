@@ -87,7 +87,7 @@ interface Conjugation {
 
 *Practice Types (completion behavior):*
 - **Quiz:** Go through each conjugation once, then show results and return to dashboard
-- **Mastery:** Continue practicing until all conjugations are answered correctly at least once
+- **Mastery:** Continue practicing until all conjugations are answered correctly at least once (default)
 
 *Practice Modes (selection behavior):*
 - **Smart Mode:** Uses spaced repetition algorithm to determine which conjugations are due

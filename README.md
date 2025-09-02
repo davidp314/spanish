@@ -8,10 +8,11 @@ A modern React application for learning Spanish verb conjugations through intera
 - **Browse Mode**: Progress dashboard with smart learning algorithm and verb selection
 - **Practice Mode**: Interactive flashcards with dual practice system (Quiz/Mastery) and spaced repetition
 - **Reference Mode**: Comprehensive conjugation pattern reference for quick lookup
+- **Contextual Reference**: In-practice conjugation modal with current verb highlighting
 - **Progress Tracking**: Monitor mastery of individual conjugations over time
 
 ### 🔍 Advanced Filtering
-- Filter by verb type (Regular/Irregular), tense (Present/Preterite), difficulty, and mastery status
+- Filter by verb type (Regular/Irregular), tense (Present/Preterite), and mastery status
 - Search functionality across Spanish, English, and verb roots
 - Real-time filtering with instant results
 
@@ -23,8 +24,10 @@ A modern React application for learning Spanish verb conjugations through intera
 
 ### 🎨 Modern UI/UX
 - Beautiful gradient designs and smooth animations
+- Dark/light mode with system preference detection
 - Responsive layout optimized for all device sizes
 - Interactive 3D flip animations for flashcards
+- Verb visibility toggle for increased practice difficulty
 - Compact, elegant practice mode design
 
 ## 🚀 Getting Started
@@ -67,14 +70,19 @@ npm run preview
 spanish/
 ├── src/
 │   ├── components/
-│   │   ├── VerbCard.tsx      # Conjugation display component
-│   │   ├── Flashcard.tsx     # Interactive flashcard component
+│   │   ├── VerbCard.tsx                    # Conjugation display component
+│   │   ├── Flashcard.tsx                   # Interactive flashcard component
+│   │   ├── ConjugationReferenceModal.tsx   # Contextual verb reference modal
+│   │   ├── VerbSelectionModal.tsx          # Verb selection interface
+│   │   ├── ThemeToggle.tsx                 # Dark/light mode toggle
 │   │   └── ...
+│   ├── contexts/
+│   │   └── ThemeContext.tsx    # Theme state management
 │   ├── data/
-│   │   └── conjugationData.ts # Verb conjugation data and types
-│   ├── App.tsx               # Main application component
-│   ├── App.css               # Application styles
-│   └── main.tsx              # Application entry point
+│   │   └── conjugationData.ts  # Verb conjugation data and types
+│   ├── App.tsx                 # Main application component
+│   ├── App.css                 # Application styles
+│   └── main.tsx                # Application entry point
 ├── public/                   # Static assets
 ├── start-dev.sh              # Development server startup script
 └── README.md                 # This file
@@ -83,21 +91,24 @@ spanish/
 ## 🎯 How to Use
 
 ### Browse Mode
-1. **Select Verb Set**: Choose from Beginner, Intermediate, or All Verbs
-2. **Filter & Search**: Use multiple filters and search to find specific conjugations
-3. **View Details**: See person, tense, verb type, and difficulty information
-4. **Track Progress**: Monitor mastery status and practice statistics
+1. **Progress Dashboard**: View overall learning progress and verb mastery statistics
+2. **Verb Selection**: Choose specific verbs and tenses to practice
+3. **Filter & Search**: Use multiple filters and search to find specific conjugations
+4. **View Details**: See person, tense, verb type, and practice statistics
+5. **Track Progress**: Monitor mastery status and spaced repetition timing
 
 ### Practice Mode
 1. **Select Practice Options**: Choose ordering mode (Systematic/Random/Mixed) and practice type (Quiz/Mastery)
 2. **Contextual Practice**: Interface adapts based on spaced repetition status
    - **When verbs are due**: "🚀 Start Practice" (smart mode) with "Manual Practice" link
    - **When 0 verbs due**: "📝 Practice Selected" (manual mode) as primary option
-3. **Answer Input**: Type Spanish answers before revealing correct responses
-4. **Practice Types**:
+3. **Answer Input**: Type Spanish answers with accent keyboard shortcuts (1-9 keys)
+4. **Verb Visibility Toggle**: Hide/show verb infinitive with eye icon for increased difficulty
+5. **Contextual Reference**: Click "Reference" button to see full verb conjugation table
+6. **Practice Types**:
    - **Quiz Mode**: Go through each conjugation once, then return to dashboard with results
-   - **Mastery Mode**: Continue practicing until all conjugations are answered correctly
-5. **Practice Modes**:
+   - **Mastery Mode**: Continue practicing until all conjugations are answered correctly (default)
+7. **Practice Modes**:
    - **Smart Mode**: Uses spaced repetition algorithm for optimal timing
    - **Manual Mode**: Practice all selected verbs regardless of timing
 
@@ -138,9 +149,9 @@ Edit `src/data/conjugationData.ts` to add new verb conjugations:
   person: 'yo',
   tense: 'present',
   mastered: false,
-  difficulty: 'intermediate',
   practiceCount: 0,
-  correctCount: 0
+  correctCount: 0,
+  lastPracticed?: number  // timestamp for spaced repetition
 }
 ```
 
