@@ -174,7 +174,21 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'esconder-tu-present', english: 'you hide (informal, singular)', spanish: 'escondes', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'esconder-el-present', english: 'he/she hides, you hide (formal, singular)', spanish: 'esconde', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'esconder-nosotros-present', english: 'we hide', spanish: 'escondemos', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'esconder-ellos-present', english: 'they hide, you hide (formal, plural)', spanish: 'esconden', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'esconder-ellos-present', english: 'they hide, you hide (formal, plural)', spanish: 'esconden', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: llevar (Present)
+  { id: 'llevar-yo-present', english: 'I carry/wear/take', spanish: 'llevo', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-tu-present', english: 'you carry/wear/take (informal, singular)', spanish: 'llevas', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-el-present', english: 'he/she carries/wears/takes, you carry/wear/take (formal, singular)', spanish: 'lleva', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-nosotros-present', english: 'we carry/wear/take', spanish: 'llevamos', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-ellos-present', english: 'they carry/wear/take, you carry/wear/take (formal, plural)', spanish: 'llevan', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: terminar (Present)
+  { id: 'terminar-yo-present', english: 'I finish/end', spanish: 'termino', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-tu-present', english: 'you finish/end (informal, singular)', spanish: 'terminas', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-el-present', english: 'he/she finishes/ends, you finish/end (formal, singular)', spanish: 'termina', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-nosotros-present', english: 'we finish/end', spanish: 'terminamos', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-ellos-present', english: 'they finish/end, you finish/end (formal, plural)', spanish: 'terminan', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -338,7 +352,21 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'esconder-tu-preterite', english: 'you hid (informal, singular)', spanish: 'escondiste', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'esconder-el-preterite', english: 'he/she hid, you hid (formal, singular)', spanish: 'escondió', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'esconder-nosotros-preterite', english: 'we hid', spanish: 'escondimos', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'esconder-ellos-preterite', english: 'they hid, you hid (formal, plural)', spanish: 'escondieron', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'esconder-ellos-preterite', english: 'they hid, you hid (formal, plural)', spanish: 'escondieron', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: llevar (Preterite)
+  { id: 'llevar-yo-preterite', english: 'I carried/wore/took', spanish: 'llevé', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-tu-preterite', english: 'you carried/wore/took (informal, singular)', spanish: 'llevaste', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-el-preterite', english: 'he/she carried/wore/took, you carried/wore/took (formal, singular)', spanish: 'llevó', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-nosotros-preterite', english: 'we carried/wore/took', spanish: 'llevamos', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-ellos-preterite', english: 'they carried/wore/took, you carried/wore/took (formal, plural)', spanish: 'llevaron', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: terminar (Preterite)
+  { id: 'terminar-yo-preterite', english: 'I finished/ended', spanish: 'terminé', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-tu-preterite', english: 'you finished/ended (informal, singular)', spanish: 'terminaste', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-el-preterite', english: 'he/she finished/ended, you finished/ended (formal, singular)', spanish: 'terminó', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-nosotros-preterite', english: 'we finished/ended', spanish: 'terminamos', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-ellos-preterite', english: 'they finished/ended, you finished/ended (formal, plural)', spanish: 'terminaron', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations
