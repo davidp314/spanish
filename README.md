@@ -6,7 +6,8 @@ A modern React application for learning Spanish verb conjugations through intera
 
 ### 🎓 Learning Modes
 - **Browse Mode**: Progress dashboard with smart learning algorithm and verb selection
-- **Practice Mode**: Interactive flashcards with dual practice system (Quiz/Mastery) and spaced repetition
+- **Practice Mode**: Interactive flashcards with triple practice system (Quiz/Mastery/Translation) and spaced repetition
+- **Translation Quiz**: Bidirectional Spanish ↔ English verb translation with auto-advance and keyboard shortcuts
 - **Reference Mode**: Comprehensive conjugation pattern reference for quick lookup
 - **Contextual Reference**: In-practice conjugation modal with current verb highlighting
 - **Progress Tracking**: Monitor mastery of individual conjugations over time
@@ -29,6 +30,7 @@ A modern React application for learning Spanish verb conjugations through intera
 - Interactive 3D flip animations for flashcards
 - Verb visibility toggle for increased practice difficulty
 - Compact, elegant practice mode design
+- Comprehensive keyboard shortcuts for efficient navigation
 
 ## 🚀 Getting Started
 
@@ -71,7 +73,8 @@ spanish/
 ├── src/
 │   ├── components/
 │   │   ├── VerbCard.tsx                    # Conjugation display component
-│   │   ├── Flashcard.tsx                   # Interactive flashcard component
+│   │   ├── Flashcard.tsx                   # Interactive conjugation flashcard component
+│   │   ├── TranslationQuiz.tsx             # Translation practice component with auto-advance
 │   │   ├── ConjugationReferenceModal.tsx   # Contextual verb reference modal
 │   │   ├── VerbSelectionModal.tsx          # Verb selection interface
 │   │   ├── ThemeToggle.tsx                 # Dark/light mode toggle
@@ -98,7 +101,7 @@ spanish/
 5. **Track Progress**: Monitor mastery status and spaced repetition timing
 
 ### Practice Mode
-1. **Select Practice Options**: Choose ordering mode (Systematic/Random/Mixed) and practice type (Quiz/Mastery)
+1. **Select Practice Options**: Choose ordering mode (Systematic/Random/Mixed) and practice type (Quiz/Mastery/Translation)
 2. **Contextual Practice**: Interface adapts based on spaced repetition status
    - **When verbs are due**: "🚀 Start Practice" (smart mode) with "Manual Practice" link
    - **When 0 verbs due**: "📝 Practice Selected" (manual mode) as primary option
@@ -108,9 +111,24 @@ spanish/
 6. **Practice Types**:
    - **Quiz Mode**: Go through each conjugation once, then return to dashboard with results
    - **Mastery Mode**: Continue practicing until all conjugations are answered correctly (default)
+   - **Translation Mode**: Practice Spanish ↔ English verb translation with auto-advance
 7. **Practice Modes**:
    - **Smart Mode**: Uses spaced repetition algorithm for optimal timing
    - **Manual Mode**: Practice all selected verbs regardless of timing
+
+### Translation Quiz
+1. **Select Direction**: Click toggle button to switch between "ES → EN" (Spanish to English) or "EN → ES" (English to Spanish)
+2. **Practice Flow**: 
+   - See verb in source language
+   - Think of translation
+   - Press **Enter** or **J** to show answer
+   - Press **J** (correct) or **F** (incorrect) for self-assessment
+   - Auto-advance to next card after 800ms
+3. **Keyboard Shortcuts**:
+   - **Enter/J**: Show answer (when hidden)
+   - **J**: Mark correct (when answer shown)
+   - **F**: Mark incorrect (when answer shown)
+4. **Efficient Workflow**: Single-key navigation possible for confident learners (J → J → J...)
 
 ### Reference Mode
 1. **Access Reference**: Click "📚 Reference" button for conjugation patterns

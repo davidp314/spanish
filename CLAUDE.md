@@ -19,13 +19,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Smart learning algorithm** with AI-powered practice prioritization  
 - **Dark/light mode** with system preference detection
 - **Progress dashboard** instead of traditional verb grid browsing
-- **Dual practice system** with three ordering modes, two practice types, and contextual smart/manual modes
+- **Triple practice system** with three ordering modes, three practice types, and contextual smart/manual modes
+- **Translation quiz** with bidirectional Spanish ↔ English verb translation practice
 - **Verb selection system** with individual tense control
 - **Verb visibility toggle** with eye icon to hide/show verbs during practice for increased difficulty
 - **Contextual conjugation reference** with modal showing full verb conjugation table during practice
-- **Professional UI** with animations, modals, and responsive design
+- **Professional UI** with animations, modals, responsive design, and comprehensive keyboard shortcuts
 
 ### Recent Updates (January 2025)
+- **Translation Quiz Feature:** New practice type with Spanish ↔ English verb translation, auto-advance, and optimized keyboard shortcuts (Enter, J, F)
+- **Enhanced Practice Types:** Quiz, Mastery, and Translation modes with distinct workflows
+- **Single-Button Direction Toggle:** Simplified ES → EN / EN → ES direction switching
+- **Keyboard-First Design:** Full keyboard navigation with vim-style shortcuts for efficient practice sessions
+- **Auto-Advance Flow:** Seamless progression after self-assessment with visual feedback
 - **New verbs added:** traer, saber, caerse, buscar, mirar, encontrar, esconder, llevar, terminar (7 additional verbs, 70 new conjugations)
 - **localStorage state management fix:** Ensures new verbs are automatically available without browser refresh
 - **Verb selection bug fix:** VerbSelectionModal now properly initializes with existing tense selections
@@ -43,7 +49,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `conjugations`: Array of all verb conjugations with progress tracking
 - `selectedVerbs`: User-selected verbs to practice 
 - `practiceMode`: Practice ordering strategy ('systematic', 'random1', 'random2')
-- `practiceType`: Practice completion behavior ('quiz', 'mastery')
+- `practiceType`: Practice completion behavior ('quiz', 'mastery', 'translation')
+- `translationDirection`: Translation direction ('es-en', 'en-es') for translation quiz
 - `practiceSessionConjugations`: Frozen array for stable practice sessions
 - `masteredInSession`: Set tracking correct answers in mastery mode
 - Theme state managed via React context with localStorage persistence
@@ -103,9 +110,33 @@ interface Conjugation {
 - When conjugations are due: Shows "Start Practice" (smart mode) with "Manual Practice" link
 - When 0 conjugations due: Shows "Practice Selected" (manual mode) as primary option
 
+### Translation Quiz System
+
+**New Practice Type:** Translation quiz focuses on vocabulary recognition between Spanish and English verb infinitives.
+
+**Direction Toggle:** Single button interface showing current direction:
+- "ES → EN": Spanish to English translation
+- "EN → ES": English to Spanish translation
+
+**Auto-Advance Flow:**
+1. Show verb in source language
+2. User thinks of translation
+3. Press Enter/J to reveal answer
+4. Press J (correct) or F (incorrect) for self-assessment
+5. Auto-advance to next card after 800ms
+
+**Keyboard Shortcuts:**
+- **Enter/J**: Show answer (when hidden)
+- **J**: Mark correct (when answer shown)
+- **F**: Mark incorrect (when answer shown)
+- **Dual-purpose J**: Show answer OR mark correct OR advance (context-dependent)
+
+**Data Structure:** Extracts infinitive forms from conjugation data to create verb-level translations, maintaining consistency with existing verb selection system.
+
 ### Key Components
 
-- `Flashcard.tsx` - Interactive practice cards with Spanish accent keyboard, verb visibility toggle, and conjugation reference modal
+- `Flashcard.tsx` - Interactive conjugation practice cards with Spanish accent keyboard, verb visibility toggle, and conjugation reference modal
+- `TranslationQuiz.tsx` - Self-contained translation practice component with auto-advance, keyboard shortcuts, and bilingual support
 - `VerbSelectionModal.tsx` - Comprehensive verb/tense selection with search
 - `ConjugationReference.tsx` - Professional table-based conjugation patterns reference
 - `ConjugationReferenceModal.tsx` - Contextual verb conjugation reference during practice
@@ -168,11 +199,12 @@ interface Conjugation {
 - CSS variables for theme consistency
 
 ### Key Files to Understand
-- `src/App.tsx` - Main application logic (needs refactoring)
+- `src/App.tsx` - Main application logic with translation quiz integration (needs refactoring)
 - `src/data/conjugationData.ts` - All conjugation data and smart algorithms
-- `src/components/Flashcard.tsx` - Core practice functionality
+- `src/components/Flashcard.tsx` - Core conjugation practice functionality
+- `src/components/TranslationQuiz.tsx` - Translation practice with auto-advance and keyboard shortcuts
 - `src/contexts/ThemeContext.tsx` - Theme system
-- `src/App.css` - All styles with CSS variables for theming
+- `src/App.css` - All styles with CSS variables for theming (includes translation quiz styles)
 - `start-dev.sh` - Development server management
 
 ## Troubleshooting

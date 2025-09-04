@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Flashcard from './components/Flashcard';
+import TranslationQuiz from './components/TranslationQuiz';
 import ConjugationReference from './components/ConjugationReference';
 import VerbSelectionModal from './components/VerbSelectionModal';
 import ThemeToggle from './components/ThemeToggle';
@@ -18,7 +19,7 @@ function App() {
         // IMPORTANT: Always use the latest allConjugations as the source of truth
         // Merge saved progress data with latest conjugation definitions
         const mergedConjugations = allConjugations.map(current => {
-          const saved = parsed.conjugations?.find((c: any) => c.id === current.id);
+          const saved = parsed.conjugations?.find((c: Conjugation) => c.id === current.id);
           if (saved) {
             return {
               ...current, // Use current definition
@@ -62,6 +63,35 @@ function App() {
     return Array.from(uniqueVerbs).sort();
   };
 
+  // Helper function to get unique verbs with their English translations
+  const getVerbTranslations = (): Array<{verb: string, english: string, spanish: string}> => {
+    const verbMap = new Map<string, {english: string, spanish: string}>();
+    
+    allConjugations.forEach(conjugation => {
+      if (!verbMap.has(conjugation.verb)) {
+        // Extract base English infinitive from the first person conjugation
+        const englishInfinitive = conjugation.english
+          .replace(/^I\s+/, 'to ')
+          .replace(/^you\s+/, 'to ')
+          .replace(/^he\/she\s+/, 'to ')
+          .replace(/^we\s+/, 'to ')
+          .replace(/^they\s+/, 'to ')
+          .replace(/\s+\(.*?\)/, ''); // Remove parenthetical explanations
+        
+        verbMap.set(conjugation.verb, {
+          english: englishInfinitive,
+          spanish: conjugation.verb
+        });
+      }
+    });
+    
+    return Array.from(verbMap.entries()).map(([verb, translations]) => ({
+      verb,
+      english: translations.english,
+      spanish: translations.spanish
+    }));
+  };
+
   // Helper function to shuffle an array (Fisher-Yates algorithm)
   const shuffleArray = (array: Conjugation[]): Conjugation[] => {
     const shuffled = [...array];
@@ -100,7 +130,8 @@ function App() {
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
   const [selectedTenses, setSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(initialState.selectedTenses || {});
   const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>(initialState.practiceMode);
-  const [practiceType, setPracticeType] = useState<'quiz' | 'mastery'>('mastery');
+  const [practiceType, setPracticeType] = useState<'quiz' | 'mastery' | 'translation'>('mastery');
+  const [translationDirection, setTranslationDirection] = useState<'es-en' | 'en-es'>('es-en');
   // const [lastUpdated, setLastUpdated] = useState(initialState.lastUpdated); // No longer needed
   
   // Remove unused filter state variables
@@ -115,6 +146,7 @@ function App() {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
   const [masteredInSession, setMasteredInSession] = useState<Set<string>>(new Set());
+  const [translationSessionVerbs, setTranslationSessionVerbs] = useState<Array<{verb: string, english: string, spanish: string}>>([]);
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -184,6 +216,20 @@ function App() {
   };
 
   const handleStartPractice = (manualMode: boolean = false) => {
+    if (practiceType === 'translation') {
+      // Translation quiz - get selected verbs with translations
+      const allVerbTranslations = getVerbTranslations();
+      const selectedVerbTranslations = allVerbTranslations.filter(v => selectedVerbs.includes(v.verb));
+      
+      // Shuffle verbs for translation quiz
+      const shuffledVerbs = [...selectedVerbTranslations].sort(() => Math.random() - 0.5);
+      
+      setTranslationSessionVerbs(shuffledVerbs);
+      setCurrentIndex(0);
+      setIsPracticeMode(true);
+      return;
+    }
+
     // Get conjugations to practice - either smart or manual mode
     const conjugationsToPractice = manualMode 
       ? getSelectedConjugations()
@@ -261,6 +307,7 @@ function App() {
     setCurrentIndex(0);
     setPracticeSessionConjugations([]); // Clear the frozen array
     setMasteredInSession(new Set()); // Clear mastery tracking
+    setTranslationSessionVerbs([]); // Clear translation session
   };
 
   const handleToggleMastery = (id: string) => {
@@ -290,8 +337,24 @@ function App() {
     }
   };
 
+  const handleTranslationResult = (verb: string, correct: boolean) => {
+    // For translation quiz, we track results on the verb level
+    // This could be extended to track translation-specific progress
+    console.log(`Translation result for ${verb}: ${correct ? 'correct' : 'incorrect'}`);
+  };
+
   const handleNextCard = () => {
-    if (practiceType === 'quiz') {
+    if (practiceType === 'translation') {
+      // Translation quiz: go through once
+      if (currentIndex < translationSessionVerbs.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+      } else {
+        // Translation quiz complete
+        setIsPracticeMode(false);
+        setCurrentIndex(0);
+        setTranslationSessionVerbs([]);
+      }
+    } else if (practiceType === 'quiz') {
       // Quiz mode: go through once
       if (currentIndex < practiceSessionConjugations.length - 1) {
         setCurrentIndex(currentIndex + 1);
@@ -356,16 +419,17 @@ function App() {
   const totalCorrectCount = conjugations.reduce((sum, c) => sum + c.correctCount, 0);
   const overallAccuracy = totalPracticeCount > 0 ? Math.round((totalCorrectCount / totalPracticeCount) * 100) : 0;
 
-  if (isPracticeMode && practiceSessionConjugations.length > 0) {
-    const currentConjugation = practiceSessionConjugations[currentIndex];
-    const isLastCard = currentIndex === practiceSessionConjugations.length - 1;
+  if (isPracticeMode && (practiceSessionConjugations.length > 0 || translationSessionVerbs.length > 0)) {
+    const isTranslationMode = practiceType === 'translation';
+    const sessionLength = isTranslationMode ? translationSessionVerbs.length : practiceSessionConjugations.length;
+    const isLastCard = currentIndex === sessionLength - 1;
 
     return (
       <div className="App practice-mode">
         <div className="header">
           <div className="header-left">
-            <h1>🎯 Practice Mode</h1>
-            <p>Practice conjugations with spaced repetition</p>
+            <h1>{isTranslationMode ? '📚 Translation Quiz' : '🎯 Practice Mode'}</h1>
+            <p>{isTranslationMode ? 'Practice translating Spanish verbs' : 'Practice conjugations with spaced repetition'}</p>
           </div>
           <div className="header-right">
             <ThemeToggle />
@@ -376,33 +440,51 @@ function App() {
         </div>
 
         <div className="practice-info">
-          <div className="practice-mode-selector">
-            <label>Practice Mode:</label>
-            <select 
-              value={practiceMode} 
-              onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
-              className="practice-mode-select"
-            >
-              <option value="systematic">Systematic: One verb at a time</option>
-              <option value="random1">Random: Mixed verbs & tenses</option>
-              <option value="random2">Mixed: Systematic within verbs</option>
-            </select>
-          </div>
+          {!isTranslationMode && (
+            <div className="practice-mode-selector">
+              <label>Practice Mode:</label>
+              <select 
+                value={practiceMode} 
+                onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
+                className="practice-mode-select"
+              >
+                <option value="systematic">Systematic: One verb at a time</option>
+                <option value="random1">Random: Mixed verbs & tenses</option>
+                <option value="random2">Mixed: Systematic within verbs</option>
+              </select>
+            </div>
+          )}
           <div className="practice-stats">
-            <span>Card {currentIndex + 1} of {practiceSessionConjugations.length}</span>
-            <span>Due for practice: {practiceSessionConjugations.length}</span>
+            <span>Card {currentIndex + 1} of {sessionLength}</span>
+            {isTranslationMode && (
+              <span>Translation: {translationDirection === 'es-en' ? 'Spanish → English' : 'English → Spanish'}</span>
+            )}
+            {!isTranslationMode && (
+              <span>Due for practice: {practiceSessionConjugations.length}</span>
+            )}
           </div>
         </div>
 
         <div className="practice-content">
-          <Flashcard
-            conjugation={currentConjugation}
-            onNext={handleNextCard}
-            onMastered={handleToggleMastery}
-            onPracticeResult={handlePracticeResult}
-            isLast={isLastCard}
-            allConjugations={conjugations}
-          />
+          {isTranslationMode ? (
+            <TranslationQuiz
+              verb={translationSessionVerbs[currentIndex].verb}
+              english={translationSessionVerbs[currentIndex].english}
+              spanish={translationSessionVerbs[currentIndex].spanish}
+              direction={translationDirection}
+              onNext={handleNextCard}
+              onPracticeResult={handleTranslationResult}
+            />
+          ) : (
+            <Flashcard
+              conjugation={practiceSessionConjugations[currentIndex]}
+              onNext={handleNextCard}
+              onMastered={handleToggleMastery}
+              onPracticeResult={handlePracticeResult}
+              isLast={isLastCard}
+              allConjugations={conjugations}
+            />
+          )}
         </div>
       </div>
     );
@@ -529,8 +611,27 @@ function App() {
                   >
                     Mastery
                   </button>
+                  <button
+                    className={`segment ${practiceType === 'translation' ? 'active' : ''}`}
+                    onClick={() => setPracticeType('translation')}
+                    title="Practice translating verb infinitives between Spanish and English"
+                  >
+                    Translation
+                  </button>
                 </div>
               </div>
+              {practiceType === 'translation' && (
+                <div className="translation-direction-selector">
+                  <label>Direction:</label>
+                  <button
+                    className="direction-toggle-button"
+                    onClick={() => setTranslationDirection(translationDirection === 'es-en' ? 'en-es' : 'es-en')}
+                    title="Click to toggle translation direction"
+                  >
+                    {translationDirection === 'es-en' ? 'ES → EN' : 'EN → ES'}
+                  </button>
+                </div>
+              )}
               {getConjugationsToPractice().length > 0 ? (
                 <button 
                   onClick={() => handleStartPractice(false)}
