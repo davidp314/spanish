@@ -176,7 +176,12 @@ interface Conjugation {
 **Default behavior:** Unless otherwise instructed, when adding new verbs to the application, always include both present and preterite tense conjugations for all persons (yo, tú, él/ella/usted, nosotros, ellos/ellas/ustedes). This maintains consistency with the existing conjugation system and ensures complete coverage for each verb.
 
 ### Documentation Update Policy
-**"Update our documents"** refers to updating CLAUDE.md and README.md as necessary, while avoiding documentation bloat. Focus on essential information and keep updates concise and relevant to the actual changes made.
+**"Update our documents"** refers to updating any relevant documents in the repository, which typically includes:
+- **CLAUDE.md** - Technical documentation, architecture notes, and development guidelines
+- **README.md** - User-facing documentation, features, and usage instructions
+- Any other relevant documentation files as appropriate
+
+When this instruction is given, proactively identify and update all relevant documents without requiring explicit specification of each file. Avoid documentation bloat - focus on essential information and keep updates concise and relevant to the actual changes made.
 
 ### High Priority for Future Development
 - **Settings Import/Export:** Backup and restore progress/settings
