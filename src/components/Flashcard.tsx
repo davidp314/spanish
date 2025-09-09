@@ -25,7 +25,9 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [isCorrect, setIsCorrect] = useState(false);
   const [showVerb, setShowVerb] = useState(false);
   const [showReferenceModal, setShowReferenceModal] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -33,6 +35,13 @@ const Flashcard: React.FC<FlashcardProps> = ({
 
   const handleAnswerSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Prevent double submission
+    if (hasSubmitted) {
+      return;
+    }
+    
+    setHasSubmitted(true);
     const correct = userAnswer.toLowerCase().trim() === conjugation.spanish.toLowerCase().trim();
     setIsCorrect(correct);
     setShowResult(true);
@@ -40,7 +49,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
     // Track practice result
     onPracticeResult(conjugation.id, correct);
     
-    // No auto-flip - let user manually flip when ready
+    // Automatically flip the card to show the answer
+    setIsFlipped(true);
+    
+    // Focus the container so Enter key can advance to next card
+    setTimeout(() => {
+      if (containerRef.current) {
+        containerRef.current.focus();
+      }
+    }, 0);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -99,6 +116,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
     setShowResult(false);
     setUserAnswer('');
     setIsCorrect(false);
+    setHasSubmitted(false); // Reset submission flag
     onNext();
   };
 
@@ -132,7 +150,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   return (
-    <div className="flashcard-container" onKeyDown={handleKeyDown} tabIndex={0}>
+    <div ref={containerRef} className="flashcard-container" onKeyDown={handleKeyDown} tabIndex={0}>
       <div className="flashcard-info">
         <div className="conjugation-badges">
           <span className={`badge ${conjugation.type === 'regular' ? 'regular' : 'irregular'}`}>
@@ -144,6 +162,14 @@ const Flashcard: React.FC<FlashcardProps> = ({
           <span className={`badge ${getPersonColor(conjugation.person)}`}>
             {conjugation.person}
           </span>
+          <button 
+            onClick={() => setShowReferenceModal(true)}
+            className="reference-button-compact"
+            type="button"
+            title="View conjugation reference"
+          >
+            📚
+          </button>
         </div>
         
         <div className="verb-root">
@@ -171,7 +197,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
           <div className="flashcard-front">
             <h2 className="flashcard-prompt">{conjugation.english}</h2>
             <p className="flashcard-hint">
-              {showResult ? 'Click card to see Spanish answer' : 'Click to reveal answer'}
+              {showResult ? 'Click card to flip back to question' : 'Enter answer to reveal Spanish'}
             </p>
           </div>
           
@@ -279,15 +305,6 @@ const Flashcard: React.FC<FlashcardProps> = ({
         </div>
       )}
 
-      <div className="flashcard-reference">
-        <button 
-          onClick={() => setShowReferenceModal(true)}
-          className="reference-button"
-          type="button"
-        >
-          Reference
-        </button>
-      </div>
 
       <div className="flashcard-actions">
         <button 
@@ -306,9 +323,9 @@ const Flashcard: React.FC<FlashcardProps> = ({
         </button>
       </div>
 
-      <div className="practice-stats">
+      <div className="conjugation-stats">
         <small>
-          Practice Count: {conjugation.practiceCount} | 
+          <strong>This Conjugation:</strong> Practiced {conjugation.practiceCount} time{conjugation.practiceCount !== 1 ? 's' : ''} | 
           Accuracy: {conjugation.practiceCount > 0 ? Math.round((conjugation.correctCount / conjugation.practiceCount) * 100) : 0}%
         </small>
       </div>

@@ -188,7 +188,28 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'terminar-tu-present', english: 'you finish/end (informal, singular)', spanish: 'terminas', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'terminar-el-present', english: 'he/she finishes/ends, you finish/end (formal, singular)', spanish: 'termina', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'terminar-nosotros-present', english: 'we finish/end', spanish: 'terminamos', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'terminar-ellos-present', english: 'they finish/end, you finish/end (formal, plural)', spanish: 'terminan', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'terminar-ellos-present', english: 'they finish/end, you finish/end (formal, plural)', spanish: 'terminan', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: hacer (Present)
+  { id: 'hacer-yo-present', english: 'I make/do', spanish: 'hago', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-tu-present', english: 'you make/do (informal, singular)', spanish: 'haces', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-el-present', english: 'he/she makes/does, you make/do (formal, singular)', spanish: 'hace', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-nosotros-present', english: 'we make/do', spanish: 'hacemos', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-ellos-present', english: 'they make/do, you make/do (formal, plural)', spanish: 'hacen', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ser (Present)
+  { id: 'ser-yo-present', english: 'I am', spanish: 'soy', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-tu-present', english: 'you are (informal, singular)', spanish: 'eres', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-el-present', english: 'he/she is, you are (formal, singular)', spanish: 'es', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-nosotros-present', english: 'we are', spanish: 'somos', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-ellos-present', english: 'they are, you are (formal, plural)', spanish: 'son', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ver (Present)
+  { id: 'ver-yo-present', english: 'I see', spanish: 'veo', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-tu-present', english: 'you see (informal, singular)', spanish: 'ves', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-el-present', english: 'he/she sees, you see (formal, singular)', spanish: 've', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-nosotros-present', english: 'we see', spanish: 'vemos', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-ellos-present', english: 'they see, you see (formal, plural)', spanish: 'ven', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -366,7 +387,28 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'terminar-tu-preterite', english: 'you finished/ended (informal, singular)', spanish: 'terminaste', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'terminar-el-preterite', english: 'he/she finished/ended, you finished/ended (formal, singular)', spanish: 'terminó', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'terminar-nosotros-preterite', english: 'we finished/ended', spanish: 'terminamos', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'terminar-ellos-preterite', english: 'they finished/ended, you finished/ended (formal, plural)', spanish: 'terminaron', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'terminar-ellos-preterite', english: 'they finished/ended, you finished/ended (formal, plural)', spanish: 'terminaron', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: hacer (Preterite)
+  { id: 'hacer-yo-preterite', english: 'I made/did', spanish: 'hice', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-tu-preterite', english: 'you made/did (informal, singular)', spanish: 'hiciste', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-el-preterite', english: 'he/she made/did, you made/did (formal, singular)', spanish: 'hizo', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-nosotros-preterite', english: 'we made/did', spanish: 'hicimos', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-ellos-preterite', english: 'they made/did, you made/did (formal, plural)', spanish: 'hicieron', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ser (Preterite)
+  { id: 'ser-yo-preterite', english: 'I was', spanish: 'fui', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-tu-preterite', english: 'you were (informal, singular)', spanish: 'fuiste', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-el-preterite', english: 'he/she was, you were (formal, singular)', spanish: 'fue', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-nosotros-preterite', english: 'we were', spanish: 'fuimos', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-ellos-preterite', english: 'they were, you were (formal, plural)', spanish: 'fueron', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ver (Preterite)
+  { id: 'ver-yo-preterite', english: 'I saw', spanish: 'vi', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-tu-preterite', english: 'you saw (informal, singular)', spanish: 'viste', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-el-preterite', english: 'he/she saw, you saw (formal, singular)', spanish: 'vio', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-nosotros-preterite', english: 'we saw', spanish: 'vimos', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-ellos-preterite', english: 'they saw, you saw (formal, plural)', spanish: 'vieron', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations

@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 23 essential Spanish verbs (230 total conjugations).
+**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 26 essential Spanish verbs (280 total conjugations).
 
 ### Current State
 - **Fully functional** with comprehensive conjugation system
@@ -32,10 +32,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Single-Button Direction Toggle:** Simplified ES → EN / EN → ES direction switching
 - **Keyboard-First Design:** Full keyboard navigation with vim-style shortcuts for efficient practice sessions
 - **Auto-Advance Flow:** Seamless progression after self-assessment with visual feedback
-- **New verbs added:** traer, saber, caerse, buscar, mirar, encontrar, esconder, llevar, terminar (7 additional verbs, 70 new conjugations)
+- **New verbs added:** traer, saber, caerse, buscar, mirar, encontrar, esconder, llevar, terminar, ver, hacer, ser (10 additional verbs, 100 new conjugations)
 - **localStorage state management fix:** Ensures new verbs are automatically available without browser refresh
 - **Verb selection bug fix:** VerbSelectionModal now properly initializes with existing tense selections
 - **Data migration system:** Preserves user progress while seamlessly adding new conjugation definitions
+- **Practice Count & Accuracy Fix:** Resolved React Strict Mode double-execution causing incorrect practice tracking
+- **Hybrid Progress Display:** Shows both session progress (Card 1 of 10) and individual conjugation history
+- **Space-Optimized UI:** Moved reference button to conjugation info area, saving vertical space
 
 ## Code Architecture
 
@@ -165,6 +168,9 @@ interface Conjugation {
 - **Dark mode contrast:** All UI elements properly styled for both themes
 - **Card state persistence:** Fixed unexpected card changes during practice
 - **Keyboard navigation:** Enter key support for practice flow
+- **Practice Count & Accuracy Reports:** Fixed React Strict Mode double-execution causing counts to remain at 0
+- **State Management:** Resolved duplicate state updates preventing proper progress tracking
+- **UI Space Optimization:** Compact reference button integration without vertical expansion
 
 ### Current Limitations
 - **No cloud sync:** Progress is local only

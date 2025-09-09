@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Flashcard from './components/Flashcard';
 import TranslationQuiz from './components/TranslationQuiz';
 import ConjugationReference from './components/ConjugationReference';
@@ -21,13 +21,14 @@ function App() {
         const mergedConjugations = allConjugations.map(current => {
           const saved = parsed.conjugations?.find((c: Conjugation) => c.id === current.id);
           if (saved) {
-            return {
+            const merged = {
               ...current, // Use current definition
-              mastered: saved.mastered || false,
-              practiceCount: saved.practiceCount || 0,
-              correctCount: saved.correctCount || 0,
+              mastered: Boolean(saved.mastered),
+              practiceCount: Number(saved.practiceCount) || 0,
+              correctCount: Number(saved.correctCount) || 0,
               lastPracticed: saved.lastPracticed
             };
+            return merged;
           }
           return { ...current };
         });
@@ -42,8 +43,8 @@ function App() {
           lastUpdated: parsed.lastUpdated || Date.now()
         };
       }
-    } catch {
-      console.log('No saved state found or error loading state, using defaults');
+    } catch (error) {
+      console.warn('Failed to load state from localStorage:', error);
     }
     return {
       conjugations: allConjugations.map(c => ({ ...c })),
@@ -147,6 +148,9 @@ function App() {
   const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
   const [masteredInSession, setMasteredInSession] = useState<Set<string>>(new Set());
   const [translationSessionVerbs, setTranslationSessionVerbs] = useState<Array<{verb: string, english: string, spanish: string}>>([]);
+  
+  // Track recent practice results to prevent double execution
+  const recentResultsRef = useRef<Set<string>>(new Set());
 
   // Save state to localStorage whenever important state changes
   useEffect(() => {
@@ -316,31 +320,52 @@ function App() {
     );
   };
 
-  const handlePracticeResult = (id: string, correct: boolean) => {
-    setConjugations(prev => 
-      prev.map(c => {
+  const handlePracticeResult = useCallback((id: string, correct: boolean) => {
+    
+    // Simple deduplication to prevent rapid double calls - check BEFORE state update
+    if (recentResultsRef.current.has(id)) {
+      console.log(`[PRACTICE DEBUG] Skipping duplicate call for ${id}`);
+      return;
+    }
+    
+    // Mark this update as processed immediately
+    recentResultsRef.current.add(id);
+    setTimeout(() => recentResultsRef.current.delete(id), 500);
+    
+    setConjugations(prev => {
+      // Check if this update has already been applied to this state snapshot
+      const hasAlreadyBeenUpdated = recentResultsRef.current.has(`applied-${id}`);
+      if (hasAlreadyBeenUpdated) {
+        return prev;
+      }
+      
+      // Mark this state snapshot as having received this update
+      recentResultsRef.current.add(`applied-${id}`);
+      setTimeout(() => recentResultsRef.current.delete(`applied-${id}`), 1000);
+      
+      return prev.map(c => {
         if (c.id === id) {
-          return {
+          const newConjugation = {
             ...c,
             practiceCount: c.practiceCount + 1,
             correctCount: c.correctCount + (correct ? 1 : 0),
             lastPracticed: Date.now()
           };
+          return newConjugation;
         }
         return c;
-      })
-    );
+      });
+    });
     
     // Track mastery in current session for mastery mode
     if (correct && practiceType === 'mastery') {
       setMasteredInSession(prev => new Set(prev).add(id));
     }
-  };
+  }, [practiceType]);
 
-  const handleTranslationResult = (verb: string, correct: boolean) => {
+  const handleTranslationResult = (_verb: string, _correct: boolean) => {
     // For translation quiz, we track results on the verb level
     // This could be extended to track translation-specific progress
-    console.log(`Translation result for ${verb}: ${correct ? 'correct' : 'incorrect'}`);
   };
 
   const handleNextCard = () => {
@@ -455,12 +480,20 @@ function App() {
             </div>
           )}
           <div className="practice-stats">
-            <span>Card {currentIndex + 1} of {sessionLength}</span>
+            <div className="session-progress">
+              <span className="progress-counter">Card {currentIndex + 1} of {sessionLength}</span>
+              <div className="progress-bar-mini">
+                <div 
+                  className="progress-fill-mini" 
+                  style={{ width: `${((currentIndex + 1) / sessionLength) * 100}%` }}
+                ></div>
+              </div>
+            </div>
             {isTranslationMode && (
               <span>Translation: {translationDirection === 'es-en' ? 'Spanish → English' : 'English → Spanish'}</span>
             )}
             {!isTranslationMode && (
-              <span>Due for practice: {practiceSessionConjugations.length}</span>
+              <span>Session: {practiceSessionConjugations.length} conjugations</span>
             )}
           </div>
         </div>
@@ -477,7 +510,7 @@ function App() {
             />
           ) : (
             <Flashcard
-              conjugation={practiceSessionConjugations[currentIndex]}
+              conjugation={conjugations.find(c => c.id === practiceSessionConjugations[currentIndex]?.id) || practiceSessionConjugations[currentIndex]}
               onNext={handleNextCard}
               onMastered={handleToggleMastery}
               onPracticeResult={handlePracticeResult}

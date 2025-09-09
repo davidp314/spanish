@@ -1,6 +1,6 @@
 # Spanish Verb Master 🎯
 
-A modern React application for learning Spanish verb conjugations through interactive flashcards and spaced repetition.
+A modern React application for learning Spanish verb conjugations through interactive flashcards, spaced repetition, and hybrid progress tracking. Practice 26 essential verbs with 280 total conjugations.
 
 ## ✨ Features
 
@@ -18,10 +18,11 @@ A modern React application for learning Spanish verb conjugations through intera
 - Real-time filtering with instant results
 
 ### 📊 Enhanced Progress Analytics
+- **Hybrid Progress Display**: Session progress (Card 1 of 10) + individual conjugation history
 - Visual progress bar showing mastery percentage
-- Practice statistics with accuracy tracking
+- Practice statistics with accuracy tracking per conjugation
 - Spaced repetition system for optimal learning
-- Local storage persistence for progress
+- Local storage persistence for progress across sessions
 
 ### 🎨 Modern UI/UX
 - Beautiful gradient designs and smooth animations
@@ -29,7 +30,7 @@ A modern React application for learning Spanish verb conjugations through intera
 - Responsive layout optimized for all device sizes
 - Interactive 3D flip animations for flashcards
 - Verb visibility toggle for increased practice difficulty
-- Compact, elegant practice mode design
+- Compact, space-optimized practice interface with inline reference button
 - Comprehensive keyboard shortcuts for efficient navigation
 
 ## 🚀 Getting Started
@@ -131,10 +132,10 @@ spanish/
 4. **Efficient Workflow**: Single-key navigation possible for confident learners (J → J → J...)
 
 ### Reference Mode
-1. **Access Reference**: Click "📚 Reference" button for conjugation patterns
+1. **Access Reference**: Click "📚" button (integrated in conjugation info area) for conjugation patterns
 2. **View Patterns**: See comprehensive -AR, -ER, and -IR verb endings
 3. **Learn Rules**: Understand present and preterite tense conjugation rules
-4. **Quick Lookup**: Use as a reference while practicing or learning
+4. **Quick Lookup**: Space-optimized design provides reference without losing screen space
 
 ## 🛠️ Technology Stack
 
