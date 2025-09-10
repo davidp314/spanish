@@ -18,12 +18,19 @@
 - **Result:** ✅ Build successful, lint clean, functionality identical
 - **Files Created:** `src/utils/verbUtils.ts`, `src/utils/arrayUtils.ts`
 
-### Stage 2 Success (Current Session)
+### Stage 2 Success (Previous Session)
 - **Approach:** Extract constants and types for better type safety
 - **Completed:** Centralized practice types and UI constants
 - **Result:** ✅ Build successful, lint clean, improved type safety maintained
 - **Files Created:** `src/types/practiceTypes.ts`
 - **Updated:** `src/App.tsx`, `src/utils/arrayUtils.ts`
+
+### Stage 3 Success (Current Session)
+- **Approach:** Extract single-responsibility hooks for better separation of concerns
+- **Completed:** Keyboard shortcuts and localStorage persistence hooks
+- **Result:** ✅ Build successful, lint clean, cleaner component architecture
+- **Files Created:** `src/hooks/useKeyboardShortcuts.ts`, `src/hooks/useLocalStoragePersistence.ts`
+- **Updated:** `src/App.tsx` (removed duplicate logic, cleaner hook usage)
 
 ### What We Learned
 1. **Original App.tsx (900 lines) is well-architected** - complexity serves rich functionality
@@ -69,10 +76,15 @@
 **Result:** ✅ Very low risk achieved - type definitions and constants successfully extracted
 **Benefits:** ✅ Improved type safety, centralized UI constants, consistent sorting behavior
 
-### Stage 3: Extract Single-Responsibility Hooks  
-**Start with simplest:**
-- `useKeyboardShortcuts` - keyboard event handling
-- `useLocalStoragePersistence` - localStorage save/load logic
+### Stage 3: Extract Single-Responsibility Hooks ✅ COMPLETED
+~~**Start with simplest:**~~
+- ✅ ~~`useKeyboardShortcuts`~~ → keyboard event handling with 'v' key verb selection
+- ✅ ~~`useLocalStoragePersistence`~~ → localStorage save/load logic with auto-save and data migration
+
+**Files Created:** `src/hooks/useKeyboardShortcuts.ts`, `src/hooks/useLocalStoragePersistence.ts`
+
+**Result:** ✅ Single-responsibility achieved - clean separation of infrastructure concerns
+**Benefits:** ✅ Reusable hooks, cleaner App.tsx, better testability, extensible keyboard shortcuts
 
 ### Stage 4: Larger State Hooks (IF Stage 3 succeeds)
 - `usePracticeSession` - practice state management

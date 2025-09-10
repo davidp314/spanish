@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import Flashcard from './components/Flashcard';
 import TranslationQuiz from './components/TranslationQuiz';
 import ConjugationReference from './components/ConjugationReference';
@@ -6,60 +6,16 @@ import VerbSelectionModal from './components/VerbSelectionModal';
 import ThemeToggle from './components/ThemeToggle';
 import type { Conjugation } from './data/conjugationData';
 import { allConjugations, shouldPractice, getSmartPracticeConjugations, getConjugationsByPriority, calculatePracticePriority } from './data/conjugationData';
-import { getUniqueVerbs, getVerbTranslations } from './utils/verbUtils';
+import { getVerbTranslations } from './utils/verbUtils';
 import { shuffleArray, orderSystematically } from './utils/arrayUtils';
 import type { PracticeMode, PracticeType, TranslationDirection } from './types/practiceTypes';
 import { PRACTICE_MODE_LABELS, PRACTICE_MODE_DESCRIPTIONS } from './types/practiceTypes';
+import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
+import { useLocalStoragePersistence, loadStateFromStorage } from './hooks/useLocalStoragePersistence';
 import './App.css';
 
 function App() {
-  // Load state from localStorage or use defaults
-  const loadStateFromStorage = () => {
-    try {
-      const savedState = localStorage.getItem('spanishConjugationsState');
-      if (savedState) {
-        const parsed = JSON.parse(savedState);
-        
-        // IMPORTANT: Always use the latest allConjugations as the source of truth
-        // Merge saved progress data with latest conjugation definitions
-        const mergedConjugations = allConjugations.map(current => {
-          const saved = parsed.conjugations?.find((c: Conjugation) => c.id === current.id);
-          if (saved) {
-            const merged = {
-              ...current, // Use current definition
-              mastered: Boolean(saved.mastered),
-              practiceCount: Number(saved.practiceCount) || 0,
-              correctCount: Number(saved.correctCount) || 0,
-              lastPracticed: saved.lastPracticed
-            };
-            return merged;
-          }
-          return { ...current };
-        });
-        
-        return {
-          conjugations: mergedConjugations,
-          currentIndex: parsed.currentIndex || 0,
-          isPracticeMode: parsed.isPracticeMode || false,
-          selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(allConjugations),
-          selectedTenses: parsed.selectedTenses || {},
-          practiceMode: parsed.practiceMode || 'systematic',
-          lastUpdated: parsed.lastUpdated || Date.now()
-        };
-      }
-    } catch (error) {
-      console.warn('Failed to load state from localStorage:', error);
-    }
-    return {
-      conjugations: allConjugations.map(c => ({ ...c })),
-      currentIndex: 0,
-      isPracticeMode: false,
-      selectedVerbs: getUniqueVerbs(allConjugations),
-      selectedTenses: {},
-      practiceMode: 'systematic',
-      lastUpdated: Date.now()
-    };
-  };
+  // Load initial state from localStorage
 
 
   const initialState = loadStateFromStorage();
@@ -92,41 +48,22 @@ function App() {
   // Track recent practice results to prevent double execution
   const recentResultsRef = useRef<Set<string>>(new Set());
 
-  // Save state to localStorage whenever important state changes
-  useEffect(() => {
-    const stateToSave = {
-      conjugations,
-      currentIndex,
-      isPracticeMode,
-      // selectedVerbSet, // No longer needed
-      selectedVerbs,
-      selectedTenses,
-      practiceMode,
-      lastUpdated: Date.now()
-    };
-    localStorage.setItem('spanishConjugationsState', JSON.stringify(stateToSave));
-  }, [conjugations, currentIndex, isPracticeMode, selectedVerbs, selectedTenses, practiceMode]);
-
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      // Only activate shortcuts when not typing in an input field
-      const target = event.target as HTMLElement;
-      const isTyping = target.tagName === 'INPUT' || 
-                      target.tagName === 'TEXTAREA' || 
-                      target.contentEditable === 'true';
-      
-      if (isTyping) return; // Don't activate shortcuts when typing
-      
-      if (event.key.toLowerCase() === 'v' && !event.ctrlKey && !event.metaKey) {
-        event.preventDefault();
-        setShowVerbSelection(true);
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  // Custom hooks for keyboard shortcuts and localStorage persistence
+  useKeyboardShortcuts({
+    onEscape: () => {
+      // Add escape key functionality if needed
+    },
+    onVerbSelection: () => setShowVerbSelection(true)
+  });
+  
+  useLocalStoragePersistence({
+    conjugations,
+    currentIndex,
+    isPracticeMode,
+    selectedVerbs,
+    selectedTenses,
+    practiceMode
+  });
 
   // Helper function to check if a conjugation is selected (verb + tense)
   const isConjugationSelected = (conjugation: Conjugation): boolean => {

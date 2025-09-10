@@ -214,9 +214,17 @@ When this instruction is given, proactively identify and update all relevant doc
 - ✅ Updated App.tsx and arrayUtils.ts to use centralized types and constants
 - ✅ Build and lint successful, improved type safety maintained
 
+**Stage 3 COMPLETED (January 2025):** Single-responsibility hooks extraction
+- ✅ Extracted keyboard shortcuts logic → `src/hooks/useKeyboardShortcuts.ts`
+- ✅ Extracted localStorage persistence → `src/hooks/useLocalStoragePersistence.ts`
+- ✅ Created reusable `useKeyboardShortcuts` hook with 'v' key verb selection
+- ✅ Created `useLocalStoragePersistence` hook with auto-save and data migration
+- ✅ Updated App.tsx to use custom hooks, removed duplicate logic
+- ✅ Build and lint successful, better separation of concerns achieved
+
 For future App.tsx refactoring work, see `REFACTORING_CONTEXT.md` which contains:
 - Complete analysis of previous refactoring attempt that broke the dashboard
-- Detailed 5-stage incremental refactoring plan with Stages 1-2 now complete
+- Detailed 5-stage incremental refactoring plan with Stages 1-3 now complete
 - Critical success factors and warning signs
 - Specific functions and hooks to extract in remaining stages
 
