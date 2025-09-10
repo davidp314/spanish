@@ -199,12 +199,18 @@ When this instruction is given, proactively identify and update all relevant doc
 - **App.tsx Staged Refactoring:** Extract logic into custom hooks using incremental approach (see REFACTORING_CONTEXT.md)
 - **Advanced Learning Modes:** Pattern recognition, sentence building
 
-### Refactoring Guidelines
+### Refactoring Progress
+**Stage 1 COMPLETED (January 2025):** Pure utility function extraction
+- ✅ Extracted `getUniqueVerbs()` and `getVerbTranslations()` → `src/utils/verbUtils.ts`
+- ✅ Extracted `shuffleArray()` and `orderSystematically()` → `src/utils/arrayUtils.ts`  
+- ✅ Updated App.tsx imports and function calls
+- ✅ Build and lint successful, functionality verified identical
+
 For future App.tsx refactoring work, see `REFACTORING_CONTEXT.md` which contains:
 - Complete analysis of previous refactoring attempt that broke the dashboard
-- Detailed 5-stage incremental refactoring plan
+- Detailed 5-stage incremental refactoring plan with Stage 1 now complete
 - Critical success factors and warning signs
-- Specific functions and hooks to extract in each stage
+- Specific functions and hooks to extract in remaining stages
 
 ## Development Guidelines
 

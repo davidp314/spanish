@@ -6,6 +6,8 @@ import VerbSelectionModal from './components/VerbSelectionModal';
 import ThemeToggle from './components/ThemeToggle';
 import type { Conjugation } from './data/conjugationData';
 import { allConjugations, shouldPractice, getSmartPracticeConjugations, getConjugationsByPriority, calculatePracticePriority } from './data/conjugationData';
+import { getUniqueVerbs, getVerbTranslations } from './utils/verbUtils';
+import { shuffleArray, orderSystematically } from './utils/arrayUtils';
 import './App.css';
 
 function App() {
@@ -37,7 +39,7 @@ function App() {
           conjugations: mergedConjugations,
           currentIndex: parsed.currentIndex || 0,
           isPracticeMode: parsed.isPracticeMode || false,
-          selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(),
+          selectedVerbs: parsed.selectedVerbs || getUniqueVerbs(allConjugations),
           selectedTenses: parsed.selectedTenses || {},
           practiceMode: parsed.practiceMode || 'systematic',
           lastUpdated: parsed.lastUpdated || Date.now()
@@ -50,77 +52,13 @@ function App() {
       conjugations: allConjugations.map(c => ({ ...c })),
       currentIndex: 0,
       isPracticeMode: false,
-      selectedVerbs: getUniqueVerbs(),
+      selectedVerbs: getUniqueVerbs(allConjugations),
       selectedTenses: {},
       practiceMode: 'systematic',
       lastUpdated: Date.now()
     };
   };
 
-  // Helper function to get unique verbs from all conjugations
-  const getUniqueVerbs = (): string[] => {
-    const uniqueVerbs = new Set<string>();
-    allConjugations.forEach(conjugation => uniqueVerbs.add(conjugation.verb));
-    return Array.from(uniqueVerbs).sort();
-  };
-
-  // Helper function to get unique verbs with their English translations
-  const getVerbTranslations = (): Array<{verb: string, english: string, spanish: string}> => {
-    const verbMap = new Map<string, {english: string, spanish: string}>();
-    
-    allConjugations.forEach(conjugation => {
-      if (!verbMap.has(conjugation.verb)) {
-        // Extract base English infinitive from the first person conjugation
-        const englishInfinitive = conjugation.english
-          .replace(/^I\s+/, 'to ')
-          .replace(/^you\s+/, 'to ')
-          .replace(/^he\/she\s+/, 'to ')
-          .replace(/^we\s+/, 'to ')
-          .replace(/^they\s+/, 'to ')
-          .replace(/\s+\(.*?\)/, ''); // Remove parenthetical explanations
-        
-        verbMap.set(conjugation.verb, {
-          english: englishInfinitive,
-          spanish: conjugation.verb
-        });
-      }
-    });
-    
-    return Array.from(verbMap.entries()).map(([verb, translations]) => ({
-      verb,
-      english: translations.english,
-      spanish: translations.spanish
-    }));
-  };
-
-  // Helper function to shuffle an array (Fisher-Yates algorithm)
-  const shuffleArray = (array: Conjugation[]): Conjugation[] => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
-  // Helper function to order conjugations systematically (by verb, then tense, then person)
-  const orderSystematically = (conjugations: Conjugation[]): Conjugation[] => {
-    const personOrder = ['yo', 'tú', 'él/ella/usted', 'nosotros', 'ellos/ellas/ustedes'];
-    const tenseOrder = ['present', 'preterite'];
-    
-    return conjugations.sort((a, b) => {
-      // First sort by verb
-      if (a.verb !== b.verb) {
-        return a.verb.localeCompare(b.verb);
-      }
-      // Then by tense
-      if (a.tense !== b.tense) {
-        return tenseOrder.indexOf(a.tense) - tenseOrder.indexOf(b.tense);
-      }
-      // Then by person
-      return personOrder.indexOf(a.person) - personOrder.indexOf(b.person);
-    });
-  };
 
   const initialState = loadStateFromStorage();
   
@@ -222,7 +160,7 @@ function App() {
   const handleStartPractice = (manualMode: boolean = false) => {
     if (practiceType === 'translation') {
       // Translation quiz - get selected verbs with translations
-      const allVerbTranslations = getVerbTranslations();
+      const allVerbTranslations = getVerbTranslations(allConjugations);
       const selectedVerbTranslations = allVerbTranslations.filter(v => selectedVerbs.includes(v.verb));
       
       // Shuffle verbs for translation quiz
