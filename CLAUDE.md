@@ -206,9 +206,17 @@ When this instruction is given, proactively identify and update all relevant doc
 - ✅ Updated App.tsx imports and function calls
 - ✅ Build and lint successful, functionality verified identical
 
+**Stage 2 COMPLETED (January 2025):** Constants and types extraction
+- ✅ Extracted practice types and constants → `src/types/practiceTypes.ts`
+- ✅ Created `PracticeMode`, `PracticeType`, `TranslationDirection` types
+- ✅ Centralized `PERSON_ORDER`, `TENSE_ORDER` sorting constants
+- ✅ Added `PRACTICE_MODE_LABELS` and `PRACTICE_MODE_DESCRIPTIONS` for UI consistency
+- ✅ Updated App.tsx and arrayUtils.ts to use centralized types and constants
+- ✅ Build and lint successful, improved type safety maintained
+
 For future App.tsx refactoring work, see `REFACTORING_CONTEXT.md` which contains:
 - Complete analysis of previous refactoring attempt that broke the dashboard
-- Detailed 5-stage incremental refactoring plan with Stage 1 now complete
+- Detailed 5-stage incremental refactoring plan with Stages 1-2 now complete
 - Critical success factors and warning signs
 - Specific functions and hooks to extract in remaining stages
 

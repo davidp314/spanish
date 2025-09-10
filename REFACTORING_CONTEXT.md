@@ -12,11 +12,18 @@
 - **Result:** Broke the sophisticated dashboard UI completely
 - **Decision:** Reverted to original working version, abandoned aggressive refactoring
 
-### Stage 1 Success (Current Session)
+### Stage 1 Success (Previous Session)
 - **Approach:** Incremental refactoring starting with pure utility functions
 - **Completed:** Extracted 4 utility functions to separate modules
 - **Result:** ✅ Build successful, lint clean, functionality identical
 - **Files Created:** `src/utils/verbUtils.ts`, `src/utils/arrayUtils.ts`
+
+### Stage 2 Success (Current Session)
+- **Approach:** Extract constants and types for better type safety
+- **Completed:** Centralized practice types and UI constants
+- **Result:** ✅ Build successful, lint clean, improved type safety maintained
+- **Files Created:** `src/types/practiceTypes.ts`
+- **Updated:** `src/App.tsx`, `src/utils/arrayUtils.ts`
 
 ### What We Learned
 1. **Original App.tsx (900 lines) is well-architected** - complexity serves rich functionality
@@ -51,10 +58,16 @@
 **Result:** ✅ Low risk achieved - pure functions successfully extracted, no side effects
 **Verification:** ✅ All functionality verified identical after extraction
 
-### Stage 2: Extract Constants and Types
-**Target:** Practice modes, types, configuration constants  
-**Create:** `src/types/practiceTypes.ts`  
-**Risk:** Very low - just moving definitions
+### Stage 2: Extract Constants and Types ✅ COMPLETED
+~~**Target:** Practice modes, types, configuration constants~~
+- ✅ ~~Practice mode types~~ → `PracticeMode`, `PracticeType`, `TranslationDirection` types
+- ✅ ~~Configuration constants~~ → `PERSON_ORDER`, `TENSE_ORDER` sorting constants
+- ✅ ~~UI display constants~~ → `PRACTICE_MODE_LABELS`, `PRACTICE_MODE_DESCRIPTIONS`
+
+**Files Created:** `src/types/practiceTypes.ts`
+
+**Result:** ✅ Very low risk achieved - type definitions and constants successfully extracted
+**Benefits:** ✅ Improved type safety, centralized UI constants, consistent sorting behavior
 
 ### Stage 3: Extract Single-Responsibility Hooks  
 **Start with simplest:**

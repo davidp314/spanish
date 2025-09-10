@@ -8,6 +8,8 @@ import type { Conjugation } from './data/conjugationData';
 import { allConjugations, shouldPractice, getSmartPracticeConjugations, getConjugationsByPriority, calculatePracticePriority } from './data/conjugationData';
 import { getUniqueVerbs, getVerbTranslations } from './utils/verbUtils';
 import { shuffleArray, orderSystematically } from './utils/arrayUtils';
+import type { PracticeMode, PracticeType, TranslationDirection } from './types/practiceTypes';
+import { PRACTICE_MODE_LABELS, PRACTICE_MODE_DESCRIPTIONS } from './types/practiceTypes';
 import './App.css';
 
 function App() {
@@ -68,9 +70,9 @@ function App() {
   // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
   const [selectedTenses, setSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(initialState.selectedTenses || {});
-  const [practiceMode, setPracticeMode] = useState<'systematic' | 'random1' | 'random2'>(initialState.practiceMode);
-  const [practiceType, setPracticeType] = useState<'quiz' | 'mastery' | 'translation'>('mastery');
-  const [translationDirection, setTranslationDirection] = useState<'es-en' | 'en-es'>('es-en');
+  const [practiceMode, setPracticeMode] = useState<PracticeMode>(initialState.practiceMode);
+  const [practiceType, setPracticeType] = useState<PracticeType>('mastery');
+  const [translationDirection, setTranslationDirection] = useState<TranslationDirection>('es-en');
   // const [lastUpdated, setLastUpdated] = useState(initialState.lastUpdated); // No longer needed
   
   // Remove unused filter state variables
@@ -408,7 +410,7 @@ function App() {
               <label>Practice Mode:</label>
               <select 
                 value={practiceMode} 
-                onChange={(e) => setPracticeMode(e.target.value as 'systematic' | 'random1' | 'random2')}
+                onChange={(e) => setPracticeMode(e.target.value as PracticeMode)}
                 className="practice-mode-select"
               >
                 <option value="systematic">Systematic: One verb at a time</option>
@@ -693,9 +695,7 @@ function App() {
                 <div className="dashboard-item">
                   <div className="dashboard-label">Practice Mode</div>
                   <div className="dashboard-value">
-                    {practiceMode === 'systematic' && '🔄 Systematic'}
-                    {practiceMode === 'random1' && '🎲 Random Mixed'}
-                    {practiceMode === 'random2' && '🎯 Mixed Systematic'}
+                    {PRACTICE_MODE_LABELS[practiceMode]}
                   </div>
                   <div className="dashboard-detail">Current learning strategy</div>
                 </div>
@@ -769,9 +769,7 @@ function App() {
                 <div className="dashboard-item">
                   <div className="dashboard-label">Smart Mode</div>
                   <div className="dashboard-value">
-                    {practiceMode === 'systematic' ? '🔄 Priority + Systematic' : 
-                     practiceMode === 'random1' ? '🎲 Priority + Smart Random' : 
-                     '🎯 Priority + Mixed'}
+                    {PRACTICE_MODE_DESCRIPTIONS[practiceMode]}
                   </div>
                   <div className="dashboard-detail">
                     AI-powered practice ordering
