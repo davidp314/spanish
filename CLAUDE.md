@@ -27,6 +27,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Professional UI** with animations, modals, responsive design, and comprehensive keyboard shortcuts
 
 ### Recent Updates (January 2025)
+- **Flashcard Practice Improvements:** Fixed answer comparison display and card transition animations to prevent showing answers prematurely
 - **Translation Quiz Feature:** New practice type with Spanish ↔ English verb translation, auto-advance, and optimized keyboard shortcuts (Enter, J, F)
 - **Enhanced Practice Types:** Quiz, Mastery, and Translation modes with distinct workflows
 - **Single-Button Direction Toggle:** Simplified ES → EN / EN → ES direction switching
@@ -171,6 +172,8 @@ interface Conjugation {
 - **Practice Count & Accuracy Reports:** Fixed React Strict Mode double-execution causing counts to remain at 0
 - **State Management:** Resolved duplicate state updates preventing proper progress tracking
 - **UI Space Optimization:** Compact reference button integration without vertical expansion
+- **Flashcard Answer Comparison:** Users can now see their answer alongside the correct answer after submission
+- **Card Transition Animations:** Fixed issue where new cards briefly showed Spanish answers before flipping to English prompts
 
 ### Current Limitations
 - **No cloud sync:** Progress is local only

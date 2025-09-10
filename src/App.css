@@ -913,6 +913,34 @@ body {
   border: 1px solid var(--result-incorrect-border);
 }
 
+.result-comparison {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+@media (max-width: 600px) {
+  .result-comparison {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.user-answer, .correct-answer {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+.result-feedback {
+  text-align: center;
+  font-size: 1.1rem;
+}
+
 /* Flashcard Reference Button */
 .flashcard-reference {
   display: flex;

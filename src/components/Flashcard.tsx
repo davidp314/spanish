@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import type { Conjugation } from '../data/conjugationData';
 import ConjugationReferenceModal from './ConjugationReferenceModal';
 
@@ -28,6 +28,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Focus the input field when component mounts (new card)
+  useEffect(() => {
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.focus();
+      }
+    }, 0);
+  }, []); // Only run on mount since each card gets a new component instance
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
@@ -301,7 +310,17 @@ const Flashcard: React.FC<FlashcardProps> = ({
 
       {showResult && (
         <div className={`result-message ${isCorrect ? 'correct' : 'incorrect'}`}>
-          {isCorrect ? '¡Correcto! 🎉' : `¡Incorrecto! The answer is: ${conjugation.spanish}`}
+          <div className="result-comparison">
+            <div className="user-answer">
+              <strong>Your answer:</strong> {userAnswer}
+            </div>
+            <div className="correct-answer">
+              <strong>Correct answer:</strong> {conjugation.spanish}
+            </div>
+          </div>
+          <div className="result-feedback">
+            {isCorrect ? '¡Correcto! 🎉' : '¡Incorrecto!'}
+          </div>
         </div>
       )}
 

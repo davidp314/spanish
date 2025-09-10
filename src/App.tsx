@@ -510,6 +510,7 @@ function App() {
             />
           ) : (
             <Flashcard
+              key={practiceSessionConjugations[currentIndex]?.id}
               conjugation={conjugations.find(c => c.id === practiceSessionConjugations[currentIndex]?.id) || practiceSessionConjugations[currentIndex]}
               onNext={handleNextCard}
               onMastered={handleToggleMastery}
