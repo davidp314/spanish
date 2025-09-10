@@ -21,6 +21,12 @@ const ConjugationReferenceModal: React.FC<ConjugationReferenceModalProps> = ({
   }, [currentConjugation.tense]);
 
   useEffect(() => {
+    const handleEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
     if (isOpen) {
       document.addEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'hidden';
@@ -33,13 +39,7 @@ const ConjugationReferenceModal: React.FC<ConjugationReferenceModalProps> = ({
       document.removeEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen]);
-
-  const handleEscapeKey = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-  };
+  }, [isOpen, onClose]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {

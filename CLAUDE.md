@@ -174,6 +174,8 @@ interface Conjugation {
 - **UI Space Optimization:** Compact reference button integration without vertical expansion
 - **Flashcard Answer Comparison:** Users can now see their answer alongside the correct answer after submission
 - **Card Transition Animations:** Fixed issue where new cards briefly showed Spanish answers before flipping to English prompts
+- **Code Quality:** Fixed minor lint issues including unused parameters and useEffect dependencies
+- **Aggressive Refactoring Risk:** Learned that the sophisticated dashboard UI can be easily broken by over-refactoring; original 900-line App.tsx is well-architected
 
 ### Current Limitations
 - **No cloud sync:** Progress is local only
@@ -194,8 +196,15 @@ When this instruction is given, proactively identify and update all relevant doc
 
 ### High Priority for Future Development
 - **Settings Import/Export:** Backup and restore progress/settings
-- **App.tsx Refactoring:** Extract logic into custom hooks
+- **App.tsx Staged Refactoring:** Extract logic into custom hooks using incremental approach (see REFACTORING_CONTEXT.md)
 - **Advanced Learning Modes:** Pattern recognition, sentence building
+
+### Refactoring Guidelines
+For future App.tsx refactoring work, see `REFACTORING_CONTEXT.md` which contains:
+- Complete analysis of previous refactoring attempt that broke the dashboard
+- Detailed 5-stage incremental refactoring plan
+- Critical success factors and warning signs
+- Specific functions and hooks to extract in each stage
 
 ## Development Guidelines
 

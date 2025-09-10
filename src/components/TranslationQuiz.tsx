@@ -74,7 +74,7 @@ const TranslationQuiz: React.FC<TranslationQuizProps> = ({
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [showAnswer, answered, handleShowAnswer, handleNext]);
+  }, [showAnswer, answered, handleShowAnswer, handleNext, handleResult]);
 
   const getDisplayText = () => {
     if (direction === 'es-en') {

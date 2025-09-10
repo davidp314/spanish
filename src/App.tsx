@@ -363,7 +363,7 @@ function App() {
     }
   }, [practiceType]);
 
-  const handleTranslationResult = (_verb: string, _correct: boolean) => {
+  const handleTranslationResult = () => {
     // For translation quiz, we track results on the verb level
     // This could be extended to track translation-specific progress
   };
