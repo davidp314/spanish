@@ -209,7 +209,14 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'ver-tu-present', english: 'you see (informal, singular)', spanish: 'ves', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'ver-el-present', english: 'he/she sees, you see (formal, singular)', spanish: 've', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'ver-nosotros-present', english: 'we see', spanish: 'vemos', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'ver-ellos-present', english: 'they see, you see (formal, plural)', spanish: 'ven', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'ver-ellos-present', english: 'they see, you see (formal, plural)', spanish: 'ven', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: deber (Present)
+  { id: 'deber-yo-present', english: 'I owe/must', spanish: 'debo', verb: 'deber', type: 'regular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-tu-present', english: 'you owe/must (informal, singular)', spanish: 'debes', verb: 'deber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-el-present', english: 'he/she owes/must, you owe/must (formal, singular)', spanish: 'debe', verb: 'deber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-nosotros-present', english: 'we owe/must', spanish: 'debemos', verb: 'deber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-ellos-present', english: 'they owe/must, you owe/must (formal, plural)', spanish: 'deben', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -408,7 +415,14 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'ver-tu-preterite', english: 'you saw (informal, singular)', spanish: 'viste', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'ver-el-preterite', english: 'he/she saw, you saw (formal, singular)', spanish: 'vio', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'ver-nosotros-preterite', english: 'we saw', spanish: 'vimos', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'ver-ellos-preterite', english: 'they saw, you saw (formal, plural)', spanish: 'vieron', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'ver-ellos-preterite', english: 'they saw, you saw (formal, plural)', spanish: 'vieron', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: deber (Preterite)
+  { id: 'deber-yo-preterite', english: 'I owed/had to', spanish: 'debí', verb: 'deber', type: 'regular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-tu-preterite', english: 'you owed/had to (informal, singular)', spanish: 'debiste', verb: 'deber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-el-preterite', english: 'he/she owed/had to, you owed/had to (formal, singular)', spanish: 'debió', verb: 'deber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-nosotros-preterite', english: 'we owed/had to', spanish: 'debimos', verb: 'deber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-ellos-preterite', english: 'they owed/had to, you owed/had to (formal, plural)', spanish: 'debieron', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations
