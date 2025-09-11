@@ -216,7 +216,35 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'deber-tu-present', english: 'you owe/must (informal, singular)', spanish: 'debes', verb: 'deber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'deber-el-present', english: 'he/she owes/must, you owe/must (formal, singular)', spanish: 'debe', verb: 'deber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'deber-nosotros-present', english: 'we owe/must', spanish: 'debemos', verb: 'deber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'deber-ellos-present', english: 'they owe/must, you owe/must (formal, plural)', spanish: 'deben', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'deber-ellos-present', english: 'they owe/must, you owe/must (formal, plural)', spanish: 'deben', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: preguntar (Present)
+  { id: 'preguntar-yo-present', english: 'I ask', spanish: 'pregunto', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-tu-present', english: 'you ask (informal, singular)', spanish: 'preguntas', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-el-present', english: 'he/she asks, you ask (formal, singular)', spanish: 'pregunta', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-nosotros-present', english: 'we ask', spanish: 'preguntamos', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-ellos-present', english: 'they ask, you ask (formal, plural)', spanish: 'preguntan', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: pedir (Present)
+  { id: 'pedir-yo-present', english: 'I ask for/request', spanish: 'pido', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-tu-present', english: 'you ask for/request (informal, singular)', spanish: 'pides', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-el-present', english: 'he/she asks for/requests, you ask for/request (formal, singular)', spanish: 'pide', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-nosotros-present', english: 'we ask for/request', spanish: 'pedimos', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-ellos-present', english: 'they ask for/request, you ask for/request (formal, plural)', spanish: 'piden', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: pensar (Present)
+  { id: 'pensar-yo-present', english: 'I think', spanish: 'pienso', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-tu-present', english: 'you think (informal, singular)', spanish: 'piensas', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-el-present', english: 'he/she thinks, you think (formal, singular)', spanish: 'piensa', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-nosotros-present', english: 'we think', spanish: 'pensamos', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-ellos-present', english: 'they think, you think (formal, plural)', spanish: 'piensan', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: creer (Present)
+  { id: 'creer-yo-present', english: 'I believe', spanish: 'creo', verb: 'creer', type: 'regular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-tu-present', english: 'you believe (informal, singular)', spanish: 'crees', verb: 'creer', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-el-present', english: 'he/she believes, you believe (formal, singular)', spanish: 'cree', verb: 'creer', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-nosotros-present', english: 'we believe', spanish: 'creemos', verb: 'creer', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-ellos-present', english: 'they believe, you believe (formal, plural)', spanish: 'creen', verb: 'creer', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -422,7 +450,35 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'deber-tu-preterite', english: 'you owed/had to (informal, singular)', spanish: 'debiste', verb: 'deber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'deber-el-preterite', english: 'he/she owed/had to, you owed/had to (formal, singular)', spanish: 'debió', verb: 'deber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'deber-nosotros-preterite', english: 'we owed/had to', spanish: 'debimos', verb: 'deber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'deber-ellos-preterite', english: 'they owed/had to, you owed/had to (formal, plural)', spanish: 'debieron', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'deber-ellos-preterite', english: 'they owed/had to, you owed/had to (formal, plural)', spanish: 'debieron', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: preguntar (Preterite)
+  { id: 'preguntar-yo-preterite', english: 'I asked', spanish: 'pregunté', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-tu-preterite', english: 'you asked (informal, singular)', spanish: 'preguntaste', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-el-preterite', english: 'he/she asked, you asked (formal, singular)', spanish: 'preguntó', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-nosotros-preterite', english: 'we asked', spanish: 'preguntamos', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-ellos-preterite', english: 'they asked, you asked (formal, plural)', spanish: 'preguntaron', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: pedir (Preterite)
+  { id: 'pedir-yo-preterite', english: 'I asked for/requested', spanish: 'pedí', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-tu-preterite', english: 'you asked for/requested (informal, singular)', spanish: 'pediste', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-el-preterite', english: 'he/she asked for/requested, you asked for/requested (formal, singular)', spanish: 'pidió', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-nosotros-preterite', english: 'we asked for/requested', spanish: 'pedimos', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-ellos-preterite', english: 'they asked for/requested, you asked for/requested (formal, plural)', spanish: 'pidieron', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: pensar (Preterite)
+  { id: 'pensar-yo-preterite', english: 'I thought', spanish: 'pensé', verb: 'pensar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-tu-preterite', english: 'you thought (informal, singular)', spanish: 'pensaste', verb: 'pensar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-el-preterite', english: 'he/she thought, you thought (formal, singular)', spanish: 'pensó', verb: 'pensar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-nosotros-preterite', english: 'we thought', spanish: 'pensamos', verb: 'pensar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-ellos-preterite', english: 'they thought, you thought (formal, plural)', spanish: 'pensaron', verb: 'pensar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: creer (Preterite)
+  { id: 'creer-yo-preterite', english: 'I believed', spanish: 'creí', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-tu-preterite', english: 'you believed (informal, singular)', spanish: 'creíste', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-el-preterite', english: 'he/she believed, you believed (formal, singular)', spanish: 'creyó', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-nosotros-preterite', english: 'we believed', spanish: 'creímos', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-ellos-preterite', english: 'they believed, you believed (formal, plural)', spanish: 'creyeron', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations
