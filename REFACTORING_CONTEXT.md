@@ -86,9 +86,20 @@
 **Result:** ✅ Single-responsibility achieved - clean separation of infrastructure concerns
 **Benefits:** ✅ Reusable hooks, cleaner App.tsx, better testability, extensible keyboard shortcuts
 
-### Stage 4: Larger State Hooks (IF Stage 3 succeeds)
-- `usePracticeSession` - practice state management
-- `useConjugationProgress` - statistics and tracking
+### Stage 4A: Practice Session State Management ✅ COMPLETED
+**Approach:** Extract practice session state and navigation logic into dedicated hook
+**Completed:** Practice session management including start/stop/navigation logic
+**Result:** ✅ Successful extraction without breaking dashboard functionality
+**Files Created:** `src/hooks/usePracticeSession.ts` (200+ lines)
+**Issues Fixed:** 
+- Verb selection reactivity problems (functions now use proper useCallback dependencies)
+- Dashboard due count updates (replaced function calls with reactive variables)
+- Session cleanup when changing verb selection mid-session
+- Card counting and navigation accuracy
+**Benefits:** ✅ Cleaner separation of session vs. app state, easier testing, maintained all functionality
+
+### Stage 4B: Progress Tracking (REMAINING - Higher Risk)
+- `useConjugationProgress` - statistics and tracking (dashboard-connected, higher risk)
 
 ### Stage 5: UI Component Extraction (Only if needed)
 - Keep existing dashboard structure identical
@@ -100,7 +111,8 @@
 4. **Stop if Resistance** - if extraction is difficult, the code might be fine as-is
 
 ## Key Files to Understand
-- `src/App.tsx` - Main component (900 lines, rich functionality)
+- `src/App.tsx` - Main component (~670 lines, down from original 900+ lines)
+- `src/hooks/usePracticeSession.ts` - Practice session state management (extracted in Stage 4A)
 - `src/data/conjugationData.ts` - Verb data and smart algorithms  
 - `src/App.css` - Styling for dashboard (segmented controls, stats grid)
 - `src/contexts/ThemeContext.tsx` - Theme management

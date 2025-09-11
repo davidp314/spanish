@@ -222,9 +222,19 @@ When this instruction is given, proactively identify and update all relevant doc
 - ✅ Updated App.tsx to use custom hooks, removed duplicate logic
 - ✅ Build and lint successful, better separation of concerns achieved
 
+**Stage 4A COMPLETED (January 2025):** Practice session state management extraction
+- ✅ Extracted practice session state → `src/hooks/usePracticeSession.ts`
+- ✅ Moved session navigation logic (`handleStartPractice`, `handleBackToBrowse`, `handleNextCard`)
+- ✅ Fixed verb selection reactivity issues with proper `useCallback` dependencies
+- ✅ Fixed dashboard due count updates by making calculations reactive
+- ✅ Fixed session cleanup when changing verb selection mid-session
+- ✅ Maintained all practice modes (systematic, random, mastery, translation quiz)
+- ✅ App.tsx reduced from 704 to ~670 lines, better separation of concerns
+- ✅ Build and lint successful, all practice session functionality verified
+
 For future App.tsx refactoring work, see `REFACTORING_CONTEXT.md` which contains:
 - Complete analysis of previous refactoring attempt that broke the dashboard
-- Detailed 5-stage incremental refactoring plan with Stages 1-3 now complete
+- Detailed 5-stage incremental refactoring plan with Stages 1-4A now complete
 - Critical success factors and warning signs
 - Specific functions and hooks to extract in remaining stages
 
@@ -244,7 +254,10 @@ For future App.tsx refactoring work, see `REFACTORING_CONTEXT.md` which contains
 - CSS variables for theme consistency
 
 ### Key Files to Understand
-- `src/App.tsx` - Main application logic with translation quiz integration (needs refactoring)
+- `src/App.tsx` - Main application logic (~670 lines, progress from original 900+ lines)
+- `src/hooks/usePracticeSession.ts` - Practice session state management and navigation
+- `src/hooks/useKeyboardShortcuts.ts` - Keyboard event handling with shortcuts
+- `src/hooks/useLocalStoragePersistence.ts` - localStorage persistence with auto-save
 - `src/data/conjugationData.ts` - All conjugation data and smart algorithms
 - `src/components/Flashcard.tsx` - Core conjugation practice functionality
 - `src/components/TranslationQuiz.tsx` - Translation practice with auto-advance and keyboard shortcuts

@@ -5,13 +5,12 @@ import ConjugationReference from './components/ConjugationReference';
 import VerbSelectionModal from './components/VerbSelectionModal';
 import ThemeToggle from './components/ThemeToggle';
 import type { Conjugation } from './data/conjugationData';
-import { allConjugations, shouldPractice, getSmartPracticeConjugations, getConjugationsByPriority, calculatePracticePriority } from './data/conjugationData';
-import { getVerbTranslations } from './utils/verbUtils';
-import { shuffleArray, orderSystematically } from './utils/arrayUtils';
+import { allConjugations, shouldPractice, getSmartPracticeConjugations } from './data/conjugationData';
 import type { PracticeMode, PracticeType, TranslationDirection } from './types/practiceTypes';
 import { PRACTICE_MODE_LABELS, PRACTICE_MODE_DESCRIPTIONS } from './types/practiceTypes';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import { useLocalStoragePersistence, loadStateFromStorage } from './hooks/useLocalStoragePersistence';
+import { usePracticeSession } from './hooks/usePracticeSession';
 import './App.css';
 
 function App() {
@@ -21,8 +20,9 @@ function App() {
   const initialState = loadStateFromStorage();
   
   const [conjugations, setConjugations] = useState<Conjugation[]>(initialState.conjugations);
-  const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex);
-  const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
+  // Practice session state moved to usePracticeSession hook
+  // const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex);
+  // const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
   // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
   const [selectedTenses, setSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(initialState.selectedTenses || {});
@@ -41,12 +41,73 @@ function App() {
   const [showVerbSelection, setShowVerbSelection] = useState(false);
   const [showReference, setShowReference] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
-  const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
-  const [masteredInSession, setMasteredInSession] = useState<Set<string>>(new Set());
-  const [translationSessionVerbs, setTranslationSessionVerbs] = useState<Array<{verb: string, english: string, spanish: string}>>([]);
+  // Practice session state moved to usePracticeSession hook
+  // const [practiceSessionConjugations, setPracticeSessionConjugations] = useState<Conjugation[]>([]);
+  // const [masteredInSession, setMasteredInSession] = useState<Set<string>>(new Set());
+  // const [translationSessionVerbs, setTranslationSessionVerbs] = useState<Array<{verb: string, english: string, spanish: string}>>([]);
   
   // Track recent practice results to prevent double execution
   const recentResultsRef = useRef<Set<string>>(new Set());
+
+  // Helper function to check if a conjugation is selected (verb + tense)
+  const isConjugationSelected = useCallback((conjugation: Conjugation): boolean => {
+    if (!selectedVerbs.includes(conjugation.verb)) {
+      return false;
+    }
+    
+    const verbTenses = selectedTenses[conjugation.verb];
+    
+    // If no specific tenses selected for this verb, include all tenses
+    if (!verbTenses) {
+      return true;
+    }
+    
+    // Check if this specific tense is selected
+    return verbTenses[conjugation.tense] || false;
+  }, [selectedVerbs, selectedTenses]);
+
+  // Get conjugations that should be practiced (spaced repetition)
+  const getConjugationsToPractice = useCallback(() => {
+    // Filter by selected verbs and tenses first
+    const selectedConjugations = conjugations.filter(isConjugationSelected);
+    
+    // Then apply spaced repetition logic
+    return selectedConjugations.filter(shouldPractice);
+  }, [conjugations, selectedVerbs, selectedTenses, isConjugationSelected]);
+
+  // Get all selected conjugations (for manual practice mode)
+  const getSelectedConjugations = useCallback(() => {
+    return conjugations.filter(isConjugationSelected);
+  }, [conjugations, selectedVerbs, selectedTenses, isConjugationSelected]);
+
+  // Calculate due counts for dashboard display (reactive to verb selection changes)
+  const conjugationsToPractice = getConjugationsToPractice();
+  const selectedConjugations = getSelectedConjugations();
+  const dueCount = conjugationsToPractice.length;
+  const selectedCount = selectedConjugations.length;
+
+  // Practice session hook
+  const practiceSession = usePracticeSession({
+    conjugations,
+    selectedVerbs,
+    practiceMode,
+    practiceType,
+    isConjugationSelected,
+    getSelectedConjugations
+  });
+
+  // Extract practice session state for easier access
+  const {
+    currentIndex,
+    isPracticeMode,
+    practiceSessionConjugations,
+    translationSessionVerbs,
+    handleStartPractice,
+    handleBackToBrowse,
+    handleNextCard,
+    addToMasteredInSession,
+    setCurrentIndex
+  } = practiceSession;
 
   // Custom hooks for keyboard shortcuts and localStorage persistence
   useKeyboardShortcuts({
@@ -65,131 +126,9 @@ function App() {
     practiceMode
   });
 
-  // Helper function to check if a conjugation is selected (verb + tense)
-  const isConjugationSelected = (conjugation: Conjugation): boolean => {
-    if (!selectedVerbs.includes(conjugation.verb)) {
-      return false;
-    }
-    
-    const verbTenses = selectedTenses[conjugation.verb];
-    
-    // If no specific tenses selected for this verb, include all tenses
-    if (!verbTenses) {
-      return true;
-    }
-    
-    // Check if this specific tense is selected
-    return verbTenses[conjugation.tense] || false;
-  };
+  // handleStartPractice moved to usePracticeSession hook
 
-  // Get conjugations that should be practiced (spaced repetition)
-  const getConjugationsToPractice = () => {
-    // Filter by selected verbs and tenses first
-    const selectedConjugations = conjugations.filter(isConjugationSelected);
-    
-    // Then apply spaced repetition logic
-    return selectedConjugations.filter(shouldPractice);
-  };
-
-  // Get all selected conjugations (for manual practice mode)
-  const getSelectedConjugations = () => {
-    return conjugations.filter(isConjugationSelected);
-  };
-
-  const handleStartPractice = (manualMode: boolean = false) => {
-    if (practiceType === 'translation') {
-      // Translation quiz - get selected verbs with translations
-      const allVerbTranslations = getVerbTranslations(allConjugations);
-      const selectedVerbTranslations = allVerbTranslations.filter(v => selectedVerbs.includes(v.verb));
-      
-      // Shuffle verbs for translation quiz
-      const shuffledVerbs = [...selectedVerbTranslations].sort(() => Math.random() - 0.5);
-      
-      setTranslationSessionVerbs(shuffledVerbs);
-      setCurrentIndex(0);
-      setIsPracticeMode(true);
-      return;
-    }
-
-    // Get conjugations to practice - either smart or manual mode
-    const conjugationsToPractice = manualMode 
-      ? getSelectedConjugations()
-      : getSmartPracticeConjugations(
-          conjugations.filter(isConjugationSelected)
-        );
-    
-    // Apply practice mode ordering with smart selection
-    let orderedConjugations: Conjugation[];
-    
-    switch (practiceMode) {
-      case 'systematic': {
-        // Group by verb, then order each verb's conjugations by priority
-        const verbGroups = new Map<string, Conjugation[]>();
-        conjugationsToPractice.forEach(conjugation => {
-          if (!verbGroups.has(conjugation.verb)) {
-            verbGroups.set(conjugation.verb, []);
-          }
-          verbGroups.get(conjugation.verb)!.push(conjugation);
-        });
-        
-        // Order each verb group by priority, then by systematic order
-        orderedConjugations = Array.from(verbGroups.values()).map(group => {
-          const priorityOrdered = getConjugationsByPriority(group);
-          return orderSystematically(priorityOrdered);
-        }).flat();
-        break;
-      }
-        
-      case 'random1': {
-        // Smart random: Use priority-weighted selection instead of pure randomness
-        // Start with highest priority conjugations, then gradually introduce variety
-        const highPriority = conjugationsToPractice.slice(0, Math.ceil(conjugationsToPractice.length * 0.7));
-        const remaining = conjugationsToPractice.slice(Math.ceil(conjugationsToPractice.length * 0.7));
-        
-        // Shuffle high priority and remaining separately, then combine
-        const shuffledHigh = shuffleArray([...highPriority]);
-        const shuffledRemaining = shuffleArray([...remaining]);
-        orderedConjugations = [...shuffledHigh, ...shuffledRemaining];
-        break;
-      }
-        
-      case 'random2': {
-        // Smart systematic within verbs: Order verbs by priority, then systematic within each verb
-        const verbPriorityMap = new Map<string, number>();
-        conjugationsToPractice.forEach(conjugation => {
-          const currentPriority = verbPriorityMap.get(conjugation.verb) || 0;
-          verbPriorityMap.set(conjugation.verb, Math.max(currentPriority, calculatePracticePriority(conjugation)));
-        });
-        
-        // Sort verbs by their highest priority conjugation
-        const sortedVerbs = Array.from(verbPriorityMap.entries())
-          .sort(([, priorityA], [, priorityB]) => priorityB - priorityA)
-          .map(([verb]) => verb);
-        
-        // Order conjugations systematically within each verb, following verb priority order
-        orderedConjugations = sortedVerbs.flatMap(verb => 
-          orderSystematically(conjugationsToPractice.filter(c => c.verb === verb))
-        );
-        break;
-      }
-        
-      default:
-        orderedConjugations = conjugationsToPractice;
-    }
-    
-    setPracticeSessionConjugations(orderedConjugations);
-    setCurrentIndex(0);
-    setMasteredInSession(new Set()); // Clear mastery tracking for new session
-    setIsPracticeMode(true);
-  };
-
-  const handleBackToBrowse = () => {
-    setIsPracticeMode(false);
-    setCurrentIndex(0);
-    setPracticeSessionConjugations([]); // Clear the frozen array
-    setMasteredInSession(new Set()); // Clear mastery tracking
-    setTranslationSessionVerbs([]); // Clear translation session
-  };
+  // handleBackToBrowse moved to usePracticeSession hook
 
   const handleToggleMastery = (id: string) => {
     setConjugations(prev => 
@@ -236,64 +175,22 @@ function App() {
     
     // Track mastery in current session for mastery mode
     if (correct && practiceType === 'mastery') {
-      setMasteredInSession(prev => new Set(prev).add(id));
+      addToMasteredInSession(id);
     }
-  }, [practiceType]);
+  }, [practiceType, addToMasteredInSession]);
 
   const handleTranslationResult = () => {
     // For translation quiz, we track results on the verb level
     // This could be extended to track translation-specific progress
   };
 
-  const handleNextCard = () => {
-    if (practiceType === 'translation') {
-      // Translation quiz: go through once
-      if (currentIndex < translationSessionVerbs.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        // Translation quiz complete
-        setIsPracticeMode(false);
-        setCurrentIndex(0);
-        setTranslationSessionVerbs([]);
-      }
-    } else if (practiceType === 'quiz') {
-      // Quiz mode: go through once
-      if (currentIndex < practiceSessionConjugations.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        // Practice session complete
-        setIsPracticeMode(false);
-        setCurrentIndex(0);
-        setPracticeSessionConjugations([]);
-        setMasteredInSession(new Set());
-      }
-    } else {
-      // Mastery mode: continue until all are correct
-      if (currentIndex < practiceSessionConjugations.length - 1) {
-        setCurrentIndex(currentIndex + 1);
-      } else {
-        // Check if all conjugations have been answered correctly
-        const allMastered = practiceSessionConjugations.every(c => masteredInSession.has(c.id));
-        
-        if (allMastered) {
-          // All mastered, end session
-          setIsPracticeMode(false);
-          setCurrentIndex(0);
-          setPracticeSessionConjugations([]);
-          setMasteredInSession(new Set());
-        } else {
-          // Continue with remaining conjugations
-          const remainingConjugations = practiceSessionConjugations.filter(c => !masteredInSession.has(c.id));
-          setPracticeSessionConjugations(remainingConjugations);
-          setCurrentIndex(0);
-        }
-      }
-    }
-  };
+  // handleNextCard moved to usePracticeSession hook
 
   const handleVerbSelectionSave = (newSelectedVerbs: string[], newSelectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => {
     setSelectedVerbs(newSelectedVerbs);
     setSelectedTenses(newSelectedTenses);
+    // Clear any active practice session when verb selection changes
+    handleBackToBrowse();
   };
 
   const handleResetProgress = () => {
@@ -543,27 +440,27 @@ function App() {
                   </button>
                 </div>
               )}
-              {getConjugationsToPractice().length > 0 ? (
+              {dueCount > 0 ? (
                 <button 
                   onClick={() => handleStartPractice(false)}
                   className="practice-button"
                 >
-                  🚀 Start Practice ({getConjugationsToPractice().length} due)
+                  🚀 Start Practice ({dueCount} due)
                 </button>
               ) : (
                 <button 
                   onClick={() => handleStartPractice(true)}
                   className="practice-button manual-practice"
-                  disabled={getSelectedConjugations().length === 0}
+                  disabled={selectedCount === 0}
                 >
-                  📝 Practice Selected ({getSelectedConjugations().length} verbs)
+                  📝 Practice Selected ({selectedCount} verbs)
                 </button>
               )}
-              {getConjugationsToPractice().length > 0 && (
+              {dueCount > 0 && (
                 <button 
                   onClick={() => handleStartPractice(true)}
                   className="manual-practice-link"
-                  disabled={getSelectedConjugations().length === 0}
+                  disabled={selectedCount === 0}
                 >
                   Manual Practice
                 </button>
@@ -610,7 +507,7 @@ function App() {
               <div className="stat-label">Remaining</div>
             </div>
             <div className="stat-box">
-              <div className="stat-number">{getConjugationsToPractice().length}</div>
+              <div className="stat-number">{dueCount}</div>
               <div className="stat-label">Due for Practice</div>
             </div>
           </div>
@@ -650,10 +547,10 @@ function App() {
                 <div className="dashboard-item">
                   <div className="dashboard-label">Next Practice</div>
                   <div className="dashboard-value">
-                    {getConjugationsToPractice().length > 0 ? '🎯 Ready' : '✅ All Caught Up'}
+                    {dueCount > 0 ? '🎯 Ready' : '✅ All Caught Up'}
                   </div>
                   <div className="dashboard-detail">
-                    {getConjugationsToPractice().length} conjugations due
+                    {dueCount} conjugations due
                   </div>
                 </div>
               </div>
