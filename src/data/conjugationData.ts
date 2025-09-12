@@ -244,7 +244,42 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'creer-tu-present', english: 'you believe (informal, singular)', spanish: 'crees', verb: 'creer', type: 'regular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'creer-el-present', english: 'he/she believes, you believe (formal, singular)', spanish: 'cree', verb: 'creer', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'creer-nosotros-present', english: 'we believe', spanish: 'creemos', verb: 'creer', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'creer-ellos-present', english: 'they believe, you believe (formal, plural)', spanish: 'creen', verb: 'creer', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'creer-ellos-present', english: 'they believe, you believe (formal, plural)', spanish: 'creen', verb: 'creer', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: jugar (u→ue stem change) (Present)
+  { id: 'jugar-yo-present', english: 'I play', spanish: 'juego', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-tu-present', english: 'you play (informal, singular)', spanish: 'juegas', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-el-present', english: 'he/she plays, you play (formal, singular)', spanish: 'juega', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-nosotros-present', english: 'we play', spanish: 'jugamos', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-ellos-present', english: 'they play, you play (formal, plural)', spanish: 'juegan', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: tocar (Present)
+  { id: 'tocar-yo-present', english: 'I touch, I play (instrument)', spanish: 'toco', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-tu-present', english: 'you touch, you play (instrument) (informal, singular)', spanish: 'tocas', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-el-present', english: 'he/she touches, plays (instrument), you touch, play (instrument) (formal, singular)', spanish: 'toca', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-nosotros-present', english: 'we touch, we play (instrument)', spanish: 'tocamos', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-ellos-present', english: 'they touch, play (instrument), you touch, play (instrument) (formal, plural)', spanish: 'tocan', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: intentar (Present)
+  { id: 'intentar-yo-present', english: 'I try', spanish: 'intento', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-tu-present', english: 'you try (informal, singular)', spanish: 'intentas', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-el-present', english: 'he/she tries, you try (formal, singular)', spanish: 'intenta', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-nosotros-present', english: 'we try', spanish: 'intentamos', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-ellos-present', english: 'they try, you try (formal, plural)', spanish: 'intentan', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: probar (o→ue stem change) (Present)
+  { id: 'probar-yo-present', english: 'I taste, I try', spanish: 'pruebo', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-tu-present', english: 'you taste, you try (informal, singular)', spanish: 'pruebas', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-el-present', english: 'he/she tastes, tries, you taste, try (formal, singular)', spanish: 'prueba', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-nosotros-present', english: 'we taste, we try', spanish: 'probamos', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-ellos-present', english: 'they taste, try, you taste, try (formal, plural)', spanish: 'prueban', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: tratar (Present)
+  { id: 'tratar-yo-present', english: 'I treat, I try', spanish: 'trato', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-tu-present', english: 'you treat, you try (informal, singular)', spanish: 'tratas', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-el-present', english: 'he/she treats, tries, you treat, try (formal, singular)', spanish: 'trata', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-nosotros-present', english: 'we treat, we try', spanish: 'tratamos', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-ellos-present', english: 'they treat, try, you treat, try (formal, plural)', spanish: 'tratan', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -478,7 +513,42 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'creer-tu-preterite', english: 'you believed (informal, singular)', spanish: 'creíste', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'creer-el-preterite', english: 'he/she believed, you believed (formal, singular)', spanish: 'creyó', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'creer-nosotros-preterite', english: 'we believed', spanish: 'creímos', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'creer-ellos-preterite', english: 'they believed, you believed (formal, plural)', spanish: 'creyeron', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'creer-ellos-preterite', english: 'they believed, you believed (formal, plural)', spanish: 'creyeron', verb: 'creer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: jugar (Preterite)
+  { id: 'jugar-yo-preterite', english: 'I played', spanish: 'jugué', verb: 'jugar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-tu-preterite', english: 'you played (informal, singular)', spanish: 'jugaste', verb: 'jugar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-el-preterite', english: 'he/she played, you played (formal, singular)', spanish: 'jugó', verb: 'jugar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-nosotros-preterite', english: 'we played', spanish: 'jugamos', verb: 'jugar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-ellos-preterite', english: 'they played, you played (formal, plural)', spanish: 'jugaron', verb: 'jugar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: tocar (Preterite)
+  { id: 'tocar-yo-preterite', english: 'I touched, I played (instrument)', spanish: 'toqué', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-tu-preterite', english: 'you touched, you played (instrument) (informal, singular)', spanish: 'tocaste', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-el-preterite', english: 'he/she touched, played (instrument), you touched, played (instrument) (formal, singular)', spanish: 'tocó', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-nosotros-preterite', english: 'we touched, we played (instrument)', spanish: 'tocamos', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-ellos-preterite', english: 'they touched, played (instrument), you touched, played (instrument) (formal, plural)', spanish: 'tocaron', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: intentar (Preterite)
+  { id: 'intentar-yo-preterite', english: 'I tried', spanish: 'intenté', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-tu-preterite', english: 'you tried (informal, singular)', spanish: 'intentaste', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-el-preterite', english: 'he/she tried, you tried (formal, singular)', spanish: 'intentó', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-nosotros-preterite', english: 'we tried', spanish: 'intentamos', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-ellos-preterite', english: 'they tried, you tried (formal, plural)', spanish: 'intentaron', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: probar (Preterite)
+  { id: 'probar-yo-preterite', english: 'I tasted, I tried', spanish: 'probé', verb: 'probar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-tu-preterite', english: 'you tasted, you tried (informal, singular)', spanish: 'probaste', verb: 'probar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-el-preterite', english: 'he/she tasted, tried, you tasted, tried (formal, singular)', spanish: 'probó', verb: 'probar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-nosotros-preterite', english: 'we tasted, we tried', spanish: 'probamos', verb: 'probar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-ellos-preterite', english: 'they tasted, tried, you tasted, tried (formal, plural)', spanish: 'probaron', verb: 'probar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: tratar (Preterite)
+  { id: 'tratar-yo-preterite', english: 'I treated, I tried', spanish: 'traté', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-tu-preterite', english: 'you treated, you tried (informal, singular)', spanish: 'trataste', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-el-preterite', english: 'he/she treated, tried, you treated, tried (formal, singular)', spanish: 'trató', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-nosotros-preterite', english: 'we treated, we tried', spanish: 'tratamos', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-ellos-preterite', english: 'they treated, tried, you treated, tried (formal, plural)', spanish: 'trataron', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations
