@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 33 essential Spanish verbs (330 total conjugations).
+**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 34 essential Spanish verbs (340 total conjugations).
 
 ### Current State
 - **Fully functional** with comprehensive conjugation system
@@ -33,7 +33,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Single-Button Direction Toggle:** Simplified ES → EN / EN → ES direction switching
 - **Keyboard-First Design:** Full keyboard navigation with vim-style shortcuts for efficient practice sessions
 - **Auto-Advance Flow:** Seamless progression after self-assessment with visual feedback
-- **New verbs added:** traer, saber, caerse, buscar, mirar, encontrar, esconder, llevar, terminar, ver, hacer, ser, deber, preguntar, pedir, pensar, creer, jugar, tocar, intentar, probar, tratar (22 additional verbs, 220 new conjugations)
+- **New verbs added:** traer, saber, caerse, buscar, mirar, encontrar, esconder, llevar, terminar, ver, hacer, ser, deber, preguntar, pedir, pensar, creer, jugar, tocar, intentar, probar, tratar, soler (23 additional verbs, 230 new conjugations)
 - **localStorage state management fix:** Ensures new verbs are automatically available without browser refresh
 - **Verb selection bug fix:** VerbSelectionModal now properly initializes with existing tense selections
 - **Data migration system:** Preserves user progress while seamlessly adding new conjugation definitions

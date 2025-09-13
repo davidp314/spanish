@@ -279,7 +279,14 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'tratar-tu-present', english: 'you treat, you try (informal, singular)', spanish: 'tratas', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'tratar-el-present', english: 'he/she treats, tries, you treat, try (formal, singular)', spanish: 'trata', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'tratar-nosotros-present', english: 'we treat, we try', spanish: 'tratamos', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'tratar-ellos-present', english: 'they treat, try, you treat, try (formal, plural)', spanish: 'tratan', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'tratar-ellos-present', english: 'they treat, try, you treat, try (formal, plural)', spanish: 'tratan', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: soler (Present)
+  { id: 'soler-yo-present', english: 'I usually do', spanish: 'suelo', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-tu-present', english: 'you usually do (informal, singular)', spanish: 'sueles', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-el-present', english: 'he/she usually does, you usually do (formal, singular)', spanish: 'suele', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-nosotros-present', english: 'we usually do', spanish: 'solemos', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-ellos-present', english: 'they usually do, you usually do (formal, plural)', spanish: 'suelen', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -548,7 +555,14 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'tratar-tu-preterite', english: 'you treated, you tried (informal, singular)', spanish: 'trataste', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'tratar-el-preterite', english: 'he/she treated, tried, you treated, tried (formal, singular)', spanish: 'trató', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'tratar-nosotros-preterite', english: 'we treated, we tried', spanish: 'tratamos', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'tratar-ellos-preterite', english: 'they treated, tried, you treated, tried (formal, plural)', spanish: 'trataron', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'tratar-ellos-preterite', english: 'they treated, tried, you treated, tried (formal, plural)', spanish: 'trataron', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: soler (Preterite)
+  { id: 'soler-yo-preterite', english: 'I used to usually do', spanish: 'solí', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-tu-preterite', english: 'you used to usually do (informal, singular)', spanish: 'soliste', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-el-preterite', english: 'he/she used to usually do, you used to usually do (formal, singular)', spanish: 'solió', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-nosotros-preterite', english: 'we used to usually do', spanish: 'solimos', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-ellos-preterite', english: 'they used to usually do, you used to usually do (formal, plural)', spanish: 'solieron', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations
