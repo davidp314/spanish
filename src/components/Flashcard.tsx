@@ -158,6 +158,15 @@ const Flashcard: React.FC<FlashcardProps> = ({
     return personColors[person] || 'bg-gray-100 text-gray-800';
   };
 
+  const getTenseLabel = (tense: string): string => {
+    const labels: { [key: string]: string } = {
+      'present': 'Present',
+      'preterite': 'Preterite',
+      'imperfect': 'Imperfect'
+    };
+    return labels[tense] || tense;
+  };
+
   return (
     <div ref={containerRef} className="flashcard-container" onKeyDown={handleKeyDown} tabIndex={0}>
       <div className="flashcard-info">
@@ -165,8 +174,8 @@ const Flashcard: React.FC<FlashcardProps> = ({
           <span className={`badge ${conjugation.type === 'regular' ? 'regular' : 'irregular'}`}>
             {conjugation.type === 'regular' ? `Regular -${conjugation.conjugation}` : 'Irregular'}
           </span>
-          <span className={`badge ${conjugation.tense === 'present' ? 'bg-blue-100 text-blue-800' : 'bg-purple-100 text-purple-800'}`}>
-            {conjugation.tense === 'present' ? 'Present' : 'Preterite'}
+          <span className={`badge ${conjugation.tense}`}>
+            {getTenseLabel(conjugation.tense)}
           </span>
           <span className={`badge ${getPersonColor(conjugation.person)}`}>
             {conjugation.person}

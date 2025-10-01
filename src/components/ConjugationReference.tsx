@@ -47,7 +47,7 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
             </div>
             <div className="header-text">
               <h1>Spanish Verb Conjugation Reference</h1>
-              <p>Regular verb patterns for present and preterite tenses</p>
+              <p>Regular verb patterns for present, preterite, and imperfect tenses</p>
             </div>
           </div>
           
@@ -329,6 +329,127 @@ const ConjugationReference: React.FC<ConjugationReferenceProps> = ({ isOpen, onC
                   <li><strong>Present:</strong> -ER and -IR share endings except nosotros (-emos vs -imos)</li>
                   <li><strong>Preterite:</strong> -ER and -IR have identical endings</li>
                   <li><strong>Nosotros:</strong> -AR and -ER/-IR share -amos in preterite</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Imperfect Tense */}
+            <div>
+              <h2 className="tense-title imperfect-tense">
+                Imperfect Tense (Past Continuous / Used to)
+              </h2>
+
+              {/* -AR Verbs Imperfect */}
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
+                    -AR
+                  </span>
+                  Regular -AR Verbs (hablar - to speak)
+                </h3>
+
+                <div className="regular-verb-table">
+                  <div className="table-header">
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-aba</div>
+                    <div className="example-col">hablaba</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-abas</div>
+                    <div className="example-col">hablabas</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-aba</div>
+                    <div className="example-col">hablaba</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-ábamos</div>
+                    <div className="example-col">hablábamos</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-aban</div>
+                    <div className="example-col">hablaban</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* -ER/-IR Verbs Imperfect */}
+              <div className="regular-verb-group">
+                <h3 className="regular-verb-group-title">
+                  <span className="regular-verb-group-label">
+                    -ER/-IR
+                  </span>
+                  Regular -ER/-IR Verbs (comer/vivir)
+                </h3>
+
+                <div className="regular-verb-table four-columns">
+                  <div className="table-header">
+                    <div className="person-col">Person</div>
+                    <div className="ending-col">Ending</div>
+                    <div className="example-col">Example (-ER)</div>
+                    <div className="example-col">Example (-IR)</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">yo</div>
+                    <div className="ending-col">-ía</div>
+                    <div className="example-col">comía</div>
+                    <div className="example-col">vivía</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">tú</div>
+                    <div className="ending-col">-ías</div>
+                    <div className="example-col">comías</div>
+                    <div className="example-col">vivías</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">él/ella/usted</div>
+                    <div className="ending-col">-ía</div>
+                    <div className="example-col">comía</div>
+                    <div className="example-col">vivía</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">nosotros</div>
+                    <div className="ending-col">-íamos</div>
+                    <div className="example-col">comíamos</div>
+                    <div className="example-col">vivíamos</div>
+                  </div>
+
+                  <div className="table-row">
+                    <div className="person-col">ellos/ellas/ustedes</div>
+                    <div className="ending-col">-ían</div>
+                    <div className="example-col">comían</div>
+                    <div className="example-col">vivían</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Imperfect Notes */}
+              <div className="key-differences-note">
+                <h4>
+                  Imperfect Tense Notes:
+                </h4>
+                <ul>
+                  <li><strong>Most regular tense:</strong> Very few irregular verbs (ser, ir, ver)</li>
+                  <li><strong>-ER/-IR verbs:</strong> Share identical endings in imperfect</li>
+                  <li><strong>Usage:</strong> Ongoing past actions, habitual actions, descriptions</li>
                 </ul>
               </div>
             </div>

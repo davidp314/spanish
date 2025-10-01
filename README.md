@@ -1,6 +1,6 @@
 # Spanish Verb Master 🎯
 
-A modern React application for learning Spanish verb conjugations through interactive flashcards, spaced repetition, and hybrid progress tracking. Practice 34 essential verbs with 340 total conjugations.
+A modern React application for learning Spanish verb conjugations through interactive flashcards, spaced repetition, and hybrid progress tracking. Practice 39 essential verbs with 585 total conjugations across three tenses.
 
 ## ✨ Features
 
@@ -13,7 +13,7 @@ A modern React application for learning Spanish verb conjugations through intera
 - **Progress Tracking**: Monitor mastery of individual conjugations over time
 
 ### 🔍 Advanced Filtering
-- Filter by verb type (Regular/Irregular), tense (Present/Preterite), and mastery status
+- Filter by verb type (Regular/Irregular), tense (Present/Preterite/Imperfect), and mastery status
 - Search functionality across Spanish, English, and verb roots
 - Real-time filtering with instant results
 
@@ -134,7 +134,7 @@ spanish/
 ### Reference Mode
 1. **Access Reference**: Click "📚" button (integrated in conjugation info area) for conjugation patterns
 2. **View Patterns**: See comprehensive -AR, -ER, and -IR verb endings
-3. **Learn Rules**: Understand present and preterite tense conjugation rules
+3. **Learn Rules**: Understand present, preterite, and imperfect tense conjugation rules
 4. **Quick Lookup**: Space-optimized design provides reference without losing screen space
 
 ## 🛠️ Technology Stack
@@ -166,7 +166,7 @@ Edit `src/data/conjugationData.ts` to add new verb conjugations:
   type: 'irregular',
   conjugation: 'er',
   person: 'yo',
-  tense: 'present',
+  tense: 'present', // 'present' | 'preterite' | 'imperfect'
   mastered: false,
   practiceCount: 0,
   correctCount: 0,

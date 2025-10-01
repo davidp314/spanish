@@ -9,6 +9,9 @@
   --bg-input: white;
   --bg-badge-regular: #dbeafe;
   --bg-badge-irregular: #fee2e2;
+  --bg-badge-present: #dbeafe;
+  --bg-badge-preterite: #fce7f3;
+  --bg-badge-imperfect: #ddd6fe;
   --bg-stats: #f9fafb;
   --bg-dashboard: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   --bg-segment: #f3f4f6;
@@ -26,6 +29,9 @@
   --text-muted: #64748b;
   --text-badge-regular: #1e40af;
   --text-badge-irregular: #991b1b;
+  --text-badge-present: #1e40af;
+  --text-badge-preterite: #be185d;
+  --text-badge-imperfect: #6b21a8;
   --text-accent: #451a03;
   --text-accent-hover: #92400e;
   
@@ -56,6 +62,7 @@
   --gradient-danger-hover: linear-gradient(135deg, #dc2626 0%, #b91c1b 100%);
   --gradient-info: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
   --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-purple: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
   --gradient-gray: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
   --gradient-gray-hover: linear-gradient(135deg, #4b5563 0%, #374151 100%);
   
@@ -77,6 +84,9 @@
   --bg-input: white;
   --bg-badge-regular: #dbeafe;
   --bg-badge-irregular: #fee2e2;
+  --bg-badge-present: #dbeafe;
+  --bg-badge-preterite: #fce7f3;
+  --bg-badge-imperfect: #ddd6fe;
   --bg-stats: #f9fafb;
   --bg-dashboard: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   --bg-segment: #f3f4f6;
@@ -94,6 +104,9 @@
   --text-muted: #64748b;
   --text-badge-regular: #1e40af;
   --text-badge-irregular: #991b1b;
+  --text-badge-present: #1e40af;
+  --text-badge-preterite: #be185d;
+  --text-badge-imperfect: #6b21a8;
   --text-accent: #451a03;
   --text-accent-hover: #92400e;
   
@@ -124,6 +137,7 @@
   --gradient-danger-hover: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
   --gradient-info: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
   --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  --gradient-purple: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
   --gradient-gray: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
   --gradient-gray-hover: linear-gradient(135deg, #4b5563 0%, #374151 100%);
   
@@ -148,6 +162,9 @@
   --bg-input: #475569;
   --bg-badge-regular: #1e3a8a;
   --bg-badge-irregular: #7f1d1d;
+  --bg-badge-present: #1e3a8a;
+  --bg-badge-preterite: #831843;
+  --bg-badge-imperfect: #5b21b6;
   --bg-stats: #475569;
   --bg-dashboard: linear-gradient(135deg, #334155 0%, #1e293b 100%);
   --bg-segment: #475569;
@@ -165,6 +182,9 @@
   --text-muted: #94a3b8;
   --text-badge-regular: #93c5fd;
   --text-badge-irregular: #fca5a5;
+  --text-badge-present: #93c5fd;
+  --text-badge-preterite: #f9a8d4;
+  --text-badge-imperfect: #c4b5fd;
   --text-accent: #fed7aa;
   --text-accent-hover: #fdba74;
   
@@ -195,9 +215,10 @@
   --gradient-danger-hover: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
   --gradient-info: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
   --gradient-warning: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  --gradient-purple: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
   --gradient-gray: linear-gradient(135deg, #4b5563 0%, #374151 100%);
   --gradient-gray-hover: linear-gradient(135deg, #374151 0%, #1f2937 100%);
-  
+
   /* Result Colors */
   --result-correct-bg: #064e3b;
   --result-correct-text: #a7f3d0;
@@ -668,6 +689,21 @@ body {
 .badge.irregular {
   background-color: var(--bg-badge-irregular);
   color: var(--text-badge-irregular);
+}
+
+.badge.present {
+  background-color: var(--bg-badge-present);
+  color: var(--text-badge-present);
+}
+
+.badge.preterite {
+  background-color: var(--bg-badge-preterite);
+  color: var(--text-badge-preterite);
+}
+
+.badge.imperfect {
+  background-color: var(--bg-badge-imperfect);
+  color: var(--text-badge-imperfect);
 }
 
 .practice-stats {

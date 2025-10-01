@@ -9,7 +9,7 @@ interface AppState {
   currentIndex: number;
   isPracticeMode: boolean;
   selectedVerbs: string[];
-  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } };
+  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } };
   practiceMode: PracticeMode;
 }
 
@@ -18,7 +18,7 @@ interface UseLocalStoragePersistenceProps {
   currentIndex: number;
   isPracticeMode: boolean;
   selectedVerbs: string[];
-  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } };
+  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } };
   practiceMode: PracticeMode;
 }
 

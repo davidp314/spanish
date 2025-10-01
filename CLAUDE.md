@@ -12,7 +12,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present and preterite tense conjugations for 34 essential Spanish verbs (340 total conjugations).
+**Spanish Verb Master** is a React-based Spanish verb conjugation learning app with interactive flashcards, spaced repetition, and comprehensive progress tracking. The app focuses on present, preterite, and imperfect tense conjugations for 39 essential Spanish verbs (585 total conjugations).
 
 ### Current State
 - **Fully functional** with comprehensive conjugation system
@@ -27,6 +27,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Professional UI** with animations, modals, responsive design, and comprehensive keyboard shortcuts
 
 ### Recent Updates (January 2025)
+- **Imperfect Tense Added (October 2025):** Added complete imperfect tense support for all 39 verbs (195 new conjugations), with purple badge styling in verb selection modal and comprehensive reference documentation
 - **Flashcard Practice Improvements:** Fixed answer comparison display and card transition animations to prevent showing answers prematurely
 - **Translation Quiz Feature:** New practice type with Spanish ↔ English verb translation, auto-advance, and optimized keyboard shortcuts (Enter, J, F)
 - **Enhanced Practice Types:** Quiz, Mastery, and Translation modes with distinct workflows
@@ -71,7 +72,7 @@ interface Conjugation {
   type: 'regular' | 'irregular';
   conjugation: 'ar' | 'er' | 'ir';
   person: 'yo' | 'tú' | 'él/ella/usted' | 'nosotros' | 'ellos/ellas/ustedes';
-  tense: 'present' | 'preterite';
+  tense: 'present' | 'preterite' | 'imperfect';
   mastered: boolean;
   lastPracticed?: number; // timestamp for spaced repetition
   practiceCount: number;
@@ -184,7 +185,7 @@ interface Conjugation {
 - **No audio:** No pronunciation support
 
 ### Verb Addition Policy
-**Default behavior:** Unless otherwise instructed, when adding new verbs to the application, always include both present and preterite tense conjugations for all persons (yo, tú, él/ella/usted, nosotros, ellos/ellas/ustedes). This maintains consistency with the existing conjugation system and ensures complete coverage for each verb.
+**Default behavior:** Unless otherwise instructed, when adding new verbs to the application, always include present, preterite, and imperfect tense conjugations for all persons (yo, tú, él/ella/usted, nosotros, ellos/ellas/ustedes). This maintains consistency with the existing conjugation system and ensures complete coverage for each verb.
 
 ### Documentation Update Policy
 **"Update our documents"** refers to updating any relevant documents in the repository, which typically includes:

@@ -7,8 +7,8 @@ interface VerbSelectionModalProps {
   onClose: () => void;
   allConjugations: Conjugation[];
   selectedVerbs: string[];
-  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } };
-  onSaveSelection: (selectedVerbs: string[], selectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => void;
+  selectedTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } };
+  onSaveSelection: (selectedVerbs: string[], selectedTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } }) => void;
 }
 
 interface VerbInfo {
@@ -18,6 +18,7 @@ interface VerbInfo {
   conjugation: 'ar' | 'er' | 'ir';
   hasPresent: boolean;
   hasPreterite: boolean;
+  hasImperfect: boolean;
 }
 
 
@@ -33,7 +34,7 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   const [searchTerm, setSearchTerm] = useState('');
   const [searchMode, setSearchMode] = useState<'spanish' | 'english'>('spanish');
   const [localSelectedVerbs, setLocalSelectedVerbs] = useState<string[]>(selectedVerbs);
-  const [localSelectedTenses, setLocalSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(selectedTenses);
+  const [localSelectedTenses, setLocalSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } }>(selectedTenses);
 
   // Extract unique verbs from conjugations
   const uniqueVerbs = useMemo(() => {
@@ -47,13 +48,15 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
           type: conjugation.type,
           conjugation: conjugation.conjugation,
           hasPresent: false,
-          hasPreterite: false
+          hasPreterite: false,
+          hasImperfect: false
         });
       }
-      
+
       const verbInfo = verbMap.get(conjugation.verb)!;
       if (conjugation.tense === 'present') verbInfo.hasPresent = true;
       if (conjugation.tense === 'preterite') verbInfo.hasPreterite = true;
+      if (conjugation.tense === 'imperfect') verbInfo.hasImperfect = true;
     });
     
     return Array.from(verbMap.values()).sort((a, b) => {
@@ -94,7 +97,7 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
     });
   };
 
-  const handleTenseToggle = (verb: string, tense: 'present' | 'preterite') => {
+  const handleTenseToggle = (verb: string, tense: 'present' | 'preterite' | 'imperfect') => {
     setLocalSelectedTenses(prev => {
       const newTenses = {
         ...prev,
@@ -103,24 +106,25 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
           [tense]: !prev[verb]?.[tense]
         }
       };
-      
+
       // Check if all tenses for this verb are now deselected
       const verbTenses = newTenses[verb];
-      if (verbTenses && !verbTenses.present && !verbTenses.preterite) {
+      if (verbTenses && !verbTenses.present && !verbTenses.preterite && !verbTenses.imperfect) {
         // Auto-deselect the verb if no tenses are selected
         setLocalSelectedVerbs(prev => prev.filter(v => v !== verb));
       }
-      
+
       return newTenses;
     });
   };
 
   const handleSelectAllTenses = () => {
-    const newTenses: { [verb: string]: { present: boolean; preterite: boolean } } = {};
+    const newTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } } = {};
     filteredVerbs.forEach(verb => {
       newTenses[verb.verb] = {
         present: verb.hasPresent,
-        preterite: verb.hasPreterite
+        preterite: verb.hasPreterite,
+        imperfect: verb.hasImperfect
       };
     });
     setLocalSelectedTenses(newTenses);
@@ -247,6 +251,17 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
                       onChange={() => handleTenseToggle(verbInfo.verb, 'preterite')}
                     />
                     <span className="tense-badge preterite">Preterite</span>
+                  </label>
+                )}
+                {verbInfo.hasImperfect && (
+                  <label className="tense-checkbox">
+                    <input
+                      type="checkbox"
+                      disabled={!localSelectedVerbs.includes(verbInfo.verb)}
+                      checked={localSelectedTenses[verbInfo.verb]?.imperfect || false}
+                      onChange={() => handleTenseToggle(verbInfo.verb, 'imperfect')}
+                    />
+                    <span className="tense-badge imperfect">Imperfect</span>
                   </label>
                 )}
               </div>

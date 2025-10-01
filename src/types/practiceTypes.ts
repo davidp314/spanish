@@ -9,7 +9,7 @@ export type TranslationDirection = 'es-en' | 'en-es';
 
 // Conjugation ordering constants
 export const PERSON_ORDER = ['yo', 'tú', 'él/ella/usted', 'nosotros', 'ellos/ellas/ustedes'] as const;
-export const TENSE_ORDER = ['present', 'preterite'] as const;
+export const TENSE_ORDER = ['present', 'preterite', 'imperfect'] as const;
 
 // Practice mode labels
 export const PRACTICE_MODE_LABELS = {

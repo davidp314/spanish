@@ -252,6 +252,11 @@
   color: #be185d;
 }
 
+.tense-badge.imperfect {
+  background: #ddd6fe;
+  color: #6b21a8;
+}
+
 .modal-actions {
   padding: 20px 24px;
   display: flex;

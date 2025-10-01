@@ -246,6 +246,10 @@
   background: var(--gradient-warning);
 }
 
+.tense-title.imperfect-tense {
+  background: var(--gradient-purple);
+}
+
 .regular-verb-group {
   background: var(--bg-stats);
   border: 2px solid var(--border-primary);

@@ -14,7 +14,7 @@ const ConjugationReferenceModal: React.FC<ConjugationReferenceModalProps> = ({
   allConjugations,
   currentConjugation
 }) => {
-  const [activeTab, setActiveTab] = useState<'present' | 'preterite'>('present');
+  const [activeTab, setActiveTab] = useState<'present' | 'preterite' | 'imperfect'>('present');
 
   useEffect(() => {
     setActiveTab(currentConjugation.tense);
@@ -52,8 +52,13 @@ const ConjugationReferenceModal: React.FC<ConjugationReferenceModalProps> = ({
   const verbConjugations = allConjugations.filter(c => c.verb === currentConjugation.verb);
   const presentConjugations = verbConjugations.filter(c => c.tense === 'present');
   const preteriteConjugations = verbConjugations.filter(c => c.tense === 'preterite');
-  
-  const activeConjugations = activeTab === 'present' ? presentConjugations : preteriteConjugations;
+  const imperfectConjugations = verbConjugations.filter(c => c.tense === 'imperfect');
+
+  const activeConjugations = activeTab === 'present'
+    ? presentConjugations
+    : activeTab === 'preterite'
+      ? preteriteConjugations
+      : imperfectConjugations;
 
   const persons = ['yo', 'tú', 'él/ella/usted', 'nosotros', 'ellos/ellas/ustedes'];
 
@@ -107,6 +112,12 @@ const ConjugationReferenceModal: React.FC<ConjugationReferenceModalProps> = ({
               onClick={() => setActiveTab('preterite')}
             >
               Preterite Tense
+            </button>
+            <button
+              className={`tab ${activeTab === 'imperfect' ? 'active' : ''}`}
+              onClick={() => setActiveTab('imperfect')}
+            >
+              Imperfect Tense
             </button>
           </div>
 

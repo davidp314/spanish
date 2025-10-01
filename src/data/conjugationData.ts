@@ -6,7 +6,7 @@ export interface Conjugation {
   type: 'regular' | 'irregular';
   conjugation: 'ar' | 'er' | 'ir';
   person: 'yo' | 'tú' | 'él/ella/usted' | 'nosotros' | 'ellos/ellas/ustedes';
-  tense: 'present' | 'preterite';
+  tense: 'present' | 'preterite' | 'imperfect';
   mastered: boolean;
   lastPracticed?: number; // timestamp for spaced repetition
   practiceCount: number;
@@ -565,10 +565,287 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'soler-ellos-preterite', english: 'they used to usually do, you used to usually do (formal, plural)', spanish: 'solieron', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
+// Imperfect tense conjugations
+export const imperfectTenseConjugations: Conjugation[] = [
+  // Regular -ar verbs: hablar (Imperfect)
+  { id: 'hablar-yo-imperfect', english: 'I was speaking, I used to speak', spanish: 'hablaba', verb: 'hablar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hablar-tu-imperfect', english: 'you were speaking, you used to speak (informal, singular)', spanish: 'hablabas', verb: 'hablar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hablar-el-imperfect', english: 'he/she was speaking, you were speaking (formal, singular)', spanish: 'hablaba', verb: 'hablar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hablar-nosotros-imperfect', english: 'we were speaking, we used to speak', spanish: 'hablábamos', verb: 'hablar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hablar-ellos-imperfect', english: 'they were speaking, you were speaking (formal, plural)', spanish: 'hablaban', verb: 'hablar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: comer (Imperfect)
+  { id: 'comer-yo-imperfect', english: 'I was eating, I used to eat', spanish: 'comía', verb: 'comer', type: 'regular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'comer-tu-imperfect', english: 'you were eating, you used to eat (informal, singular)', spanish: 'comías', verb: 'comer', type: 'regular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'comer-el-imperfect', english: 'he/she was eating, you were eating (formal, singular)', spanish: 'comía', verb: 'comer', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'comer-nosotros-imperfect', english: 'we were eating, we used to eat', spanish: 'comíamos', verb: 'comer', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'comer-ellos-imperfect', english: 'they were eating, you were eating (formal, plural)', spanish: 'comían', verb: 'comer', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ir verbs: vivir (Imperfect)
+  { id: 'vivir-yo-imperfect', english: 'I was living, I used to live', spanish: 'vivía', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'vivir-tu-imperfect', english: 'you were living, you used to live (informal, singular)', spanish: 'vivías', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'vivir-el-imperfect', english: 'he/she was living, you were living (formal, singular)', spanish: 'vivía', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'vivir-nosotros-imperfect', english: 'we were living, we used to live', spanish: 'vivíamos', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'vivir-ellos-imperfect', english: 'they were living, you were living (formal, plural)', spanish: 'vivían', verb: 'vivir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ser (Imperfect)
+  { id: 'ser-yo-imperfect', english: 'I was, I used to be', spanish: 'era', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-tu-imperfect', english: 'you were, you used to be (informal, singular)', spanish: 'eras', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-el-imperfect', english: 'he/she was, you were (formal, singular)', spanish: 'era', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-nosotros-imperfect', english: 'we were, we used to be', spanish: 'éramos', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ser-ellos-imperfect', english: 'they were, you were (formal, plural)', spanish: 'eran', verb: 'ser', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: ir (Imperfect)
+  { id: 'ir-yo-imperfect', english: 'I was going, I used to go', spanish: 'iba', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ir-tu-imperfect', english: 'you were going, you used to go (informal, singular)', spanish: 'ibas', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ir-el-imperfect', english: 'he/she was going, you were going (formal, singular)', spanish: 'iba', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ir-nosotros-imperfect', english: 'we were going, we used to go', spanish: 'íbamos', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ir-ellos-imperfect', english: 'they were going, you were going (formal, plural)', spanish: 'iban', verb: 'ir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: caminar (Imperfect)
+  { id: 'caminar-yo-imperfect', english: 'I was walking, I used to walk', spanish: 'caminaba', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-tu-imperfect', english: 'you were walking, you used to walk (informal, singular)', spanish: 'caminabas', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-el-imperfect', english: 'he/she was walking, you were walking (formal, singular)', spanish: 'caminaba', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-nosotros-imperfect', english: 'we were walking, we used to walk', spanish: 'caminábamos', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caminar-ellos-imperfect', english: 'they were walking, you were walking (formal, plural)', spanish: 'caminaban', verb: 'caminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: beber (Imperfect)
+  { id: 'beber-yo-imperfect', english: 'I was drinking, I used to drink', spanish: 'bebía', verb: 'beber', type: 'regular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'beber-tu-imperfect', english: 'you were drinking, you used to drink (informal, singular)', spanish: 'bebías', verb: 'beber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'beber-el-imperfect', english: 'he/she was drinking, you were drinking (formal, singular)', spanish: 'bebía', verb: 'beber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'beber-nosotros-imperfect', english: 'we were drinking, we used to drink', spanish: 'bebíamos', verb: 'beber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'beber-ellos-imperfect', english: 'they were drinking, you were drinking (formal, plural)', spanish: 'bebían', verb: 'beber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ir verbs: escribir (Imperfect)
+  { id: 'escribir-yo-imperfect', english: 'I was writing, I used to write', spanish: 'escribía', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-tu-imperfect', english: 'you were writing, you used to write (informal, singular)', spanish: 'escribías', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-el-imperfect', english: 'he/she was writing, you were writing (formal, singular)', spanish: 'escribía', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-nosotros-imperfect', english: 'we were writing, we used to write', spanish: 'escribíamos', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'escribir-ellos-imperfect', english: 'they were writing, you were writing (formal, plural)', spanish: 'escribían', verb: 'escribir', type: 'regular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: tener (Imperfect - uses regular pattern)
+  { id: 'tener-yo-imperfect', english: 'I had, I used to have', spanish: 'tenía', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tener-tu-imperfect', english: 'you had, you used to have (informal, singular)', spanish: 'tenías', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tener-el-imperfect', english: 'he/she had, you had (formal, singular)', spanish: 'tenía', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tener-nosotros-imperfect', english: 'we had, we used to have', spanish: 'teníamos', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tener-ellos-imperfect', english: 'they had, you had (formal, plural)', spanish: 'tenían', verb: 'tener', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: estar (Imperfect - uses regular pattern)
+  { id: 'estar-yo-imperfect', english: 'I was (location/condition), I used to be', spanish: 'estaba', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'estar-tu-imperfect', english: 'you were (location/condition), you used to be (informal, singular)', spanish: 'estabas', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'estar-el-imperfect', english: 'he/she was (location/condition), you were (formal, singular)', spanish: 'estaba', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'estar-nosotros-imperfect', english: 'we were (location/condition), we used to be', spanish: 'estábamos', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'estar-ellos-imperfect', english: 'they were (location/condition), you were (formal, plural)', spanish: 'estaban', verb: 'estar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: mentir (Imperfect - uses regular pattern)
+  { id: 'mentir-yo-imperfect', english: 'I was lying, I used to lie', spanish: 'mentía', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-tu-imperfect', english: 'you were lying, you used to lie (informal, singular)', spanish: 'mentías', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-el-imperfect', english: 'he/she was lying, you were lying (formal, singular)', spanish: 'mentía', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-nosotros-imperfect', english: 'we were lying, we used to lie', spanish: 'mentíamos', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mentir-ellos-imperfect', english: 'they were lying, you were lying (formal, plural)', spanish: 'mentían', verb: 'mentir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: leer (Imperfect - uses regular pattern)
+  { id: 'leer-yo-imperfect', english: 'I was reading, I used to read', spanish: 'leía', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-tu-imperfect', english: 'you were reading, you used to read (informal, singular)', spanish: 'leías', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-el-imperfect', english: 'he/she was reading, you were reading (formal, singular)', spanish: 'leía', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-nosotros-imperfect', english: 'we were reading, we used to read', spanish: 'leíamos', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'leer-ellos-imperfect', english: 'they were reading, you were reading (formal, plural)', spanish: 'leían', verb: 'leer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: poner (Imperfect - uses regular pattern)
+  { id: 'poner-yo-imperfect', english: 'I was putting, I used to put', spanish: 'ponía', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-tu-imperfect', english: 'you were putting, you used to put (informal, singular)', spanish: 'ponías', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-el-imperfect', english: 'he/she was putting, you were putting (formal, singular)', spanish: 'ponía', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-nosotros-imperfect', english: 'we were putting, we used to put', spanish: 'poníamos', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poner-ellos-imperfect', english: 'they were putting, you were putting (formal, plural)', spanish: 'ponían', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: dejar (Imperfect)
+  { id: 'dejar-yo-imperfect', english: 'I was leaving/letting, I used to leave/let', spanish: 'dejaba', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-tu-imperfect', english: 'you were leaving/letting, you used to leave/let (informal, singular)', spanish: 'dejabas', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-el-imperfect', english: 'he/she was leaving/letting, you were leaving/letting (formal, singular)', spanish: 'dejaba', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-nosotros-imperfect', english: 'we were leaving/letting, we used to leave/let', spanish: 'dejábamos', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dejar-ellos-imperfect', english: 'they were leaving/letting, you were leaving/letting (formal, plural)', spanish: 'dejaban', verb: 'dejar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: decir (Imperfect - uses regular pattern)
+  { id: 'decir-yo-imperfect', english: 'I was saying/telling, I used to say/tell', spanish: 'decía', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-tu-imperfect', english: 'you were saying/telling, you used to say/tell (informal, singular)', spanish: 'decías', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-el-imperfect', english: 'he/she was saying/telling, you were saying/telling (formal, singular)', spanish: 'decía', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-nosotros-imperfect', english: 'we were saying/telling, we used to say/tell', spanish: 'decíamos', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'decir-ellos-imperfect', english: 'they were saying/telling, you were saying/telling (formal, plural)', spanish: 'decían', verb: 'decir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: poder (Imperfect - uses regular pattern)
+  { id: 'poder-yo-imperfect', english: 'I could, I was able to, I used to be able to', spanish: 'podía', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-tu-imperfect', english: 'you could, you were able to, you used to be able to (informal, singular)', spanish: 'podías', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-el-imperfect', english: 'he/she could, you could (formal, singular)', spanish: 'podía', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-nosotros-imperfect', english: 'we could, we were able to, we used to be able to', spanish: 'podíamos', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'poder-ellos-imperfect', english: 'they could, you could (formal, plural)', spanish: 'podían', verb: 'poder', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: querer (Imperfect - uses regular pattern)
+  { id: 'querer-yo-imperfect', english: 'I wanted, I used to want', spanish: 'quería', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'querer-tu-imperfect', english: 'you wanted, you used to want (informal, singular)', spanish: 'querías', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'querer-el-imperfect', english: 'he/she wanted, you wanted (formal, singular)', spanish: 'quería', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'querer-nosotros-imperfect', english: 'we wanted, we used to want', spanish: 'queríamos', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'querer-ellos-imperfect', english: 'they wanted, you wanted (formal, plural)', spanish: 'querían', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: traer (Imperfect - uses regular pattern)
+  { id: 'traer-yo-imperfect', english: 'I was bringing, I used to bring', spanish: 'traía', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-tu-imperfect', english: 'you were bringing, you used to bring (informal, singular)', spanish: 'traías', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-el-imperfect', english: 'he/she was bringing, you were bringing (formal, singular)', spanish: 'traía', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-nosotros-imperfect', english: 'we were bringing, we used to bring', spanish: 'traíamos', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'traer-ellos-imperfect', english: 'they were bringing, you were bringing (formal, plural)', spanish: 'traían', verb: 'traer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: saber (Imperfect - uses regular pattern)
+  { id: 'saber-yo-imperfect', english: 'I knew, I used to know', spanish: 'sabía', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-tu-imperfect', english: 'you knew, you used to know (informal, singular)', spanish: 'sabías', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-el-imperfect', english: 'he/she knew, you knew (formal, singular)', spanish: 'sabía', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-nosotros-imperfect', english: 'we knew, we used to know', spanish: 'sabíamos', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'saber-ellos-imperfect', english: 'they knew, you knew (formal, plural)', spanish: 'sabían', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: caerse (Imperfect - uses regular pattern)
+  { id: 'caerse-yo-imperfect', english: 'I was falling down, I used to fall down', spanish: 'me caía', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-tu-imperfect', english: 'you were falling down, you used to fall down (informal, singular)', spanish: 'te caías', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-el-imperfect', english: 'he/she was falling down, you were falling down (formal, singular)', spanish: 'se caía', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-nosotros-imperfect', english: 'we were falling down, we used to fall down', spanish: 'nos caíamos', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'caerse-ellos-imperfect', english: 'they were falling down, you were falling down (formal, plural)', spanish: 'se caían', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: buscar (Imperfect)
+  { id: 'buscar-yo-imperfect', english: 'I was looking for, I used to look for', spanish: 'buscaba', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-tu-imperfect', english: 'you were looking for, you used to look for (informal, singular)', spanish: 'buscabas', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-el-imperfect', english: 'he/she was looking for, you were looking for (formal, singular)', spanish: 'buscaba', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-nosotros-imperfect', english: 'we were looking for, we used to look for', spanish: 'buscábamos', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'buscar-ellos-imperfect', english: 'they were looking for, you were looking for (formal, plural)', spanish: 'buscaban', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: mirar (Imperfect)
+  { id: 'mirar-yo-imperfect', english: 'I was looking at, I used to look at', spanish: 'miraba', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-tu-imperfect', english: 'you were looking at, you used to look at (informal, singular)', spanish: 'mirabas', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-el-imperfect', english: 'he/she was looking at, you were looking at (formal, singular)', spanish: 'miraba', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-nosotros-imperfect', english: 'we were looking at, we used to look at', spanish: 'mirábamos', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'mirar-ellos-imperfect', english: 'they were looking at, you were looking at (formal, plural)', spanish: 'miraban', verb: 'mirar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: encontrar (Imperfect - uses regular pattern)
+  { id: 'encontrar-yo-imperfect', english: 'I was finding, I used to find', spanish: 'encontraba', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-tu-imperfect', english: 'you were finding, you used to find (informal, singular)', spanish: 'encontrabas', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-el-imperfect', english: 'he/she was finding, you were finding (formal, singular)', spanish: 'encontraba', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-nosotros-imperfect', english: 'we were finding, we used to find', spanish: 'encontrábamos', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'encontrar-ellos-imperfect', english: 'they were finding, you were finding (formal, plural)', spanish: 'encontraban', verb: 'encontrar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: esconder (Imperfect)
+  { id: 'esconder-yo-imperfect', english: 'I was hiding, I used to hide', spanish: 'escondía', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-tu-imperfect', english: 'you were hiding, you used to hide (informal, singular)', spanish: 'escondías', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-el-imperfect', english: 'he/she was hiding, you were hiding (formal, singular)', spanish: 'escondía', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-nosotros-imperfect', english: 'we were hiding, we used to hide', spanish: 'escondíamos', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'esconder-ellos-imperfect', english: 'they were hiding, you were hiding (formal, plural)', spanish: 'escondían', verb: 'esconder', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: llevar (Imperfect)
+  { id: 'llevar-yo-imperfect', english: 'I was carrying/wearing/taking, I used to carry/wear/take', spanish: 'llevaba', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-tu-imperfect', english: 'you were carrying/wearing/taking, you used to carry/wear/take (informal, singular)', spanish: 'llevabas', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-el-imperfect', english: 'he/she was carrying/wearing/taking, you were carrying/wearing/taking (formal, singular)', spanish: 'llevaba', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-nosotros-imperfect', english: 'we were carrying/wearing/taking, we used to carry/wear/take', spanish: 'llevábamos', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'llevar-ellos-imperfect', english: 'they were carrying/wearing/taking, you were carrying/wearing/taking (formal, plural)', spanish: 'llevaban', verb: 'llevar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: terminar (Imperfect)
+  { id: 'terminar-yo-imperfect', english: 'I was finishing/ending, I used to finish/end', spanish: 'terminaba', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-tu-imperfect', english: 'you were finishing/ending, you used to finish/end (informal, singular)', spanish: 'terminabas', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-el-imperfect', english: 'he/she was finishing/ending, you were finishing/ending (formal, singular)', spanish: 'terminaba', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-nosotros-imperfect', english: 'we were finishing/ending, we used to finish/end', spanish: 'terminábamos', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'terminar-ellos-imperfect', english: 'they were finishing/ending, you were finishing/ending (formal, plural)', spanish: 'terminaban', verb: 'terminar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: hacer (Imperfect - uses regular pattern)
+  { id: 'hacer-yo-imperfect', english: 'I was making/doing, I used to make/do', spanish: 'hacía', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-tu-imperfect', english: 'you were making/doing, you used to make/do (informal, singular)', spanish: 'hacías', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-el-imperfect', english: 'he/she was making/doing, you were making/doing (formal, singular)', spanish: 'hacía', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-nosotros-imperfect', english: 'we were making/doing, we used to make/do', spanish: 'hacíamos', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'hacer-ellos-imperfect', english: 'they were making/doing, you were making/doing (formal, plural)', spanish: 'hacían', verb: 'hacer', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: ver (Imperfect - irregular stem 've')
+  { id: 'ver-yo-imperfect', english: 'I was seeing, I used to see', spanish: 'veía', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-tu-imperfect', english: 'you were seeing, you used to see (informal, singular)', spanish: 'veías', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-el-imperfect', english: 'he/she was seeing, you were seeing (formal, singular)', spanish: 'veía', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-nosotros-imperfect', english: 'we were seeing, we used to see', spanish: 'veíamos', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'ver-ellos-imperfect', english: 'they were seeing, you were seeing (formal, plural)', spanish: 'veían', verb: 'ver', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: deber (Imperfect)
+  { id: 'deber-yo-imperfect', english: 'I owed, I should have, I used to owe/must', spanish: 'debía', verb: 'deber', type: 'regular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-tu-imperfect', english: 'you owed, you should have, you used to owe/must (informal, singular)', spanish: 'debías', verb: 'deber', type: 'regular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-el-imperfect', english: 'he/she owed, you owed (formal, singular)', spanish: 'debía', verb: 'deber', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-nosotros-imperfect', english: 'we owed, we should have, we used to owe/must', spanish: 'debíamos', verb: 'deber', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'deber-ellos-imperfect', english: 'they owed, you owed (formal, plural)', spanish: 'debían', verb: 'deber', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: preguntar (Imperfect)
+  { id: 'preguntar-yo-imperfect', english: 'I was asking, I used to ask', spanish: 'preguntaba', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-tu-imperfect', english: 'you were asking, you used to ask (informal, singular)', spanish: 'preguntabas', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-el-imperfect', english: 'he/she was asking, you were asking (formal, singular)', spanish: 'preguntaba', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-nosotros-imperfect', english: 'we were asking, we used to ask', spanish: 'preguntábamos', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'preguntar-ellos-imperfect', english: 'they were asking, you were asking (formal, plural)', spanish: 'preguntaban', verb: 'preguntar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: pedir (Imperfect - uses regular pattern)
+  { id: 'pedir-yo-imperfect', english: 'I was asking for/requesting, I used to ask for/request', spanish: 'pedía', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-tu-imperfect', english: 'you were asking for/requesting, you used to ask for/request (informal, singular)', spanish: 'pedías', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-el-imperfect', english: 'he/she was asking for/requesting, you were asking for/requesting (formal, singular)', spanish: 'pedía', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-nosotros-imperfect', english: 'we were asking for/requesting, we used to ask for/request', spanish: 'pedíamos', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pedir-ellos-imperfect', english: 'they were asking for/requesting, you were asking for/requesting (formal, plural)', spanish: 'pedían', verb: 'pedir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: pensar (Imperfect - uses regular pattern)
+  { id: 'pensar-yo-imperfect', english: 'I was thinking, I used to think', spanish: 'pensaba', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-tu-imperfect', english: 'you were thinking, you used to think (informal, singular)', spanish: 'pensabas', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-el-imperfect', english: 'he/she was thinking, you were thinking (formal, singular)', spanish: 'pensaba', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-nosotros-imperfect', english: 'we were thinking, we used to think', spanish: 'pensábamos', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'pensar-ellos-imperfect', english: 'they were thinking, you were thinking (formal, plural)', spanish: 'pensaban', verb: 'pensar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -er verbs: creer (Imperfect)
+  { id: 'creer-yo-imperfect', english: 'I was believing, I used to believe', spanish: 'creía', verb: 'creer', type: 'regular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-tu-imperfect', english: 'you were believing, you used to believe (informal, singular)', spanish: 'creías', verb: 'creer', type: 'regular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-el-imperfect', english: 'he/she was believing, you were believing (formal, singular)', spanish: 'creía', verb: 'creer', type: 'regular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-nosotros-imperfect', english: 'we were believing, we used to believe', spanish: 'creíamos', verb: 'creer', type: 'regular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'creer-ellos-imperfect', english: 'they were believing, you were believing (formal, plural)', spanish: 'creían', verb: 'creer', type: 'regular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: jugar (Imperfect - uses regular pattern)
+  { id: 'jugar-yo-imperfect', english: 'I was playing, I used to play', spanish: 'jugaba', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-tu-imperfect', english: 'you were playing, you used to play (informal, singular)', spanish: 'jugabas', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-el-imperfect', english: 'he/she was playing, you were playing (formal, singular)', spanish: 'jugaba', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-nosotros-imperfect', english: 'we were playing, we used to play', spanish: 'jugábamos', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'jugar-ellos-imperfect', english: 'they were playing, you were playing (formal, plural)', spanish: 'jugaban', verb: 'jugar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: tocar (Imperfect)
+  { id: 'tocar-yo-imperfect', english: 'I was touching/playing (instrument), I used to touch/play', spanish: 'tocaba', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-tu-imperfect', english: 'you were touching/playing (instrument), you used to touch/play (informal, singular)', spanish: 'tocabas', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-el-imperfect', english: 'he/she was touching/playing (instrument), you were touching/playing (formal, singular)', spanish: 'tocaba', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-nosotros-imperfect', english: 'we were touching/playing (instrument), we used to touch/play', spanish: 'tocábamos', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tocar-ellos-imperfect', english: 'they were touching/playing (instrument), you were touching/playing (formal, plural)', spanish: 'tocaban', verb: 'tocar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: intentar (Imperfect)
+  { id: 'intentar-yo-imperfect', english: 'I was trying, I used to try', spanish: 'intentaba', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-tu-imperfect', english: 'you were trying, you used to try (informal, singular)', spanish: 'intentabas', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-el-imperfect', english: 'he/she was trying, you were trying (formal, singular)', spanish: 'intentaba', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-nosotros-imperfect', english: 'we were trying, we used to try', spanish: 'intentábamos', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'intentar-ellos-imperfect', english: 'they were trying, you were trying (formal, plural)', spanish: 'intentaban', verb: 'intentar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: probar (Imperfect - uses regular pattern)
+  { id: 'probar-yo-imperfect', english: 'I was tasting/trying, I used to taste/try', spanish: 'probaba', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-tu-imperfect', english: 'you were tasting/trying, you used to taste/try (informal, singular)', spanish: 'probabas', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-el-imperfect', english: 'he/she was tasting/trying, you were tasting/trying (formal, singular)', spanish: 'probaba', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-nosotros-imperfect', english: 'we were tasting/trying, we used to taste/try', spanish: 'probábamos', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'probar-ellos-imperfect', english: 'they were tasting/trying, you were tasting/trying (formal, plural)', spanish: 'probaban', verb: 'probar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: tratar (Imperfect)
+  { id: 'tratar-yo-imperfect', english: 'I was treating/trying, I used to treat/try', spanish: 'trataba', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-tu-imperfect', english: 'you were treating/trying, you used to treat/try (informal, singular)', spanish: 'tratabas', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-el-imperfect', english: 'he/she was treating/trying, you were treating/trying (formal, singular)', spanish: 'trataba', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-nosotros-imperfect', english: 'we were treating/trying, we used to treat/try', spanish: 'tratábamos', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'tratar-ellos-imperfect', english: 'they were treating/trying, you were treating/trying (formal, plural)', spanish: 'trataban', verb: 'tratar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: soler (Imperfect - uses regular pattern)
+  { id: 'soler-yo-imperfect', english: 'I usually did, I used to usually do', spanish: 'solía', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-tu-imperfect', english: 'you usually did, you used to usually do (informal, singular)', spanish: 'solías', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-el-imperfect', english: 'he/she usually did, you usually did (formal, singular)', spanish: 'solía', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-nosotros-imperfect', english: 'we usually did, we used to usually do', spanish: 'solíamos', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'soler-ellos-imperfect', english: 'they usually did, you usually did (formal, plural)', spanish: 'solían', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 }
+];
+
 // Combine all conjugations
 export const allConjugations: Conjugation[] = [
   ...presentTenseConjugations,
-  ...preteriteTenseConjugations
+  ...preteriteTenseConjugations,
+  ...imperfectTenseConjugations
 ];
 
 // Helper functions for spaced repetition

@@ -25,7 +25,7 @@ function App() {
   // const [isPracticeMode, setIsPracticeMode] = useState(initialState.isPracticeMode);
   // const [selectedVerbSet, setSelectedVerbSet] = useState(initialState.selectedVerbSet); // No longer needed
   const [selectedVerbs, setSelectedVerbs] = useState<string[]>(initialState.selectedVerbs);
-  const [selectedTenses, setSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean } }>(initialState.selectedTenses || {});
+  const [selectedTenses, setSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } }>(initialState.selectedTenses || {});
   const [practiceMode, setPracticeMode] = useState<PracticeMode>(initialState.practiceMode);
   const [practiceType, setPracticeType] = useState<PracticeType>('mastery');
   const [translationDirection, setTranslationDirection] = useState<TranslationDirection>('es-en');
@@ -186,7 +186,7 @@ function App() {
 
   // handleNextCard moved to usePracticeSession hook
 
-  const handleVerbSelectionSave = (newSelectedVerbs: string[], newSelectedTenses: { [verb: string]: { present: boolean; preterite: boolean } }) => {
+  const handleVerbSelectionSave = (newSelectedVerbs: string[], newSelectedTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } }) => {
     setSelectedVerbs(newSelectedVerbs);
     setSelectedTenses(newSelectedTenses);
     // Clear any active practice session when verb selection changes
