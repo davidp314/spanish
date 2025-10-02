@@ -148,6 +148,20 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'caerse-nosotros-present', english: 'we fall down', spanish: 'nos caemos', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'caerse-ellos-present', english: 'they fall down, you fall down (formal, plural)', spanish: 'se caen', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
 
+  // Irregular verbs: venir (Present)
+  { id: 'venir-yo-present', english: 'I come', spanish: 'vengo', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-tu-present', english: 'you come (informal, singular)', spanish: 'vienes', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-el-present', english: 'he/she comes, you come (formal, singular)', spanish: 'viene', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-nosotros-present', english: 'we come', spanish: 'venimos', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-ellos-present', english: 'they come, you come (formal, plural)', spanish: 'vienen', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular verbs: andar (Present)
+  { id: 'andar-yo-present', english: 'I walk', spanish: 'ando', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-tu-present', english: 'you walk (informal, singular)', spanish: 'andas', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-el-present', english: 'he/she walks, you walk (formal, singular)', spanish: 'anda', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-nosotros-present', english: 'we walk', spanish: 'andamos', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-ellos-present', english: 'they walk, you walk (formal, plural)', spanish: 'andan', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
   // Regular verbs: buscar (Present)
   { id: 'buscar-yo-present', english: 'I look for', spanish: 'busco', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'buscar-tu-present', english: 'you look for (informal, singular)', spanish: 'buscas', verb: 'buscar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
@@ -395,6 +409,20 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'poner-el-preterite', english: 'he/she put, you put (formal, singular)', spanish: 'puso', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'poner-nosotros-preterite', english: 'we put', spanish: 'pusimos', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'poner-ellos-preterite', english: 'they put, you put (formal, plural)', spanish: 'pusieron', verb: 'poner', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: venir (Preterite)
+  { id: 'venir-yo-preterite', english: 'I came', spanish: 'vine', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-tu-preterite', english: 'you came (informal, singular)', spanish: 'viniste', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-el-preterite', english: 'he/she came, you came (formal, singular)', spanish: 'vino', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-nosotros-preterite', english: 'we came', spanish: 'vinimos', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-ellos-preterite', english: 'they came, you came (formal, plural)', spanish: 'vinieron', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular verbs: andar (Preterite)
+  { id: 'andar-yo-preterite', english: 'I walked', spanish: 'anduve', verb: 'andar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-tu-preterite', english: 'you walked (informal, singular)', spanish: 'anduviste', verb: 'andar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-el-preterite', english: 'he/she walked, you walked (formal, singular)', spanish: 'anduvo', verb: 'andar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-nosotros-preterite', english: 'we walked', spanish: 'anduvimos', verb: 'andar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-ellos-preterite', english: 'they walked, you walked (formal, plural)', spanish: 'anduvieron', verb: 'andar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
 
   // Irregular verbs: querer (Preterite)
   { id: 'querer-yo-preterite', english: 'I wanted', spanish: 'quise', verb: 'querer', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
@@ -700,6 +728,19 @@ export const imperfectTenseConjugations: Conjugation[] = [
   { id: 'saber-nosotros-imperfect', english: 'we knew, we used to know', spanish: 'sabíamos', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'saber-ellos-imperfect', english: 'they knew, you knew (formal, plural)', spanish: 'sabían', verb: 'saber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
 
+  // Irregular -ir verbs: venir (Imperfect - uses regular pattern)
+  { id: 'venir-yo-imperfect', english: 'I was coming, I used to come', spanish: 'venía', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-tu-imperfect', english: 'you were coming, you used to come (informal, singular)', spanish: 'venías', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-el-imperfect', english: 'he/she was coming, you were coming (formal, singular)', spanish: 'venía', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-nosotros-imperfect', english: 'we were coming, we used to come', spanish: 'veníamos', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'venir-ellos-imperfect', english: 'they were coming, you were coming (formal, plural)', spanish: 'venían', verb: 'venir', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Regular -ar verbs: andar (Imperfect)
+  { id: 'andar-yo-imperfect', english: 'I was walking, I used to walk', spanish: 'andaba', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-tu-imperfect', english: 'you were walking, you used to walk (informal, singular)', spanish: 'andabas', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-el-imperfect', english: 'he/she was walking, you were walking (formal, singular)', spanish: 'andaba', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-nosotros-imperfect', english: 'we were walking, we used to walk', spanish: 'andábamos', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'andar-ellos-imperfect', english: 'they were walking, you were walking (formal, plural)', spanish: 'andaban', verb: 'andar', type: 'regular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
   // Irregular -er verbs: caerse (Imperfect - uses regular pattern)
   { id: 'caerse-yo-imperfect', english: 'I was falling down, I used to fall down', spanish: 'me caía', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'caerse-tu-imperfect', english: 'you were falling down, you used to fall down (informal, singular)', spanish: 'te caías', verb: 'caerse', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
