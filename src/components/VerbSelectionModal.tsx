@@ -35,6 +35,7 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
   const [searchMode, setSearchMode] = useState<'spanish' | 'english'>('spanish');
   const [localSelectedVerbs, setLocalSelectedVerbs] = useState<string[]>(selectedVerbs);
   const [localSelectedTenses, setLocalSelectedTenses] = useState<{ [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } }>(selectedTenses);
+  const [bulkTenses, setBulkTenses] = useState({ present: false, preterite: false, imperfect: false });
 
   // Extract unique verbs from conjugations
   const uniqueVerbs = useMemo(() => {
@@ -118,22 +119,22 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
     });
   };
 
-  const handleSelectAllTenses = () => {
-    const newTenses: { [verb: string]: { present: boolean; preterite: boolean; imperfect: boolean } } = {};
-    filteredVerbs.forEach(verb => {
-      newTenses[verb.verb] = {
-        present: verb.hasPresent,
-        preterite: verb.hasPreterite,
-        imperfect: verb.hasImperfect
-      };
+  const handleApplyTenses = () => {
+    const { present, preterite, imperfect } = bulkTenses;
+
+    // Apply checked tenses to selected verbs (or clear if none checked)
+    const newTenses = { ...localSelectedTenses };
+    localSelectedVerbs.forEach(verb => {
+      const verbInfo = uniqueVerbs.find(v => v.verb === verb);
+      if (verbInfo) {
+        newTenses[verb] = {
+          present: present && verbInfo.hasPresent,
+          preterite: preterite && verbInfo.hasPreterite,
+          imperfect: imperfect && verbInfo.hasImperfect
+        };
+      }
     });
     setLocalSelectedTenses(newTenses);
-  };
-
-  const handleDeselectAllTenses = () => {
-    setLocalSelectedTenses({});
-    // When deselecting all tenses, also deselect all verbs
-    setLocalSelectedVerbs([]);
   };
 
   const handleSelectAll = () => {
@@ -204,11 +205,32 @@ const VerbSelectionModal: React.FC<VerbSelectionModalProps> = ({
             </button>
           </div>
           <div className="tense-actions">
-            <button onClick={handleSelectAllTenses} className="bulk-action-button">
-              Select All Tenses
-            </button>
-            <button onClick={handleDeselectAllTenses} className="bulk-action-button">
-              Deselect All Tenses
+            <label className="bulk-tense-checkbox">
+              <input
+                type="checkbox"
+                checked={bulkTenses.present}
+                onChange={(e) => setBulkTenses(prev => ({ ...prev, present: e.target.checked }))}
+              />
+              <span className="tense-badge present">Present</span>
+            </label>
+            <label className="bulk-tense-checkbox">
+              <input
+                type="checkbox"
+                checked={bulkTenses.preterite}
+                onChange={(e) => setBulkTenses(prev => ({ ...prev, preterite: e.target.checked }))}
+              />
+              <span className="tense-badge preterite">Preterite</span>
+            </label>
+            <label className="bulk-tense-checkbox">
+              <input
+                type="checkbox"
+                checked={bulkTenses.imperfect}
+                onChange={(e) => setBulkTenses(prev => ({ ...prev, imperfect: e.target.checked }))}
+              />
+              <span className="tense-badge imperfect">Imperfect</span>
+            </label>
+            <button onClick={handleApplyTenses} className="bulk-action-button">
+              Apply Tenses
             </button>
           </div>
         </div>

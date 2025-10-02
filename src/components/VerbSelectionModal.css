@@ -112,6 +112,20 @@
 .verb-actions, .tense-actions {
   display: flex;
   gap: 12px;
+  align-items: center;
+}
+
+.bulk-tense-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.bulk-tense-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
 }
 
 .bulk-action-button {
