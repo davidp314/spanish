@@ -644,7 +644,7 @@ export const preteriteTenseConjugations: Conjugation[] = [
   // Irregular -ir verbs: reír (Preterite)
   { id: 'reír-yo-preterite', english: 'I laughed', spanish: 'reí', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'reír-tu-preterite', english: 'you laughed (informal, singular)', spanish: 'reíste', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'reír-el-preterite', english: 'he/she laughed, you laughed (formal, singular)', spanish: 'rió', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-el-preterite', english: 'he/she laughed, you laughed (formal, singular)', spanish: 'rio', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'reír-nosotros-preterite', english: 'we laughed', spanish: 'reímos', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'reír-ellos-preterite', english: 'they laughed, you laughed (formal, plural)', spanish: 'rieron', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
