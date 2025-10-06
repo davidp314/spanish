@@ -300,7 +300,35 @@ export const presentTenseConjugations: Conjugation[] = [
   { id: 'soler-tu-present', english: 'you usually do (informal, singular)', spanish: 'sueles', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'soler-el-present', english: 'he/she usually does, you usually do (formal, singular)', spanish: 'suele', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'soler-nosotros-present', english: 'we usually do', spanish: 'solemos', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'soler-ellos-present', english: 'they usually do, you usually do (formal, plural)', spanish: 'suelen', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'soler-ellos-present', english: 'they usually do, you usually do (formal, plural)', spanish: 'suelen', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: dar (Present)
+  { id: 'dar-yo-present', english: 'I give', spanish: 'doy', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-tu-present', english: 'you give (informal, singular)', spanish: 'das', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-el-present', english: 'he/she gives, you give (formal, singular)', spanish: 'da', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-nosotros-present', english: 'we give', spanish: 'damos', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-ellos-present', english: 'they give, you give (formal, plural)', spanish: 'dan', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: haber (Present)
+  { id: 'haber-yo-present', english: 'I have', spanish: 'he', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-tu-present', english: 'you have (informal, singular)', spanish: 'has', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-el-present', english: 'he/she has, you have (formal, singular)', spanish: 'ha', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-nosotros-present', english: 'we have', spanish: 'hemos', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-ellos-present', english: 'they have, you have (formal, plural)', spanish: 'han', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: sonreír (Present)
+  { id: 'sonreír-yo-present', english: 'I smile', spanish: 'sonrío', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-tu-present', english: 'you smile (informal, singular)', spanish: 'sonríes', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-el-present', english: 'he/she smiles, you smile (formal, singular)', spanish: 'sonríe', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-nosotros-present', english: 'we smile', spanish: 'sonreímos', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-ellos-present', english: 'they smile, you smile (formal, plural)', spanish: 'sonríen', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: reír (Present)
+  { id: 'reír-yo-present', english: 'I laugh', spanish: 'río', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-tu-present', english: 'you laugh (informal, singular)', spanish: 'ríes', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-el-present', english: 'he/she laughs, you laugh (formal, singular)', spanish: 'ríe', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-nosotros-present', english: 'we laugh', spanish: 'reímos', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-ellos-present', english: 'they laugh, you laugh (formal, plural)', spanish: 'ríen', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'present', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Preterite tense conjugations
@@ -590,7 +618,35 @@ export const preteriteTenseConjugations: Conjugation[] = [
   { id: 'soler-tu-preterite', english: 'you used to usually do (informal, singular)', spanish: 'soliste', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'soler-el-preterite', english: 'he/she used to usually do, you used to usually do (formal, singular)', spanish: 'solió', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'soler-nosotros-preterite', english: 'we used to usually do', spanish: 'solimos', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'soler-ellos-preterite', english: 'they used to usually do, you used to usually do (formal, plural)', spanish: 'solieron', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'soler-ellos-preterite', english: 'they used to usually do, you used to usually do (formal, plural)', spanish: 'solieron', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: dar (Preterite)
+  { id: 'dar-yo-preterite', english: 'I gave', spanish: 'di', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-tu-preterite', english: 'you gave (informal, singular)', spanish: 'diste', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-el-preterite', english: 'he/she gave, you gave (formal, singular)', spanish: 'dio', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-nosotros-preterite', english: 'we gave', spanish: 'dimos', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-ellos-preterite', english: 'they gave, you gave (formal, plural)', spanish: 'dieron', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: haber (Preterite)
+  { id: 'haber-yo-preterite', english: 'I had', spanish: 'hube', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-tu-preterite', english: 'you had (informal, singular)', spanish: 'hubiste', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-el-preterite', english: 'he/she had, you had (formal, singular)', spanish: 'hubo', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-nosotros-preterite', english: 'we had', spanish: 'hubimos', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-ellos-preterite', english: 'they had, you had (formal, plural)', spanish: 'hubieron', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: sonreír (Preterite)
+  { id: 'sonreír-yo-preterite', english: 'I smiled', spanish: 'sonreí', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-tu-preterite', english: 'you smiled (informal, singular)', spanish: 'sonreíste', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-el-preterite', english: 'he/she smiled, you smiled (formal, singular)', spanish: 'sonrió', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-nosotros-preterite', english: 'we smiled', spanish: 'sonreímos', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-ellos-preterite', english: 'they smiled, you smiled (formal, plural)', spanish: 'sonrieron', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: reír (Preterite)
+  { id: 'reír-yo-preterite', english: 'I laughed', spanish: 'reí', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-tu-preterite', english: 'you laughed (informal, singular)', spanish: 'reíste', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-el-preterite', english: 'he/she laughed, you laughed (formal, singular)', spanish: 'rió', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-nosotros-preterite', english: 'we laughed', spanish: 'reímos', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-ellos-preterite', english: 'they laughed, you laughed (formal, plural)', spanish: 'rieron', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'preterite', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Imperfect tense conjugations
@@ -879,7 +935,35 @@ export const imperfectTenseConjugations: Conjugation[] = [
   { id: 'soler-tu-imperfect', english: 'you usually did, you used to usually do (informal, singular)', spanish: 'solías', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'soler-el-imperfect', english: 'he/she usually did, you usually did (formal, singular)', spanish: 'solía', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
   { id: 'soler-nosotros-imperfect', english: 'we usually did, we used to usually do', spanish: 'solíamos', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
-  { id: 'soler-ellos-imperfect', english: 'they usually did, you usually did (formal, plural)', spanish: 'solían', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 }
+  { id: 'soler-ellos-imperfect', english: 'they usually did, you usually did (formal, plural)', spanish: 'solían', verb: 'soler', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ar verbs: dar (Imperfect - uses regular pattern)
+  { id: 'dar-yo-imperfect', english: 'I was giving, I used to give', spanish: 'daba', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-tu-imperfect', english: 'you were giving, you used to give (informal, singular)', spanish: 'dabas', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-el-imperfect', english: 'he/she was giving, you were giving (formal, singular)', spanish: 'daba', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-nosotros-imperfect', english: 'we were giving, we used to give', spanish: 'dábamos', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'dar-ellos-imperfect', english: 'they were giving, you were giving (formal, plural)', spanish: 'daban', verb: 'dar', type: 'irregular', conjugation: 'ar', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -er verbs: haber (Imperfect - uses regular pattern)
+  { id: 'haber-yo-imperfect', english: 'I was having, I used to have', spanish: 'había', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-tu-imperfect', english: 'you were having, you used to have (informal, singular)', spanish: 'habías', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-el-imperfect', english: 'he/she was having, you were having (formal, singular)', spanish: 'había', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-nosotros-imperfect', english: 'we were having, we used to have', spanish: 'habíamos', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'haber-ellos-imperfect', english: 'they were having, you were having (formal, plural)', spanish: 'habían', verb: 'haber', type: 'irregular', conjugation: 'er', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: sonreír (Imperfect - uses regular pattern)
+  { id: 'sonreír-yo-imperfect', english: 'I was smiling, I used to smile', spanish: 'sonreía', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-tu-imperfect', english: 'you were smiling, you used to smile (informal, singular)', spanish: 'sonreías', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-el-imperfect', english: 'he/she was smiling, you were smiling (formal, singular)', spanish: 'sonreía', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-nosotros-imperfect', english: 'we were smiling, we used to smile', spanish: 'sonreíamos', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'sonreír-ellos-imperfect', english: 'they were smiling, you were smiling (formal, plural)', spanish: 'sonreían', verb: 'sonreír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+
+  // Irregular -ir verbs: reír (Imperfect - uses regular pattern)
+  { id: 'reír-yo-imperfect', english: 'I was laughing, I used to laugh', spanish: 'reía', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'yo', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-tu-imperfect', english: 'you were laughing, you used to laugh (informal, singular)', spanish: 'reías', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'tú', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-el-imperfect', english: 'he/she was laughing, you were laughing (formal, singular)', spanish: 'reía', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'él/ella/usted', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-nosotros-imperfect', english: 'we were laughing, we used to laugh', spanish: 'reíamos', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'nosotros', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 },
+  { id: 'reír-ellos-imperfect', english: 'they were laughing, you were laughing (formal, plural)', spanish: 'reían', verb: 'reír', type: 'irregular', conjugation: 'ir', person: 'ellos/ellas/ustedes', tense: 'imperfect', mastered: false, practiceCount: 0, correctCount: 0 }
 ];
 
 // Combine all conjugations

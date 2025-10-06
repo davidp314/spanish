@@ -1,6 +1,6 @@
 # Spanish Verb Master 🎯
 
-A modern React application for learning Spanish verb conjugations through interactive flashcards, spaced repetition, and hybrid progress tracking. Practice 39 essential verbs with 585 total conjugations across three tenses.
+A modern React application for learning Spanish verb conjugations through interactive flashcards, spaced repetition, and hybrid progress tracking. Practice 45 essential verbs with 675 total conjugations across three tenses.
 
 ## ✨ Features
 
